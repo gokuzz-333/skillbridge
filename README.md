@@ -188,7 +188,7 @@ The current prototype is intentionally lightweight and does not require a fronte
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/skillbridge.git
+git clone https://github.com/gokuzz-333/skillbridge.git
 ```
 
 ### 2. Open the project
