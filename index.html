@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillBridge — Live Explainable Career & Skill Matching Engine</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans, Fraunces, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SITE HEADER
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <div class="brand-logo" id="brandHome">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <span class="brand-text">SkillBridge</span>
+          <span class="brand-badge">Live Engine</span>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="stage-nav" id="stageNav"></nav>
+
+        <div class="nav-actions">
+          <div class="live-pulse-pill">
+            <span class="live-dot" id="statusDot"></span>
+            <span id="dataBadge" class="badge">Baseline Dataset</span>
+          </div>
+          <button class="btn btn-sm btn-secondary" id="exportBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Export Audit
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTAINER
+       ========================================================================== -->
+  <main class="container">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="heroSection">
+      <div class="hero-badge-row">
+        <div class="hero-pill">
+          <span>●</span> Explainable Career Intelligence Engine
+        </div>
+        <span style="font-family:var(--font-mono); font-size:12px; color:var(--text-muted);" id="livePostingsCount">
+          Active Live Data Feeds Enabled
+        </span>
+      </div>
+
+      <h1 class="hero-headline">
+        From real job market signals to a career recommendation you can <em>trace back</em>, skill by skill.
+      </h1>
+
+      <p class="hero-desc">
+        A transparent 6-stage career engine. Real-time hiring data powers a live gap analysis against your verified skills, paired with dynamic radar comparisons, what-if simulators, and actionable learning pathways.
+      </p>
+
+      <!-- 6-Stage Pipeline Track -->
+      <div class="pipeline-track" id="pipelineTrack"></div>
+
+      <!-- Quick Persona Presets Loader -->
+      <div class="persona-bar">
+        <div class="persona-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+          </svg>
+          1-Click Presets:
+        </div>
+        <div class="persona-chips" id="personaChips"></div>
+        <button class="btn btn-sm btn-primary" id="heroCta">
+          Start Assessment →
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         STAGE 1: MARKET PULSE & LIVE SYNC
+         ========================================================================== -->
+    <section class="stage-section active" id="stage-market">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <h2>01 / Job Market Signal Pulse</h2>
+          <p class="section-subtitle">
+            Real-time hiring demand indexed across engineering, analytics, AI/ML, security, and product roles in India and global remote markets.
+          </p>
+        </div>
+        <span class="stage-tag-badge">Stage 01 • Market Data</span>
+      </div>
+
+      <!-- Live Sync Panel -->
+      <div class="live-sync-card">
+        <div class="sync-top-row">
+          <div class="sync-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
+              <path d="M23 4v6h-6M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Live Market Feed Connection
+          </div>
+          <div class="sync-source-tabs">
+            <button class="sync-source-tab active" data-source="free_public">Free Public Feeds (Zero Setup)</button>
+            <button class="sync-source-tab" data-source="adzuna">Adzuna API (Custom Keys)</button>
+          </div>
+        </div>
+
+        <p class="sync-details-text">
+          Syncing directly queries active job postings from public developer APIs (<b>Remotive</b>, <b>Arbeitnow</b>, <b>Jobicy</b>), extracts skill frequencies from live job descriptions in real time, and dynamically updates market pull velocities.
+        </p>
+
+        <!-- Custom Adzuna Input Container (hidden by default) -->
+        <div id="adzunaInputFields" style="display:none; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
+          <input type="text" id="adzunaId" class="sync-input" placeholder="Adzuna App ID">
+          <input type="text" id="adzunaKey" class="sync-input" placeholder="Adzuna App Key">
+          <select id="countrySelect" class="sync-select">
+            <option value="in">India (IN)</option>
+            <option value="us">United States (US)</option>
+            <option value="gb">United Kingdom (GB)</option>
+          </select>
+        </div>
+
+        <div class="sync-controls-row">
+          <button class="btn btn-emerald" id="syncBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            Sync Live Market Data
+          </button>
+          <button class="btn btn-ghost" id="resetBtn">Reset to Baseline</button>
+        </div>
+
+        <div class="sync-log-box" id="syncLog">
+          <span>Ready to sync live postings. Currently rendering the calibrated baseline index.</span>
+        </div>
+      </div>
+
+      <!-- Role Sector Filter & Table -->
+      <div class="filter-bar" id="sectorFilter"></div>
+      <div class="table-responsive">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th>Role & Sector</th>
+              <th>Market Demand</th>
+              <th>Trending Direction</th>
+              <th>Core Weighted Competencies</th>
+            </tr>
+          </thead>
+          <tbody id="roleTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         STAGE 2: SKILL DEMAND INDEX
+         ========================================================================== -->
+    <section class="stage-section active" id="stage-demand">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <h2>02 / Skill Demand Index</h2>
+          <p class="section-subtitle">
+            Every tracked technology ranked by its prevalence in current hiring openings. Click any skill to instantly add it to your candidate profile.
+          </p>
+        </div>
+        <span class="stage-tag-badge">Stage 02 • Skill Index</span>
+      </div>
+
+      <div class="filter-bar" id="categoryFilter"></div>
+      <div class="card">
+        <div class="skill-bar-grid" id="demandBarList"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         STAGE 3: EMERGING HIGH-VELOCITY RADAR
+         ========================================================================== */ -->
+    <section class="stage-section active" id="stage-emerging">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <h2>03 / High-Velocity Emerging Skills</h2>
+          <p class="section-subtitle">
+            Competencies growing significantly faster than total market openings with high supply shortages. Knowing these earns up to a <b>+15 point bonus</b> in matching models.
+          </p>
+        </div>
+        <span class="stage-tag-badge">Stage 03 • Emerging Signals</span>
+      </div>
+
+      <div class="emerge-grid-container" id="emergeGrid"></div>
+    </section>
+
+    <!-- ==========================================================================
+         STAGE 4: PROFILE BUILDER & AI RESUME SCANNER
+         ========================================================================== -->
+    <section class="stage-section active" id="stage-profile">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <h2>04 / Candidate Profile & AI Scanner</h2>
+          <p class="section-subtitle">
+            Build your skills inventory manually or paste your resume / LinkedIn summary to let our text extractor infer your technologies and proficiency levels.
+          </p>
+        </div>
+        <span class="stage-tag-badge">Stage 04 • Profile Input</span>
+      </div>
+
+      <div class="card card-gold">
+        <!-- AI Resume Scanner Box -->
+        <div class="resume-scanner-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <label style="font-size:13.5px; font-weight:600; color:#fff; display:flex; align-items:center; gap:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+              Paste Resume / LinkedIn Bio / Project Summary:
+            </label>
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">Regex + Context Keyword Extractor</span>
+          </div>
+
+          <textarea id="resumeText" class="resume-textarea" placeholder="Paste your resume work experience, LinkedIn summary, or GitHub projects here... (e.g. 'Senior Python & React developer with 4 years experience building RAG pipelines, FastAPI services, Docker containers, and deploying onto AWS...')"></textarea>
+          
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <button class="btn btn-primary" id="scanResumeBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+              Analyze & Extract Skills
+            </button>
+            <span id="resumeResultMsg" style="font-family:var(--font-mono); font-size:12px;"></span>
+          </div>
+        </div>
+
+        <!-- Manual Add Controls -->
+        <div style="margin-top:20px;">
+          <h4 style="font-size:13.5px; font-weight:600; color:var(--text-secondary); margin-bottom:12px;">
+            Or Add / Adjust Individual Skills:
+          </h4>
+          <div class="manual-add-row">
+            <select id="skillSelect" class="sync-select skill-select-box"></select>
+            <div class="level-toggle-group">
+              <button class="level-toggle-btn" data-lvl="30">Beginner (30%)</button>
+              <button class="level-toggle-btn active" data-lvl="60">Intermediate (60%)</button>
+              <button class="level-toggle-btn" data-lvl="90">Advanced (90%)</button>
+            </div>
+            <button class="btn btn-secondary" id="addSkillBtn">+ Add to Profile</button>
+          </div>
+        </div>
+
+        <!-- Verified Profile Chips -->
+        <div style="margin-top:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase; color:var(--accent-gold);">
+              Active Profile Skills Inventory:
+            </span>
+          </div>
+          <div class="chips-container" id="profileChips"></div>
+          <div id="emptyChipHint" style="font-size:13px; color:var(--text-muted); font-style:italic; padding:12px 0;">
+            No skills added yet. Select a preset above, scan your resume, or add skills manually.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         STAGE 5: EXPLAINABLE RECOMMENDATIONS & RADAR COMPARISON
+         ========================================================================== -->
+    <section class="stage-section active" id="stage-reco">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <h2>05 / Fit Matrix & Explainable Recommendations</h2>
+          <p class="section-subtitle">
+            Transparent algorithmic scoring with full mathematical explainability, interactive SVG radar comparison charts, and real-time what-if gap simulators.
+          </p>
+        </div>
+        <span class="stage-tag-badge">Stage 05 • Fit Matrix</span>
+      </div>
+
+      <div id="recoList" class="reco-container"></div>
+      <div id="recoEmptyHint" class="card" style="display:none; color:var(--text-secondary); text-align:center; padding:36px;">
+        Add at least one skill in Stage 04 to generate explainable recommendations.
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         STAGE 6: SALARY ESTIMATOR, LEARNING ROADMAPS & LIVE OPENINGS
+         ========================================================================== -->
+    <section class="stage-section active" id="stage-roadmaps">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <h2>06 / Career Compensation, Roadmaps & Live Openings</h2>
+          <p class="section-subtitle">
+            Expected compensation benchmarks based on verified skill depth, curated action roadmaps to close missing gaps, and direct links to active job postings.
+          </p>
+        </div>
+        <span class="stage-tag-badge">Stage 06 • Action Plan</span>
+      </div>
+
+      <!-- Real-Time Compensation Estimator -->
+      <div class="salary-estimator-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+          <div>
+            <span style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--accent-emerald); letter-spacing:0.08em;">
+              Estimated Market Value & Compensation
+            </span>
+            <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff; margin-top:2px;">
+              Live Market Salary Projection
+            </h3>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <select id="salaryRoleSelect" class="sync-select"></select>
+            <select id="salaryExpSelect" class="sync-select">
+              <option value="junior">Junior (0-2 Yrs)</option>
+              <option value="mid" selected>Mid-Level (2-5 Yrs)</option>
+              <option value="senior">Senior (5-8 Yrs)</option>
+              <option value="lead">Lead / Architect (8+ Yrs)</option>
+            </select>
+            <select id="salaryGeoSelect" class="sync-select">
+              <option value="in" selected>India (₹ INR)</option>
+              <option value="global">Global / US ($ USD)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="salary-output-row">
+          <div>
+            <div class="salary-big-num" id="salaryVal">₹12 - ₹20 LPA</div>
+            <div class="salary-sub-text">Calculated from base role rates scaled by your verified skill-match factor.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actionable Learning Roadmaps for Gaps -->
+      <div style="margin-bottom:34px;">
+        <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff; margin-bottom:6px;">
+          Actionable Learning Pathways for Identified Gaps
+        </h3>
+        <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:18px;">
+          Curated free resources, courses, and estimated time-to-mastery to close your high-leverage skill gaps:
+        </p>
+        <div class="grid-3" id="roadmapCardsContainer"></div>
+      </div>
+
+      <!-- Live Job Openings Explorer -->
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:14px;">
+          <div>
+            <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff;">
+              Live Job Openings & Application Launchers
+            </h3>
+            <p style="font-size:13.5px; color:var(--text-secondary);">
+              Current openings matching your targeted role from live feeds and verified search portals:
+            </p>
+          </div>
+        </div>
+        <div class="jobs-grid" id="jobsContainer"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       EXPORT CAREER AUDIT MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="exportModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">Career Fit Audit Report</h3>
+        <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+      </div>
+      <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
+        Formatted summary of your verified skills, explainable role recommendations, identified gaps, and personalized learning milestones.
+      </p>
+      <div class="report-preview-box" id="reportPreview"></div>
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button class="btn btn-secondary" id="printReportBtn">🖨️ Print / Save as PDF</button>
+        <button class="btn btn-primary" id="copyReportBtn">Copy Report Text</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <div>
+          <span style="font-weight:700; color:var(--text-primary);">SkillBridge</span> — Explainable Career Intelligence Engine
+          <div style="font-size:12px; margin-top:4px;">
+            Bridging candidate capabilities with live market demand through transparent, deterministic recommendations.
+          </div>
+        </div>
+        <div style="font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted);">
+          Data sources: Public Remotive, Arbeitnow, Jobicy APIs + Adzuna
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
