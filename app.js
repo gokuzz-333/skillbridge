@@ -135,6 +135,8 @@
     resumeText: document.getElementById("resumeText"),
     scanResumeBtn: document.getElementById("scanResumeBtn"),
     resumeResultMsg: document.getElementById("resumeResultMsg"),
+    improveResumeBtn: document.getElementById("improveResumeBtn"),
+    resumeImproverResult: document.getElementById("resumeImproverResult"),
     recoList: document.getElementById("recoList"),
     recoEmptyHint: document.getElementById("recoEmptyHint"),
     personaChips: document.getElementById("personaChips"),
@@ -150,6 +152,13 @@
     copyReportBtn: document.getElementById("copyReportBtn"),
     printReportBtn: document.getElementById("printReportBtn"),
     themeToggle: document.getElementById("themeToggle"),
+    helpChat: document.getElementById("helpChat"),
+    helpChatWindow: document.getElementById("helpChatWindow"),
+    helpChatTrigger: document.getElementById("helpChatTrigger"),
+    helpChatClose: document.getElementById("helpChatClose"),
+    helpChatMessages: document.getElementById("helpChatMessages"),
+    helpChatForm: document.getElementById("helpChatForm"),
+    helpChatInput: document.getElementById("helpChatInput"),
   };
 
   /* ==========================================================================
@@ -303,6 +312,60 @@
     });
 
     return result;
+  }
+
+  function initResumeImprover() {
+    if (!dom.improveResumeBtn || !dom.resumeImproverResult) return;
+
+    dom.improveResumeBtn.addEventListener("click", () => {
+      const resume = (dom.resumeText.value || "").trim();
+      const result = dom.resumeImproverResult;
+      result.replaceChildren();
+      result.hidden = false;
+
+      if (!resume) {
+        const message = document.createElement("p");
+        message.textContent = "Paste your resume or LinkedIn summary first, then select Review resume.";
+        result.appendChild(message);
+        return;
+      }
+
+      const detectedSkills = Object.keys(parseSkillsFromText(resume));
+      const actionVerbs = /\b(built|created|designed|developed|delivered|improved|launched|led|managed|automated|optimized|reduced|increased|implemented|analyzed)\b/gi;
+      const hasActionVerbs = (resume.match(actionVerbs) || []).length >= 2;
+      const hasMetrics = /\b\d+(?:\.\d+)?(?:%|\+|x| users| customers| projects| days| hours| years)\b/i.test(resume);
+      const hasBullets = /(^|\n)\s*[-•*]/.test(resume);
+      const profileSkills = [...new Set([...detectedSkills, ...Object.keys(profile)])].slice(0, 5);
+      const suggestions = [];
+
+      if (!hasMetrics) suggestions.push("Add numbers where you can—for example, time saved, users supported, revenue influenced, projects delivered, or accuracy improved.");
+      if (!hasActionVerbs) suggestions.push("Start experience bullets with a clear action verb such as Built, Improved, Automated, Led, or Analyzed.");
+      if (!hasBullets) suggestions.push("Use short bullet points for each role or project so recruiters can scan your impact quickly.");
+      if (detectedSkills.length < 3) suggestions.push("Add a dedicated Skills section with the tools and technologies you have actually used.");
+      if (resume.length < 250) suggestions.push("Add more detail about your strongest project, internship, or work experience, including your contribution and outcome.");
+      if (!suggestions.length) suggestions.push("Your resume already has strong basics. Tailor the top summary and first few bullets to the job description before each application.");
+
+      const heading = document.createElement("h4");
+      heading.textContent = "Resume review";
+      const intro = document.createElement("p");
+      intro.textContent = `We found ${detectedSkills.length} recognised skill${detectedSkills.length === 1 ? "" : "s"}. Use these suggestions to make your experience easier to scan.`;
+      const list = document.createElement("ul");
+      suggestions.forEach(suggestion => {
+        const item = document.createElement("li");
+        item.textContent = suggestion;
+        list.appendChild(item);
+      });
+      result.append(heading, intro, list);
+
+      if (profileSkills.length) {
+        const summaryLabel = document.createElement("h5");
+        summaryLabel.textContent = "Suggested summary — edit this to keep it accurate";
+        const summary = document.createElement("p");
+        summary.className = "resume-summary-suggestion";
+        summary.textContent = `Detail-oriented professional with hands-on experience in ${profileSkills.join(", ")}. Focused on turning business needs into reliable, measurable outcomes through practical problem-solving and continuous learning.`;
+        result.append(summaryLabel, summary);
+      }
+    });
   }
 
   function escapeRegExp(string) {
@@ -1293,6 +1356,70 @@
     });
   }
 
+  function initHelpChat() {
+    if (!dom.helpChatTrigger || !dom.helpChatWindow) return;
+
+    const setOpen = (open) => {
+      dom.helpChatWindow.hidden = !open;
+      dom.helpChatTrigger.setAttribute("aria-expanded", String(open));
+      dom.helpChat.classList.toggle("open", open);
+      if (open) dom.helpChatInput.focus();
+    };
+    const addMessage = (text, type) => {
+      const message = document.createElement("div");
+      message.className = `help-chat-message ${type}-message`;
+      message.textContent = text;
+      dom.helpChatMessages.appendChild(message);
+      dom.helpChatMessages.scrollTop = dom.helpChatMessages.scrollHeight;
+    };
+    const answer = (question) => {
+      const q = question.toLowerCase();
+      if (/(creator|created|made|gohulrahesh|amrita|college)/.test(q)) {
+        return "SkillBridge was created by Gohulrahesh, an AIE student at Amrita College, Bangalore.";
+      }
+      if (/(resume|profile|skill|scanner)/.test(q)) {
+        showStage("stage-profile");
+        return "Start in Build your skills profile. Choose a sample profile, add skills yourself, or paste your resume. You can also use Review resume for improvement suggestions.";
+      }
+      if (/(job|apply|opening|india)/.test(q)) {
+        return "Use the India jobs item in the navigation to browse current public-feed listings, search by keyword, or open live searches on LinkedIn, Naukri, and Indeed.";
+      }
+      if (/(market|demand|trend)/.test(q)) {
+        showStage("stage-market");
+        return "Explore the job market shows the roles and skills tracked by SkillBridge. Use Sync Live Market Data to update it from available public feeds.";
+      }
+      if (/(match|recommend|fit|career)/.test(q)) {
+        showStage("stage-reco");
+        return "Best-fit roles compares your skills with each role, explains the match score, and lists the most useful skills to build next.";
+      }
+      if (/(roadmap|learn|salary|next step)/.test(q)) {
+        showStage("stage-roadmaps");
+        return "Plan your next steps includes a salary estimate, learning resources for missing skills, and job-search links.";
+      }
+      if (/(dark|light|theme|mode)/.test(q)) {
+        return "Use the Theme switch in the header to choose light or dark mode. Your choice is saved in this browser.";
+      }
+      return "I can help with building your profile, understanding role matches, finding jobs, learning roadmaps, themes, or information about the creator.";
+    };
+    const submitQuestion = (question) => {
+      const cleanQuestion = question.trim();
+      if (!cleanQuestion) return;
+      addMessage(cleanQuestion, "user");
+      dom.helpChatInput.value = "";
+      window.setTimeout(() => addMessage(answer(cleanQuestion), "guide"), 180);
+    };
+
+    dom.helpChatTrigger.addEventListener("click", () => setOpen(dom.helpChatWindow.hidden));
+    dom.helpChatClose.addEventListener("click", () => setOpen(false));
+    dom.helpChatForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      submitQuestion(dom.helpChatInput.value);
+    });
+    document.querySelectorAll("[data-help-prompt]").forEach(button => {
+      button.addEventListener("click", () => submitQuestion(button.dataset.helpPrompt));
+    });
+  }
+
   function generateCareerReportText() {
     const scored = ROLES.map(r => scoreRole(r)).sort((a, b) => b.final - a.final);
     const topRole = scored[0];
@@ -1340,9 +1467,11 @@ SkillBridge • Explainable Career Recommendation Engine
      ========================================================================== */
   function init() {
     initTheme();
+    initHelpChat();
     initNav();
     initPersonaPresets();
     initResumeScanner();
+    initResumeImprover();
     initProfileControls();
     renderSectorFilter();
     renderRoleTable();

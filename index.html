@@ -242,14 +242,18 @@
           <textarea id="resumeText" class="resume-textarea" placeholder="Paste your resume work experience, LinkedIn summary, or GitHub projects here... (e.g. 'Senior Python & React developer with 4 years experience building RAG pipelines, FastAPI services, Docker containers, and deploying onto AWS...')"></textarea>
           
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-            <button class="btn btn-primary" id="scanResumeBtn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
-              Analyze & Extract Skills
-            </button>
+            <div class="resume-action-buttons">
+              <button class="btn btn-primary" id="scanResumeBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                Analyze & Extract Skills
+              </button>
+              <button class="btn btn-secondary" id="improveResumeBtn" type="button">Review resume</button>
+            </div>
             <span id="resumeResultMsg" style="font-family:var(--font-mono); font-size:12px;"></span>
           </div>
+          <div class="resume-improver-result" id="resumeImproverResult" aria-live="polite" hidden></div>
         </div>
 
         <!-- Manual Add Controls -->
@@ -399,6 +403,36 @@
       </div>
     </div>
   </div>
+
+  <!-- Website guide -->
+  <aside class="help-chat" id="helpChat" aria-label="SkillBridge website guide">
+    <section class="help-chat-window" id="helpChatWindow" hidden aria-live="polite">
+      <header class="help-chat-header">
+        <div>
+          <p>Website guide</p>
+          <h2>How can I help?</h2>
+        </div>
+        <button class="help-chat-close" id="helpChatClose" type="button" aria-label="Close website guide">×</button>
+      </header>
+      <div class="help-chat-messages" id="helpChatMessages">
+        <div class="help-chat-message guide-message">Hi! I can explain SkillBridge, help you find the right section, or tell you about its creator.</div>
+      </div>
+      <div class="help-chat-prompts">
+        <button type="button" data-help-prompt="How do I build my profile?">Build my profile</button>
+        <button type="button" data-help-prompt="How do I find jobs?">Find jobs</button>
+        <button type="button" data-help-prompt="Who created SkillBridge?">About the creator</button>
+      </div>
+      <form class="help-chat-form" id="helpChatForm">
+        <label class="sr-only" for="helpChatInput">Ask about SkillBridge</label>
+        <input id="helpChatInput" type="text" maxlength="180" placeholder="Ask about SkillBridge…" autocomplete="off">
+        <button class="btn btn-primary btn-sm" type="submit">Send</button>
+      </form>
+    </section>
+    <button class="help-chat-trigger" id="helpChatTrigger" type="button" aria-expanded="false" aria-controls="helpChatWindow">
+      <span aria-hidden="true">?</span>
+      <span>Help</span>
+    </button>
+  </aside>
 
   <!-- ==========================================================================
        FOOTER
