@@ -1837,20 +1837,47 @@ footer.site-footer { background: white; border-color: var(--border-glass); }
 
 /* Theme switcher and dark-mode token layer */
 .theme-toggle {
-  min-height: 30px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 9px;
-  background: transparent;
-  border: 1px solid var(--border-glass-bright);
-  border-radius: 6px;
-  color: var(--text-secondary);
+  position: relative;
+  width: 42px;
+  min-height: 24px;
+  padding: 0;
+  background: #cbd5df;
+  border: 0;
+  border-radius: 999px;
   cursor: pointer;
-  font: 600 12px/1 var(--font-sans);
+  transition: background var(--transition-fast);
 }
-.theme-toggle:hover { color: var(--accent-gold); border-color: #93c5fd; background: var(--accent-gold-bg); }
-.theme-toggle-icon { font-size: 15px; line-height: 1; }
+.theme-toggle::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(16,24,40,.18);
+  transition: transform var(--transition-fast);
+}
+.theme-toggle::after {
+  content: "☀";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  color: #d97706;
+  font-size: 12px;
+  line-height: 1;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+.theme-toggle:hover { background: #93c5fd; }
+.theme-toggle[aria-pressed="true"] { background: var(--accent-gold); }
+.theme-toggle[aria-pressed="true"]::before { transform: translateX(18px); }
+.theme-toggle[aria-pressed="true"]::after { content: "☾"; color: #334155; transform: translateX(18px); }
+.theme-control { display: inline-flex; align-items: center; gap: 7px; color: var(--text-secondary); font-size: 12px; font-weight: 600; }
 
 body[data-theme="dark"] {
   --bg-base: #10151d;
@@ -1928,7 +1955,6 @@ body[data-theme="dark"] .salary-estimator-card { background: #123525; border-col
 body[data-theme="dark"] .btn-secondary { color: var(--text-primary); }
 body[data-theme="dark"] .btn-primary { color: #0b1220; }
 
-@media (max-width: 1024px) { .theme-toggle-label { display: none; } }
 
 /* Inline legacy colors in the action-plan markup must follow the active theme. */
 #stage-roadmaps h3[style],
@@ -1937,3 +1963,52 @@ body[data-theme="dark"] .btn-primary { color: #0b1220; }
 #stage-roadmaps [style*="color:#fff"],
 #stage-roadmaps [style*="color: #fff"] { color: var(--text-primary) !important; }
 #stage-roadmaps .salary-estimator-card h3[style] { color: var(--text-primary) !important; }
+
+/* Landing-page copy: keep the reading order and measure calm and deliberate. */
+.hero-badge-row { align-items: center; }
+.hero-badge-row #livePostingsCount {
+  padding-left: 12px;
+  border-left: 1px solid var(--border-glass-bright);
+  line-height: 1.2;
+}
+.hero-section .hero-desc { text-wrap: balance; }
+.section-subtitle { max-width: 660px; line-height: 1.6; }
+
+@media (max-width: 640px) {
+  .hero-badge-row #livePostingsCount {
+    width: 100%;
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+/* India Jobs page */
+.jobs-nav { margin-left: auto; }
+.jobs-nav-tab { border-left: 1px solid var(--border-glass); margin-left: 2px; }
+.jobs-main { padding-top: 56px; padding-bottom: 64px; }
+.jobs-hero { max-width: 720px; margin-bottom: 34px; }
+.eyebrow { margin-bottom: 10px; color: var(--accent-gold); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.jobs-hero h1 { margin-bottom: 14px; color: var(--text-primary); font-size: clamp(36px, 5vw, 56px); font-weight: 750; letter-spacing: -.05em; line-height: 1.08; }
+.jobs-hero h1 em { color: var(--accent-gold); font-style: normal; }
+.jobs-hero > p { max-width: 630px; color: var(--text-secondary); font-size: 16px; line-height: 1.65; }
+.job-search-panel, .job-portal-links { margin-bottom: 22px; padding: 20px; background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: 10px; box-shadow: var(--shadow-sm); }
+.job-search-panel > label { display: block; margin-bottom: 8px; color: var(--text-primary); font-size: 13px; font-weight: 700; }
+.job-search-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.job-search-row .sync-input { flex: 1 1 300px; min-height: 38px; }
+.job-filter-row { display: flex; gap: 8px; margin-top: 14px; }
+.job-portal-links { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.job-portal-links h2, .jobs-section-head h2 { color: var(--text-primary); font-size: 18px; font-weight: 750; letter-spacing: -.02em; }
+.job-portal-links p, .jobs-section-head p { margin-top: 3px; color: var(--text-secondary); font-size: 13px; }
+.portal-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.jobs-section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 34px 0 16px; }
+.live-job-card { min-height: 260px; }
+.job-source { margin-bottom: 8px; color: var(--accent-gold); font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.job-description { margin: 8px 0 12px; color: var(--text-secondary); font-size: 13px; line-height: 1.55; }
+.job-empty-state { grid-column: 1 / -1; padding: 30px; text-align: center; }
+.job-empty-state h3 { margin-bottom: 6px; color: var(--text-primary); font-size: 16px; }
+.job-empty-state p { color: var(--text-secondary); font-size: 13px; }
+body[data-theme="dark"] .job-search-panel, body[data-theme="dark"] .job-portal-links { background: var(--bg-surface); }
+@media (max-width: 768px) {
+  .jobs-main { padding-top: 36px; }
+  .job-portal-links, .jobs-section-head { align-items: flex-start; flex-direction: column; }
+}

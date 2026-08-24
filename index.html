@@ -38,10 +38,10 @@
             <span class="live-dot" id="statusDot"></span>
             <span id="dataBadge" class="badge">Baseline Dataset</span>
           </div>
-          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
-            <span class="theme-toggle-icon" aria-hidden="true">◐</span>
-            <span class="theme-toggle-label">Dark</span>
-          </button>
+          <div class="theme-control">
+            <span>Theme</span>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"></button>
+          </div>
           <button class="btn btn-sm btn-secondary" id="exportBtn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
@@ -70,11 +70,11 @@
       </div>
 
       <h1 class="hero-headline">
-        From real job market signals to a career recommendation you can <em>trace back</em>, skill by skill.
+        Find the career path that <em>fits your skills</em>.
       </h1>
 
       <p class="hero-desc">
-        A transparent 6-stage career engine. Real-time hiring data powers a live gap analysis against your verified skills, paired with dynamic radar comparisons, what-if simulators, and actionable learning pathways.
+        Add your skills, compare them with job-market demand, and get a clear plan for what to learn or apply for next.
       </p>
 
       <!-- 6-Stage Pipeline Track -->
@@ -86,7 +86,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
           </svg>
-          1-Click Presets:
+          Start with a sample profile:
         </div>
         <div class="persona-chips" id="personaChips"></div>
         <button class="btn btn-sm btn-primary" id="heroCta">
@@ -101,9 +101,9 @@
     <section class="stage-section active" id="stage-market">
       <div class="section-head">
         <div class="section-title-wrap">
-          <h2>01 / Job Market Signal Pulse</h2>
+          <h2>01 / Explore the job market</h2>
           <p class="section-subtitle">
-            Real-time hiring demand indexed across engineering, analytics, AI/ML, security, and product roles in India and global remote markets.
+            See which career paths and skills are in demand across technology, data, design, security, and product roles.
           </p>
         </div>
         <span class="stage-tag-badge">Stage 01 • Market Data</span>
@@ -178,9 +178,9 @@
     <section class="stage-section active" id="stage-demand">
       <div class="section-head">
         <div class="section-title-wrap">
-          <h2>02 / Skill Demand Index</h2>
+          <h2>02 / See skills employers want</h2>
           <p class="section-subtitle">
-            Every tracked technology ranked by its prevalence in current hiring openings. Click any skill to instantly add it to your candidate profile.
+            Browse skills by demand. Add the ones you know to build your profile.
           </p>
         </div>
         <span class="stage-tag-badge">Stage 02 • Skill Index</span>
@@ -198,9 +198,9 @@
     <section class="stage-section active" id="stage-emerging">
       <div class="section-head">
         <div class="section-title-wrap">
-          <h2>03 / High-Velocity Emerging Skills</h2>
+          <h2>03 / Discover growing skills</h2>
           <p class="section-subtitle">
-            Competencies growing significantly faster than total market openings with high supply shortages. Knowing these earns up to a <b>+15 point bonus</b> in matching models.
+            These skills are growing quickly and can strengthen your match for relevant roles.
           </p>
         </div>
         <span class="stage-tag-badge">Stage 03 • Emerging Signals</span>
@@ -215,9 +215,9 @@
     <section class="stage-section active" id="stage-profile">
       <div class="section-head">
         <div class="section-title-wrap">
-          <h2>04 / Candidate Profile & AI Scanner</h2>
+          <h2>04 / Build your skills profile</h2>
           <p class="section-subtitle">
-            Build your skills inventory manually or paste your resume / LinkedIn summary to let our text extractor infer your technologies and proficiency levels.
+            Add skills yourself or paste your resume. We’ll identify the skills we recognise and use them in your recommendations.
           </p>
         </div>
         <span class="stage-tag-badge">Stage 04 • Profile Input</span>
@@ -289,9 +289,9 @@
     <section class="stage-section active" id="stage-reco">
       <div class="section-head">
         <div class="section-title-wrap">
-          <h2>05 / Fit Matrix & Explainable Recommendations</h2>
+          <h2>05 / Find your best-fit roles</h2>
           <p class="section-subtitle">
-            Transparent algorithmic scoring with full mathematical explainability, interactive SVG radar comparison charts, and real-time what-if gap simulators.
+            Compare your profile with each role, understand your score, and see which skills would make the biggest difference.
           </p>
         </div>
         <span class="stage-tag-badge">Stage 05 • Fit Matrix</span>
@@ -309,9 +309,9 @@
     <section class="stage-section active" id="stage-roadmaps">
       <div class="section-head">
         <div class="section-title-wrap">
-          <h2>06 / Career Compensation, Roadmaps & Live Openings</h2>
+          <h2>06 / Plan your next steps</h2>
           <p class="section-subtitle">
-            Expected compensation benchmarks based on verified skill depth, curated action roadmaps to close missing gaps, and direct links to active job postings.
+            Check a salary estimate, follow a learning plan for missing skills, and start your job search.
           </p>
         </div>
         <span class="stage-tag-badge">Stage 06 • Action Plan</span>
@@ -322,10 +322,10 @@
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
           <div>
             <span style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--accent-emerald); letter-spacing:0.08em;">
-              Estimated Market Value & Compensation
+              Salary estimate
             </span>
             <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff; margin-top:2px;">
-              Live Market Salary Projection
+              Your estimated salary range
             </h3>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -346,7 +346,7 @@
         <div class="salary-output-row">
           <div>
             <div class="salary-big-num" id="salaryVal">₹12 - ₹20 LPA</div>
-            <div class="salary-sub-text">Calculated from base role rates scaled by your verified skill-match factor.</div>
+            <div class="salary-sub-text">Based on the selected role, experience level, location, and your current skill match.</div>
           </div>
         </div>
       </div>
@@ -354,10 +354,10 @@
       <!-- Actionable Learning Roadmaps for Gaps -->
       <div style="margin-bottom:34px;">
         <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff; margin-bottom:6px;">
-          Actionable Learning Pathways for Identified Gaps
+          Skills to build next
         </h3>
         <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:18px;">
-          Curated free resources, courses, and estimated time-to-mastery to close your high-leverage skill gaps:
+          Focus on the missing skills that can improve your fit for this role.
         </p>
         <div class="grid-3" id="roadmapCardsContainer"></div>
       </div>
@@ -367,10 +367,10 @@
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:14px;">
           <div>
             <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff;">
-              Live Job Openings & Application Launchers
+              Jobs and search links
             </h3>
             <p style="font-size:13.5px; color:var(--text-secondary);">
-              Current openings matching your targeted role from live feeds and verified search portals:
+              Browse matching openings when available, or open a pre-filled search on a job portal.
             </p>
           </div>
         </div>

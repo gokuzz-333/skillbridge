@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse current technology and remote job opportunities relevant to candidates in India.">
+  <title>India Jobs | SkillBridge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="jobs-page">
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a class="brand-logo" href="index.html" aria-label="Back to SkillBridge home">
+          <span class="brand-icon" aria-hidden="true">SB</span>
+          <span class="brand-text">SkillBridge</span>
+          <span class="brand-badge">Career intelligence</span>
+        </a>
+        <nav class="stage-nav jobs-nav" aria-label="Main navigation">
+          <a class="nav-tab" href="index.html">Career plan</a>
+          <a class="nav-tab active" href="jobs.html">India jobs</a>
+        </nav>
+        <div class="nav-actions">
+          <div class="theme-control">
+            <span>Theme</span>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container jobs-main">
+    <section class="jobs-hero">
+      <p class="eyebrow">India job board</p>
+      <h1>Find roles you can apply for <em>today</em>.</h1>
+      <p>Browse India-based openings collected from public job feeds. Use a keyword to focus the list, or open a live search on LinkedIn, Naukri, or Indeed.</p>
+    </section>
+
+    <section class="job-search-panel" aria-label="Job search controls">
+      <label for="jobSearch">Search job titles or skills</label>
+      <div class="job-search-row">
+        <input id="jobSearch" class="sync-input" type="search" placeholder="For example: data analyst, React, Python">
+        <button class="btn btn-primary" id="searchBtn" type="button">Search listings</button>
+        <button class="btn btn-ghost" id="refreshBtn" type="button">Refresh live listings</button>
+      </div>
+      <div class="job-filter-row" aria-label="Location filter">
+        <button class="filter-chip active" data-location="india" type="button">India only</button>
+        <button class="filter-chip" data-location="remote" type="button">Remote-friendly</button>
+      </div>
+    </section>
+
+    <section class="job-portal-links" aria-label="India job portals">
+      <div>
+        <h2>Search India’s leading job portals</h2>
+        <p>These open fresh, pre-filled searches using your keyword.</p>
+      </div>
+      <div class="portal-actions" id="portalActions"></div>
+    </section>
+
+    <section aria-labelledby="listingsHeading">
+      <div class="jobs-section-head">
+        <div>
+          <h2 id="listingsHeading">Current listings</h2>
+          <p id="listingSummary" aria-live="polite">Loading public job feeds…</p>
+        </div>
+        <span class="stage-tag-badge" id="jobsUpdated">Updating</span>
+      </div>
+      <div class="jobs-grid" id="liveJobsContainer" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span>SkillBridge India Jobs</span>
+      <span>Listings are fetched from public feeds; confirm details with the employer before applying.</span>
+    </div>
+  </footer>
+  <script src="jobs.js"></script>
+</body>
+</html>

@@ -156,12 +156,12 @@
      4. NAVIGATION & STAGE SWITCHING
      ========================================================================== */
   const STAGES = [
-    { id: "stage-market", label: "01 Market Pulse", desc: "Live job roles & demand" },
-    { id: "stage-demand", label: "02 Skill Index", desc: "Ranked market pull" },
-    { id: "stage-emerging", label: "03 Emerging Radar", desc: "Fastest rising signals" },
-    { id: "stage-profile", label: "04 Profile & AI Scanner", desc: "Skills & resume input" },
-    { id: "stage-reco", label: "05 Fit Matrix & Radar", desc: "Explainable fit & radar" },
-    { id: "stage-roadmaps", label: "06 Jobs & Roadmaps", desc: "Live jobs & learning pathways" },
+    { id: "stage-market", label: "01 Explore market", desc: "Roles and demand" },
+    { id: "stage-demand", label: "02 Browse skills", desc: "Skills employers want" },
+    { id: "stage-emerging", label: "03 Growing skills", desc: "Skills gaining momentum" },
+    { id: "stage-profile", label: "04 Your profile", desc: "Add skills or a resume" },
+    { id: "stage-reco", label: "05 Best-fit roles", desc: "Matches and skill gaps" },
+    { id: "stage-roadmaps", label: "06 Next steps", desc: "Learn and apply" },
   ];
 
   function showStage(stageId) {
@@ -206,6 +206,12 @@
       node.addEventListener("click", () => showStage(stage.id));
       dom.pipelineTrack.appendChild(node);
     });
+
+    const jobsTab = document.createElement("a");
+    jobsTab.className = "nav-tab jobs-nav-tab";
+    jobsTab.href = "jobs.html";
+    jobsTab.textContent = "India jobs";
+    dom.stageNav.appendChild(jobsTab);
 
     if (dom.heroCta) {
       dom.heroCta.addEventListener("click", () => showStage("stage-market"));
@@ -1278,8 +1284,6 @@
       document.body.dataset.theme = theme;
       dom.themeToggle.setAttribute("aria-pressed", String(isDark));
       dom.themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
-      dom.themeToggle.querySelector(".theme-toggle-label").textContent = isDark ? "Light" : "Dark";
-      dom.themeToggle.querySelector(".theme-toggle-icon").textContent = isDark ? "☀" : "◐";
     };
 
     setTheme(savedTheme || (prefersDark ? "dark" : "light"));
