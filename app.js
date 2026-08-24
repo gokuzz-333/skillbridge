@@ -149,6 +149,7 @@
     reportPreview: document.getElementById("reportPreview"),
     copyReportBtn: document.getElementById("copyReportBtn"),
     printReportBtn: document.getElementById("printReportBtn"),
+    themeToggle: document.getElementById("themeToggle"),
   };
 
   /* ==========================================================================
@@ -1267,6 +1268,28 @@
     });
   }
 
+  function initTheme() {
+    if (!dom.themeToggle) return;
+
+    const savedTheme = localStorage.getItem("skillbridge-theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setTheme = (theme) => {
+      const isDark = theme === "dark";
+      document.body.dataset.theme = theme;
+      dom.themeToggle.setAttribute("aria-pressed", String(isDark));
+      dom.themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
+      dom.themeToggle.querySelector(".theme-toggle-label").textContent = isDark ? "Light" : "Dark";
+      dom.themeToggle.querySelector(".theme-toggle-icon").textContent = isDark ? "☀" : "◐";
+    };
+
+    setTheme(savedTheme || (prefersDark ? "dark" : "light"));
+    dom.themeToggle.addEventListener("click", () => {
+      const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
+      localStorage.setItem("skillbridge-theme", nextTheme);
+      setTheme(nextTheme);
+    });
+  }
+
   function generateCareerReportText() {
     const scored = ROLES.map(r => scoreRole(r)).sort((a, b) => b.final - a.final);
     const topRole = scored[0];
@@ -1313,6 +1336,7 @@ SkillBridge • Explainable Career Recommendation Engine
      14. INITIALIZATION
      ========================================================================== */
   function init() {
+    initTheme();
     initNav();
     initPersonaPresets();
     initResumeScanner();
