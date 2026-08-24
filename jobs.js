@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const state = { jobs: [], location: "india", query: "" };
+  const state = { jobs: [], location: "india", query: "", feedAvailable: null };
   const dom = {
     themeToggle: document.getElementById("themeToggle"),
     search: document.getElementById("jobSearch"),
@@ -95,10 +95,15 @@
     dom.container.innerHTML = "";
     dom.summary.textContent = visible.length
       ? `${visible.length} listing${visible.length === 1 ? "" : "s"} match your filters.`
-      : "No matching public-feed listings right now. Try the live portal searches above or switch to remote-friendly roles.";
+      : state.feedAvailable === false
+        ? "Live job feeds are unavailable right now."
+        : "No matching public-feed listings right now. Try the live portal searches above or switch to remote-friendly roles.";
 
     if (!visible.length) {
-      dom.container.innerHTML = `<div class="card job-empty-state"><h3>Continue your search on a job portal</h3><p>Public feeds do not always include every India-based listing. The links above run a live search with your keyword.</p></div>`;
+      const unavailable = state.feedAvailable === false;
+      dom.container.innerHTML = unavailable
+        ? `<div class="card job-empty-state"><h3>Live feed unavailable</h3><p>We could not reach a public jobs feed right now. Try refreshing in a moment or use the live portal searches above.</p></div>`
+        : `<div class="card job-empty-state"><h3>No matching listings right now</h3><p>The live feeds responded but did not return roles that match these filters. Try another keyword, switch to remote-friendly roles, or use the live portal searches above.</p></div>`;
       return;
     }
 
@@ -142,8 +147,10 @@
       const data = await response.json();
       return source.jobs(data).map(job => normaliseJob(job, source.name));
     }));
-    state.jobs = results.filter(r => r.status === "fulfilled").flatMap(r => r.value);
-    dom.updated.textContent = state.jobs.length ? "Live feeds checked" : "Feeds unavailable";
+    const successfulFeeds = results.filter(result => result.status === "fulfilled");
+    state.feedAvailable = successfulFeeds.length > 0;
+    state.jobs = successfulFeeds.flatMap(result => result.value);
+    dom.updated.textContent = state.feedAvailable ? "Live feeds checked" : "Feed unavailable";
     renderJobs();
     dom.refreshBtn.disabled = false;
     dom.refreshBtn.textContent = "Refresh live listings";

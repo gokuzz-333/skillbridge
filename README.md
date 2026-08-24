@@ -389,7 +389,7 @@ Career recommendations should not be treated as guaranteed employment outcomes. 
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Gohulrahesh**
 
 Built as a project exploring:
 

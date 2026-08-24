@@ -1166,13 +1166,9 @@
         }
       }
 
-      // If network calls returned 0 due to offline or strict ad-blocker, simulate realistic live sync
+      // Only use genuine feed results. Do not present a simulated response as live data.
       if (totalPostingsAnalyzed === 0) {
-        totalPostingsAnalyzed = 142;
-        SKILLS.forEach(s => {
-          const variance = (Math.random() * 12 - 6);
-          mentions[s.name] = Math.max(10, Math.round(s.demand * 1.2 + variance));
-        });
+        throw new Error("Live job feeds are unavailable or returned no postings");
       }
 
       // Recompute dynamic demand metrics
@@ -1203,7 +1199,10 @@
       populateRoadmapAndJobs(ROLES[0]);
     } catch (err) {
       console.error(err);
-      updateSyncStatus(`Sync error: ${err.message}. Retaining baseline market datasets.`, "error");
+      liveJobsCache = [];
+      isLiveActive = false;
+      setLiveStatusUI(false, 0);
+      updateSyncStatus(`Feed unavailable. ${err.message}. Showing the baseline market dataset instead.`, "error");
     } finally {
       dom.syncBtn.disabled = false;
       dom.syncBtn.textContent = "Sync Live Market Data";
