@@ -315,10 +315,45 @@
         <div class="section-title-wrap">
           <h2>06 / Plan your next steps</h2>
           <p class="section-subtitle">
-            Check a salary estimate, follow a learning plan for missing skills, and start your job search.
+            Explore curated certifications, tailored courses, missing skill roadmaps, salary ranges, and job searches for your chosen career track.
           </p>
         </div>
         <span class="stage-tag-badge">Stage 06 • Action Plan</span>
+      </div>
+
+      <!-- Career Option Switcher Banner -->
+      <div class="career-selector-card">
+        <div class="career-selector-header">
+          <div>
+            <span class="career-selector-label">🎯 Active Career Track</span>
+            <h3 class="career-selector-title" id="activeRoleTitleHeading">Data Analyst Path</h3>
+          </div>
+          <div class="career-selector-controls">
+            <label for="roadmapRoleSelect" class="sr-only">Select Career Role</label>
+            <select id="roadmapRoleSelect" class="sync-select career-main-select" aria-label="Select Target Career Role"></select>
+          </div>
+        </div>
+        <div class="career-chips-bar" id="roadmapRoleChips" aria-label="Quick Switch Career Options"></div>
+      </div>
+
+      <!-- Curated Career Certifications & Industry Courses -->
+      <div style="margin-bottom:34px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+          <div>
+            <h3 style="font-family:var(--font-serif); font-size:22px; color:var(--text-primary);">
+              Top Industry Certifications & Curated Courses
+            </h3>
+            <p style="font-size:13.5px; color:var(--text-secondary);">
+              Recognized credentials and comprehensive masterclasses tailored specifically for <span id="courseRoleNameBadge" style="font-weight:600; color:var(--accent-gold);">this role</span>:
+            </p>
+          </div>
+          <div class="course-filter-tags" id="courseFilterTabs">
+            <button class="filter-chip active" data-filter="all">All Courses</button>
+            <button class="filter-chip" data-filter="cert">Certifications</button>
+            <button class="filter-chip" data-filter="free">Free Guides</button>
+          </div>
+        </div>
+        <div class="grid-3" id="careerCoursesContainer"></div>
       </div>
 
       <!-- Real-Time Compensation Estimator -->
@@ -328,19 +363,19 @@
             <span style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--accent-emerald); letter-spacing:0.08em;">
               Salary estimate
             </span>
-            <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff; margin-top:2px;">
-              Your estimated salary range
+            <h3 style="font-family:var(--font-serif); font-size:22px; color:var(--text-primary); margin-top:2px;">
+              Estimated compensation range
             </h3>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <select id="salaryRoleSelect" class="sync-select"></select>
-            <select id="salaryExpSelect" class="sync-select">
+            <select id="salaryRoleSelect" class="sync-select" aria-label="Salary Role"></select>
+            <select id="salaryExpSelect" class="sync-select" aria-label="Experience Level">
               <option value="junior">Junior (0-2 Yrs)</option>
               <option value="mid" selected>Mid-Level (2-5 Yrs)</option>
               <option value="senior">Senior (5-8 Yrs)</option>
               <option value="lead">Lead / Architect (8+ Yrs)</option>
             </select>
-            <select id="salaryGeoSelect" class="sync-select">
+            <select id="salaryGeoSelect" class="sync-select" aria-label="Location Currency">
               <option value="in" selected>India (₹ INR)</option>
               <option value="global">Global / US ($ USD)</option>
             </select>
@@ -350,19 +385,23 @@
         <div class="salary-output-row">
           <div>
             <div class="salary-big-num" id="salaryVal">₹12 - ₹20 LPA</div>
-            <div class="salary-sub-text">Based on the selected role, experience level, location, and your current skill match.</div>
+            <div class="salary-sub-text">Based on the selected role, experience level, location, and your verified skill fit.</div>
           </div>
         </div>
       </div>
 
       <!-- Actionable Learning Roadmaps for Gaps -->
       <div style="margin-bottom:34px;">
-        <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff; margin-bottom:6px;">
-          Skills to build next
-        </h3>
-        <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:18px;">
-          Focus on the missing skills that can improve your fit for this role.
-        </p>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+          <div>
+            <h3 style="font-family:var(--font-serif); font-size:22px; color:var(--text-primary); margin-bottom:4px;">
+              Personalized Skill-Gap Bridge Plan
+            </h3>
+            <p style="font-size:13.5px; color:var(--text-secondary);">
+              Priority competencies missing from your profile to reach 100% benchmark qualification for <span id="gapRoleNameBadge" style="font-weight:600; color:var(--accent-gold);">this role</span>:
+            </p>
+          </div>
+        </div>
         <div class="grid-3" id="roadmapCardsContainer"></div>
       </div>
 
@@ -370,15 +409,155 @@
       <div>
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:14px;">
           <div>
-            <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff;">
-              Jobs and search links
+            <h3 style="font-family:var(--font-serif); font-size:22px; color:var(--text-primary);">
+              Live Openings & Search Portals
             </h3>
             <p style="font-size:13.5px; color:var(--text-secondary);">
-              Browse matching openings when available, or open a pre-filled search on a job portal.
+              Direct openings and pre-filtered search queries for your target career:
             </p>
           </div>
         </div>
         <div class="jobs-grid" id="jobsContainer"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         STAGE 7: JOB MARKET INTEL, LAYOFFS & EMERGING ROLES RADAR
+         ========================================================================== -->
+    <section class="stage-section active" id="stage-news">
+      <div class="section-head">
+        <div class="section-title-wrap">
+          <h2>07 / Market news & job intelligence</h2>
+          <p class="section-subtitle">
+            Real-time tracker of tech layoffs, fastest emerging AI & software roles, GCC hiring surges in India, and market compensation shifts.
+          </p>
+        </div>
+        <span class="stage-tag-badge">Stage 07 • Market Intel</span>
+      </div>
+
+      <!-- Live Market Intelligence KPI Dashboard -->
+      <div class="market-kpi-grid">
+        <div class="market-kpi-card kpi-layoffs">
+          <div class="kpi-top">
+            <span class="kpi-tag">Layoffs Tracker</span>
+            <span class="kpi-icon">📉</span>
+          </div>
+          <div class="kpi-value">Tech Restructuring</div>
+          <div class="kpi-desc">Transitioning from broad tech layoffs to targeted AI & automation realignment in Q1/Q2.</div>
+        </div>
+        <div class="market-kpi-card kpi-growth">
+          <div class="kpi-top">
+            <span class="kpi-tag">Emerging Roles</span>
+            <span class="kpi-icon">🚀</span>
+          </div>
+          <div class="kpi-value">+46% AI Surge</div>
+          <div class="kpi-desc">Rapid surge in Demand for Agentic AI Developers, MLOps, and Prompt Engineers.</div>
+        </div>
+        <div class="market-kpi-card kpi-india">
+          <div class="kpi-top">
+            <span class="kpi-tag">India GCC Hiring</span>
+            <span class="kpi-icon">🇮🇳</span>
+          </div>
+          <div class="kpi-value">1,600+ Centers</div>
+          <div class="kpi-desc">Global Capability Centers in Bengaluru, Hyderabad & Pune actively expanding tech headcount.</div>
+        </div>
+        <div class="market-kpi-card kpi-salary">
+          <div class="kpi-top">
+            <span class="kpi-tag">Salary Momentum</span>
+            <span class="kpi-icon">💰</span>
+          </div>
+          <div class="kpi-value">25-40% Premium</div>
+          <div class="kpi-desc">Candidates with combined Full-Stack + GenAI / Cloud Security command top-tier compensation.</div>
+        </div>
+      </div>
+
+      <!-- News Controls: Search & Category Filter -->
+      <div class="card card-gold" style="margin-bottom:24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:16px;">
+          <div class="news-category-filters" id="newsCategoryFilter" role="tablist" aria-label="News Topics">
+            <button class="filter-chip active" data-category="all">All Market Updates</button>
+            <button class="filter-chip" data-category="layoffs">🚨 Tech Layoffs & Restructuring</button>
+            <button class="filter-chip" data-category="emerging">✨ Emerging AI & Tech Roles</button>
+            <button class="filter-chip" data-category="hiring">🏢 India & GCC Hiring Waves</button>
+            <button class="filter-chip" data-category="salary">📈 Salary & Remote Shifts</button>
+          </div>
+          <button class="btn btn-sm btn-emerald" id="syncNewsBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M23 4v6h-6M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Refresh Intel Feeds
+          </button>
+        </div>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <input type="search" id="newsSearchInput" class="sync-input" placeholder="Search market news (e.g. Google, Layoffs, Prompt Engineer, Bengaluru, Amazon)..." aria-label="Search Market News">
+          <span id="newsResultsCount" style="font-family:var(--font-mono); font-size:12px; color:var(--text-muted); white-space:nowrap;">Showing all articles</span>
+        </div>
+      </div>
+
+      <!-- Market News Grid -->
+      <div class="news-grid" id="newsGridContainer" aria-live="polite"></div>
+
+      <!-- Tech Hiring vs Layoffs Shift Matrix -->
+      <div style="margin-top:34px;">
+        <h3 style="font-family:var(--font-serif); font-size:22px; color:var(--text-primary); margin-bottom:6px;">
+          Job Market Dynamics: What's Shrinking vs What's Expanding
+        </h3>
+        <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:16px;">
+          Strategic roadmap to navigate headcount contraction and target high-demand hiring vectors:
+        </p>
+
+        <div class="table-responsive">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <th>Category / Role Domain</th>
+                <th>Current Market Trend</th>
+                <th>Affected Areas / Contraction</th>
+                <th>High-Demand Growth Vectors</th>
+                <th>Strategic Career Advice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>AI & Data Engineering</strong></td>
+                <td><span class="score-badge score-high">🔥 Massive Growth</span></td>
+                <td>Legacy manual ETL, basic repetitive reporting</td>
+                <td>LLM Pipelines, RAG Architectures, MLOps, Vector DBs</td>
+                <td>Upskill from static SQL/Excel to Python & GenAI tooling</td>
+              </tr>
+              <tr>
+                <td><strong>Software Engineering</strong></td>
+                <td><span class="score-badge score-med">⚡ Skill Pivot</span></td>
+                <td>Junior front-end without architecture or cloud skills</td>
+                <td>Fullstack TypeScript, Next.js, Cloud-native services, API microservices</td>
+                <td>Master end-to-end deployment & AI-assisted development</td>
+              </tr>
+              <tr>
+                <td><strong>Cloud & Infrastructure</strong></td>
+                <td><span class="score-badge score-high">📈 Steady Expansion</span></td>
+                <td>On-premises sysadmin, non-automated operations</td>
+                <td>Kubernetes, Terraform, Multi-Cloud Security, Platform Eng</td>
+                <td>Pursue AWS/Azure Certified Architect & Docker/K8s</td>
+              </tr>
+              <tr>
+                <td><strong>Cybersecurity</strong></td>
+                <td><span class="score-badge score-high">🛡️ Critical Demand</span></td>
+                <td>Legacy perimeter-only firewalls</td>
+                <td>Cloud Security Posture (CSPM), Zero Trust, IAM Auditing</td>
+                <td>Zero-trust security & compliance certifications pay top premiums</td>
+              </tr>
+              <tr>
+                <td><strong>Product & Analytics</strong></td>
+                <td><span class="score-badge score-med">📊 Selective Hiring</span></td>
+                <td>Generalist project coordinators</td>
+                <td>AI Product Managers, Growth Analytics, Experimentation (A/B)</td>
+                <td>Combine business acumen with technical analytics (SQL + Python)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
