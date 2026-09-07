@@ -1,4 +1,6 @@
 # SkillBridge 🚀
+TEST IT OUT YOURSELF
+http://skillbridge-mu-tan.vercel.app/
 
 ### Explainable Career Recommendation Engine
 
