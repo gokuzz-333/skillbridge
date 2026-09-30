@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SkillBridge — Know what you're good at, know what you're missing, and get a personalized roadmap based on real job market demand.">
+  <meta name="description" content="SkillBridge — Build your career profile, understand your skill gaps, and follow a personalized roadmap based on real job market demand.">
   <title>SkillBridge — Career Fit & Learning Roadmap Engine</title>
   
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
@@ -16,68 +16,78 @@
 <body data-theme="light">
 
   <!-- ==========================================================================
+       STICKY DEMO MODE ALERT BANNER (SHOWN ONLY DURING DEMO MODE)
+       ========================================================================== -->
+  <aside class="demo-mode-banner" id="demoModeBanner" style="display:none;" aria-label="Demo mode indicator">
+    <div class="container demo-banner-content">
+      <div class="demo-banner-left">
+        <span class="demo-pill">DEMO MODE</span>
+        <span>You are exploring with a <strong>sample student profile</strong>. Demo data is temporary and never mixed with real profiles.</span>
+      </div>
+      <div class="demo-banner-actions">
+        <button class="btn btn-sm btn-ghost" id="exitDemoBtn" type="button">Exit Demo Mode</button>
+        <button class="btn btn-sm btn-primary" id="demoCreateRealProfileBtn" type="button">Build My Own Profile →</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
        SITE HEADER & GLOBAL NAVIGATION
        ========================================================================== -->
   <header class="site-header">
     <div class="container">
       <div class="nav-wrapper">
-        <a class="brand-logo" id="brandHome" href="#landing" aria-label="SkillBridge Home">
+        <a class="brand-logo" id="brandHome" href="#dashboard" aria-label="SkillBridge Home">
           <div class="brand-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
             </svg>
           </div>
           <span class="brand-text">SkillBridge</span>
-          <span class="brand-badge">Career AI</span>
+          <span class="brand-badge" id="headerModeBadge">Career AI</span>
         </a>
 
-        <!-- Main Product Navigation -->
+        <!-- Main Product Navigation (Active for profiles) -->
         <nav class="main-nav" id="mainNav" aria-label="Main Navigation">
-          <button class="nav-tab active" data-page="landing">Home</button>
-          <button class="nav-tab" data-page="dashboard">Dashboard</button>
-          <button class="nav-tab" data-page="career-match">Career Match</button>
-          <button class="nav-tab" data-page="skills-gaps">Skills & Gaps</button>
-          <button class="nav-tab" data-page="roadmap">Roadmap</button>
-          <button class="nav-tab" data-page="jobs">Jobs & Tracker</button>
-          <button class="nav-tab" data-page="market">Market Intel</button>
-          <button class="nav-tab" data-page="methodology">How It Works</button>
+          <button class="nav-tab active" data-page="dashboard" type="button">Dashboard</button>
+          <button class="nav-tab" data-page="career-match" type="button">Career Match</button>
+          <button class="nav-tab" data-page="skills-gaps" type="button">Skills & Gaps</button>
+          <button class="nav-tab" data-page="roadmap" type="button">Roadmap</button>
+          <button class="nav-tab" data-page="jobs" type="button">Jobs & Tracker</button>
+          <button class="nav-tab" data-page="market" type="button">Market Intel</button>
         </nav>
 
         <!-- Header Actions -->
         <div class="nav-actions">
-          <button class="btn btn-sm btn-ghost demo-btn" id="headerSampleBtn" title="Load realistic student sample profile">
-            <span>⚡</span> Try Sample Profile
+          <button class="btn btn-sm btn-ghost demo-btn" id="headerDemoTriggerBtn" type="button" title="Try sample profile demo">
+            <span>⚡</span> Try Demo Profile
+          </button>
+          <button class="btn btn-sm btn-secondary profile-btn" id="headerProfileBtn" type="button" title="Edit Profile">
+            <span>👤</span> <span id="headerProfileName">My Profile</span>
           </button>
           <div class="theme-control">
             <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"></button>
           </div>
-          <button class="icon-btn" id="settingsModalBtn" title="Developer & API Settings" aria-label="Developer Settings">
+          <button class="icon-btn" id="settingsModalBtn" type="button" title="Settings & About" aria-label="Settings">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="3"></circle>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
             </svg>
-          </button>
-          <button class="btn btn-sm btn-secondary export-btn" id="exportBtn" title="Export Career Audit Report">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-            </svg>
-            Export Audit
           </button>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Bottom / Sticky Navigation -->
-  <div class="mobile-nav-bar" id="mobileNavBar" aria-label="Mobile Navigation">
-    <button class="mobile-nav-item active" data-page="landing"><span>🏠</span>Home</button>
-    <button class="mobile-nav-item" data-page="dashboard"><span>📊</span>Dashboard</button>
-    <button class="mobile-nav-item" data-page="career-match"><span>🎯</span>Matches</button>
-    <button class="mobile-nav-item" data-page="skills-gaps"><span>⚡</span>Skills</button>
-    <button class="mobile-nav-item" data-page="roadmap"><span>🗺️</span>Roadmap</button>
-    <button class="mobile-nav-item" data-page="jobs"><span>💼</span>Jobs</button>
-    <button class="mobile-nav-item" data-page="market"><span>📰</span>News</button>
-  </div>
+  <!-- Mobile Bottom Sticky Navigation -->
+  <nav class="mobile-nav-bar" id="mobileNavBar" aria-label="Mobile Navigation">
+    <button class="mobile-nav-item active" data-page="dashboard" type="button"><span>📊</span>Dashboard</button>
+    <button class="mobile-nav-item" data-page="career-match" type="button"><span>🎯</span>Matches</button>
+    <button class="mobile-nav-item" data-page="skills-gaps" type="button"><span>⚡</span>Skills</button>
+    <button class="mobile-nav-item" data-page="roadmap" type="button"><span>🗺️</span>Roadmap</button>
+    <button class="mobile-nav-item" data-page="jobs" type="button"><span>💼</span>Jobs</button>
+    <button class="mobile-nav-item" data-page="market" type="button"><span>📰</span>News</button>
+  </nav>
 
   <!-- ==========================================================================
        MAIN CONTAINER & VIEWS
@@ -85,123 +95,314 @@
   <main class="container main-content" id="mainContainer">
 
     <!-- ==========================================================================
-         PAGE 1: STUDENT-FOCUSED LANDING PAGE
+         VIEW 1: FIRST-TIME WELCOME / ENTRY SCREEN (NO FAKE DATA)
          ========================================================================== -->
-    <section class="view-page active" id="view-landing" aria-label="SkillBridge Landing">
-      <div class="landing-hero">
-        <div class="hero-badge">
-          <span>●</span> Explainable Career Intelligence for Students & Early-Career
+    <section class="view-page" id="view-welcome" aria-label="Build Your Profile">
+      <div class="welcome-entry-card">
+        <div class="welcome-entry-brand">
+          <div class="brand-icon lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <span class="welcome-brand-name">SkillBridge</span>
         </div>
-        <h1 class="landing-title">
-          Know what you're good at.<br>
-          Know what you're missing.<br>
-          <em>Know what to do next.</em>
-        </h1>
-        <p class="landing-subtitle">
-          SkillBridge compares your real skills with current job-market demand, reveals your highest-priority skill gaps, and generates a personalized 4-week roadmap to get you hired.
+
+        <h1 class="welcome-entry-title">Build your career profile</h1>
+        <p class="welcome-entry-subtitle">
+          "Let's understand your skills, education, experience and career interests."
         </p>
 
-        <div class="landing-cta-group">
-          <button class="btn btn-lg btn-primary" id="landingAnalyzeBtn">
-            Analyze My Skills →
+        <div class="welcome-entry-actions">
+          <button class="btn btn-lg btn-primary btn-block" id="startProfileWizardBtn" type="button">
+            Build My Profile →
           </button>
-          <button class="btn btn-lg btn-secondary" id="landingSampleBtn">
-            <span>⚡</span> Try Sample Profile
-          </button>
-        </div>
 
-        <!-- Student Persona Presets -->
-        <div class="quick-persona-box">
-          <span class="quick-persona-label">Or explore typical student starting points:</span>
-          <div class="persona-chips" id="landingPersonaChips"></div>
-        </div>
-      </div>
+          <div class="welcome-divider">
+            <span>Already have a resume?</span>
+          </div>
 
-      <!-- How It Works (5 Clean Steps) -->
-      <div class="landing-section">
-        <div class="section-header-center">
-          <span class="section-tag">Simple & Transparent</span>
-          <h2>How SkillBridge Guides Your Career</h2>
-          <p>A structured 5-step journey from raw skills to job-ready applications.</p>
-        </div>
+          <div class="welcome-secondary-actions">
+            <button class="btn btn-secondary" id="welcomeUploadResumeBtn" type="button">
+              📄 Upload Resume
+            </button>
+            <span class="or-separator">or</span>
+            <button class="btn btn-ghost" id="welcomeManualEntryBtn" type="button">
+              ✏️ Enter My Details Manually
+            </button>
+          </div>
 
-        <div class="how-it-works-grid">
-          <div class="step-card">
-            <div class="step-number">01</div>
-            <h3>Add Your Skills</h3>
-            <p>Upload a resume PDF, paste text, or manually choose the technologies you've worked with.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">02</div>
-            <h3>SkillBridge Analyzes</h3>
-            <p>We extract your verified competencies and let you confirm proficiency levels (Beginner, Mid, Advanced).</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">03</div>
-            <h3>Choose Target Career</h3>
-            <p>Select your dream role—or let our explainable match engine rank the top 12 tech careers for you.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">04</div>
-            <h3>Discover Skill Gaps</h3>
-            <p>See exactly what employers look for and which 2–3 missing skills make the biggest difference.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">05</div>
-            <h3>Follow Your Roadmap</h3>
-            <p>Complete weekly curated learning milestones, build portfolio projects, and apply to matching jobs.</p>
+          <div class="welcome-demo-trigger">
+            <button class="btn btn-sm btn-ghost demo-link-btn" id="welcomeTryDemoBtn" type="button">
+              ⚡ Try Demo Profile (Sample Data)
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Credibility & Trust Section -->
-      <div class="landing-section">
-        <div class="credibility-banner">
-          <div class="cred-item">
-            <div class="cred-icon">📊</div>
-            <h4>Real Job-Market Data</h4>
-            <p>Ground truth demand indices derived from active tech postings across India & remote hubs.</p>
+      <!-- Trust Pillars -->
+      <div class="welcome-features-grid">
+        <div class="welcome-feature-item">
+          <div class="wf-icon">🎯</div>
+          <h4>Real Match Calculation</h4>
+          <p>Calculated strictly from your actual skills and verifiable job market requirements.</p>
+        </div>
+        <div class="welcome-feature-item">
+          <div class="wf-icon">⚡</div>
+          <h4>Prioritized Skill Gaps</h4>
+          <p>See the highest-leverage skills needed to qualify for hiring rounds.</p>
+        </div>
+        <div class="welcome-feature-item">
+          <div class="wf-icon">🗺️</div>
+          <h4>Personalized Roadmap</h4>
+          <p>Get weekly curated milestones, portfolio projects, and direct job opportunities.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW 2: 4-STEP PROFILE ONBOARDING WIZARD
+         ========================================================================== -->
+    <section class="view-page" id="view-wizard" aria-label="Profile Builder Wizard">
+      <div class="wizard-container-card">
+        <div class="wizard-header">
+          <div>
+            <span class="wizard-tag">Profile Builder</span>
+            <h2 class="wizard-main-title" id="wizardHeaderTitle">Step 1 — About You</h2>
           </div>
-          <div class="cred-item">
-            <div class="cred-icon">🔍</div>
-            <h4>Explainable Scoring</h4>
-            <p>0% black-box AI. Every recommendation explains the exact skill weights and calculations behind your score.</p>
+          <button class="btn btn-sm btn-ghost" id="wizardCancelBtn" type="button">✕ Cancel</button>
+        </div>
+
+        <!-- 4 Step Progress Indicators -->
+        <div class="wizard-steps-indicator">
+          <div class="wizard-step active" data-step="1"><span>1</span> About You</div>
+          <div class="wizard-step" data-step="2"><span>2</span> Skills</div>
+          <div class="wizard-step" data-step="3"><span>3</span> Career Interests</div>
+          <div class="wizard-step" data-step="4"><span>4</span> Review</div>
+        </div>
+
+        <!-- STEP 1: About You -->
+        <div class="wizard-pane active" id="wizardStep1">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="wizName">Full Name <span class="req">*</span></label>
+              <input type="text" id="wizName" class="sync-input" placeholder="e.g. Gohul Rahesh" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Current Status <span class="req">*</span></label>
+              <div class="status-options-group">
+                <label class="status-option-label active">
+                  <input type="radio" name="wizStatus" value="Student" checked>
+                  <span>Student</span>
+                </label>
+                <label class="status-option-label">
+                  <input type="radio" name="wizStatus" value="Graduate">
+                  <span>Graduate</span>
+                </label>
+                <label class="status-option-label">
+                  <input type="radio" name="wizStatus" value="Working Professional">
+                  <span>Working Professional</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="wizDegree">Degree / Qualification <span class="req">*</span></label>
+              <input type="text" id="wizDegree" class="sync-input" placeholder="e.g. B.Tech, B.S., B.C.A., M.S.">
+            </div>
+
+            <div class="form-group">
+              <label for="wizField">Field of Study / Major <span class="req">*</span></label>
+              <input type="text" id="wizField" class="sync-input" placeholder="e.g. Computer Science, AI & Data, IT">
+            </div>
+
+            <div class="form-group">
+              <label for="wizGradYear">Graduation Year <span class="req">*</span></label>
+              <input type="text" id="wizGradYear" class="sync-input" placeholder="e.g. 2026, 2025, 2024">
+            </div>
+
+            <div class="form-group">
+              <label for="wizInstitution">College / University <span class="opt">(Optional)</span></label>
+              <input type="text" id="wizInstitution" class="sync-input" placeholder="e.g. Amrita Vishwa Vidyapeetham, NIT, etc.">
+            </div>
           </div>
-          <div class="cred-item">
-            <div class="cred-icon">🏆</div>
-            <h4>Curated Certifications</h4>
-            <p>Official Google, IBM, AWS, and Harvard curriculums mapped to close your specific gaps.</p>
+
+          <div class="wizard-footer">
+            <button class="btn btn-ghost" id="wizStep1Back" type="button">Back</button>
+            <button class="btn btn-primary" id="wizStep1Next" type="button">Continue to Skills →</button>
           </div>
-          <div class="cred-item">
-            <div class="cred-icon">💼</div>
-            <h4>Direct Job Sourcing</h4>
-            <p>Browse qualified openings and pre-filtered search queries for LinkedIn, Indeed, and Naukri.</p>
+        </div>
+
+        <!-- STEP 2: Skills -->
+        <div class="wizard-pane" id="wizardStep2">
+          <div class="skills-step-layout">
+            <p class="step-desc-text">
+              Add the technical competencies, programming languages, and tools you have worked with:
+            </p>
+
+            <!-- Resume Upload / Parse Area -->
+            <div class="resume-extraction-panel">
+              <div class="resume-tabs-bar">
+                <button class="resume-subtab-btn active" data-mode="upload" type="button">📁 Upload Resume (PDF / TXT)</button>
+                <button class="resume-subtab-btn" data-mode="paste" type="button">✏️ Paste Text</button>
+              </div>
+
+              <div class="resume-subtab-content active" id="wizResumeUploadArea">
+                <div class="drop-zone" id="wizDropZone">
+                  <input type="file" id="wizFileInput" accept=".pdf,.txt,.docx" class="file-input-hidden" aria-label="Upload Resume">
+                  <div class="drop-icon">📄</div>
+                  <p><strong>Click to browse</strong> or drag and drop your resume file</p>
+                  <span class="drop-subtext">Client-side parser • No server uploads</span>
+                </div>
+                <div id="wizFileUploadStatus" class="upload-status-text"></div>
+              </div>
+
+              <div class="resume-subtab-content" id="wizResumePasteArea">
+                <textarea id="wizResumeTextInput" class="resume-textarea" placeholder="Paste your resume summary, project descriptions, or LinkedIn skills here..."></textarea>
+                <button class="btn btn-sm btn-emerald" id="wizExtractTextBtn" type="button" style="margin-top:8px;">
+                  Extract Skills from Text
+                </button>
+              </div>
+
+              <!-- Detected Skills Verification Area -->
+              <div class="detected-skills-box" id="wizDetectedSkillsBox" style="display:none;">
+                <div class="detected-head">
+                  <strong>Skills detected from your resume (<span id="wizDetectedCount">0</span>):</strong>
+                  <span class="detected-sub">Review, add, or remove as needed:</span>
+                </div>
+                <div class="chips-container" id="wizDetectedChips"></div>
+              </div>
+            </div>
+
+            <!-- Manual Skill Adder Dropdown -->
+            <div class="manual-add-section">
+              <label for="wizSkillSelect">Add Skill Manually:</label>
+              <div class="manual-add-row">
+                <select id="wizSkillSelect" class="sync-select skill-select-box" aria-label="Select Skill"></select>
+                <div class="level-toggle-group" role="group" aria-label="Proficiency">
+                  <button class="level-toggle-btn" data-lvl="30" type="button">Beginner (30%)</button>
+                  <button class="level-toggle-btn active" data-lvl="60" type="button">Intermediate (60%)</button>
+                  <button class="level-toggle-btn" data-lvl="90" type="button">Advanced (90%)</button>
+                </div>
+                <button class="btn btn-secondary" id="wizAddSkillBtn" type="button">+ Add Skill</button>
+              </div>
+            </div>
+
+            <!-- Verified Skills in Current Profile Draft -->
+            <div class="active-skills-preview">
+              <span class="preview-title">Your Skills List (<span id="wizSkillsTotalCount">0</span> added):</span>
+              <div class="chips-container" id="wizProfileChips"></div>
+              <div id="wizEmptySkillsMsg" class="empty-hint-text">
+                No skills added yet. Choose from the dropdown or scan your resume above.
+              </div>
+            </div>
+          </div>
+
+          <div class="wizard-footer">
+            <button class="btn btn-ghost" id="wizStep2Back" type="button">← Back to Step 1</button>
+            <button class="btn btn-primary" id="wizStep2Next" type="button">Continue to Career Interests →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Career Interests -->
+        <div class="wizard-pane" id="wizardStep3">
+          <p class="step-desc-text">
+            What career paths are you interested in exploring? (Select one or more; you can change this anytime on your dashboard):
+          </p>
+
+          <div class="role-selection-grid" id="wizRolesGrid"></div>
+
+          <div class="wizard-footer">
+            <button class="btn btn-ghost" id="wizStep3Back" type="button">← Back to Step 2</button>
+            <button class="btn btn-primary" id="wizStep3Next" type="button">Continue to Review →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Review & Finalize -->
+        <div class="wizard-pane" id="wizardStep4">
+          <div class="review-summary-card">
+            <div class="review-badge">Profile Ready</div>
+            <h3 class="review-user-title" id="revUserName">Candidate Name</h3>
+            <p class="review-user-sub" id="revUserSub">B.Tech • Computer Science • Student</p>
+
+            <div class="review-section-block">
+              <span class="rev-sec-label">Verified Skills (<span id="revSkillsCount">0</span>):</span>
+              <div class="chips-container" id="revSkillsChips"></div>
+            </div>
+
+            <div class="review-section-block">
+              <span class="rev-sec-label">Selected Career Track(s):</span>
+              <div class="chips-container" id="revCareersChips"></div>
+            </div>
+          </div>
+
+          <div class="wizard-footer">
+            <button class="btn btn-ghost" id="wizStep4Back" type="button">← Back to Step 3</button>
+            <button class="btn btn-primary btn-lg" id="wizFinalizeBtn" type="button">Create My Dashboard →</button>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         PAGE 2: STUDENT PROFILE DASHBOARD
+         VIEW 3: PERSONAL CAREER DASHBOARD (REAL USER HOME)
          ========================================================================== -->
-    <section class="view-page" id="view-dashboard" aria-label="Candidate Dashboard">
+    <section class="view-page active" id="view-dashboard" aria-label="Personal Career Dashboard">
+      
+      <!-- Welcome Header Card -->
       <div class="dashboard-welcome-card">
         <div class="welcome-text-wrap">
           <div class="welcome-user-row">
-            <h2 id="dashGreetingName">Hi, Candidate 👋</h2>
-            <span class="user-role-badge" id="dashActiveRoleBadge">Target: Data Analyst</span>
+            <h2 id="dashGreetingName">Good day 👋</h2>
+            <span class="user-role-badge" id="dashActiveRoleBadge">Target: Select Career</span>
           </div>
-          <p class="welcome-subtext">
-            Here is your real-time career readiness audit and priority action items based on current market benchmarks.
+          <p class="welcome-subtext" id="dashSubtext">
+            Your personalized career readiness audit, skill gap breakdown, and next best action.
           </p>
         </div>
         <div class="welcome-action-buttons">
-          <button class="btn btn-sm btn-secondary" id="dashEditProfileBtn">✏️ Edit Profile</button>
-          <button class="btn btn-sm btn-primary" id="dashStartRoadmapBtn">View My Roadmap →</button>
+          <button class="btn btn-sm btn-secondary" id="dashEditProfileBtn" type="button">✏️ Edit Profile</button>
+          <button class="btn btn-sm btn-primary" id="dashRoadmapActionBtn" type="button">View Roadmap →</button>
         </div>
       </div>
 
-      <!-- Readiness Overview Meter & 4 Quick Stat Cards -->
+      <!-- Profile Completion Gauge & Checklist Card -->
+      <div class="card profile-completion-card">
+        <div class="comp-header">
+          <div>
+            <span class="comp-label">Profile Strength</span>
+            <h4 class="comp-pct" id="dashProfileCompPct">0%</h4>
+          </div>
+          <button class="btn btn-sm btn-ghost" id="dashCompleteProfileBtn" type="button">Update Details</button>
+        </div>
+        <div class="comp-track">
+          <div class="comp-fill" id="dashProfileCompBar" style="width: 0%;"></div>
+        </div>
+        <div class="comp-checklist" id="dashProfileChecklist">
+          <span class="chk-item" id="chkName">○ Name & Status</span>
+          <span class="chk-item" id="chkEdu">○ Education</span>
+          <span class="chk-item" id="chkSkills">○ Skills (0 added)</span>
+          <span class="chk-item" id="chkRole">○ Target Career</span>
+          <span class="chk-item" id="chkResume">○ Resume Scanned</span>
+        </div>
+      </div>
+
+      <!-- Prominent Next Best Action Card -->
+      <div class="card card-gold priority-action-card" id="dashNextActionCard">
+        <div class="priority-action-content">
+          <div class="priority-badge">⭐ Your Next Best Action</div>
+          <h3 id="dashNextActionTitle">Build your career profile</h3>
+          <p id="dashNextActionDesc">
+            Add your verified skills and select a target career to calculate your career readiness score and personalized roadmap.
+          </p>
+        </div>
+        <div class="priority-action-btns">
+          <button class="btn btn-primary" id="dashNextActionBtn" type="button">Take Action →</button>
+        </div>
+      </div>
+
+      <!-- 4 Core Metrics Cards -->
       <div class="dashboard-stats-grid">
         <div class="dash-stat-card dash-readiness-card" data-jump="career-match">
           <div class="stat-top">
@@ -209,12 +410,12 @@
             <span class="stat-icon">🎯</span>
           </div>
           <div class="readiness-meter-wrap">
-            <div class="readiness-score-number" id="dashReadinessScore">76%</div>
+            <div class="readiness-score-number" id="dashReadinessScore">—</div>
             <div class="readiness-track">
-              <div class="readiness-fill" id="dashReadinessBar" style="width: 76%;"></div>
+              <div class="readiness-fill" id="dashReadinessBar" style="width: 0%;"></div>
             </div>
           </div>
-          <div class="stat-footer-text" id="dashReadinessSub">Solid match for Data Analyst</div>
+          <div class="stat-footer-text" id="dashReadinessSub">Select career to compute</div>
         </div>
 
         <div class="dash-stat-card" data-jump="skills-gaps">
@@ -222,8 +423,8 @@
             <span class="stat-label">Verified Skills</span>
             <span class="stat-icon">⚡</span>
           </div>
-          <div class="stat-big-number" id="dashSkillsCount">6</div>
-          <div class="stat-footer-text" id="dashSkillsListPreview">Python, SQL, Excel, Statistics...</div>
+          <div class="stat-big-number" id="dashSkillsCount">0</div>
+          <div class="stat-footer-text" id="dashSkillsListPreview">No skills added yet</div>
         </div>
 
         <div class="dash-stat-card stat-alert" data-jump="skills-gaps">
@@ -231,8 +432,8 @@
             <span class="stat-label">Priority Skill Gaps</span>
             <span class="stat-icon">⚠️</span>
           </div>
-          <div class="stat-big-number" id="dashGapsCount">3</div>
-          <div class="stat-footer-text" id="dashTopGapText">Biggest Gap: Power BI</div>
+          <div class="stat-big-number" id="dashGapsCount">—</div>
+          <div class="stat-footer-text" id="dashTopGapText">Select target career</div>
         </div>
 
         <div class="dash-stat-card" data-jump="roadmap">
@@ -241,39 +442,18 @@
             <span class="stat-icon">🗺️</span>
           </div>
           <div class="stat-big-number" id="dashRoadmapProgressText">0 / 8</div>
-          <div class="stat-footer-text">Tasks completed</div>
-        </div>
-
-        <div class="dash-stat-card" data-jump="jobs">
-          <div class="stat-top">
-            <span class="stat-label">Matching Jobs</span>
-            <span class="stat-icon">💼</span>
-          </div>
-          <div class="stat-big-number" id="dashJobsCount">18+</div>
-          <div class="stat-footer-text">Openings in India / Remote</div>
+          <div class="stat-footer-text" id="dashRoadmapSubText">Tasks completed</div>
         </div>
       </div>
 
-      <!-- Priority Next Step Action Card -->
-      <div class="card card-gold priority-action-card">
-        <div class="priority-action-content">
-          <div class="priority-badge">⭐ Recommended Next Step</div>
-          <h3 id="dashPriorityActionTitle">Close your #1 Skill Gap: Learn Power BI</h3>
-          <p id="dashPriorityActionDesc">
-            Power BI is required in 80% of Data Analyst openings. Bridging this skill will increase your role match score by <strong>+18%</strong> and unlock high-paying corporate positions.
-          </p>
-        </div>
-        <div class="priority-action-btns">
-          <button class="btn btn-primary" id="dashPriorityActionBtn">Start Learning Guide →</button>
-        </div>
-      </div>
-
-      <!-- Target Career Quick Selector Bar -->
+      <!-- Target Career Switcher Card -->
       <div class="card role-selector-inline">
         <div class="role-selector-header">
           <div>
-            <h4 style="font-size:15px; font-weight:700;">Switch Target Career Path</h4>
-            <p style="font-size:12.5px; color:var(--text-secondary);">Recalculates fit, gaps, roadmaps, and salary estimates instantly:</p>
+            <h4 style="font-size:15px; font-weight:700;">Target Career Path</h4>
+            <p style="font-size:12.5px; color:var(--text-secondary);">
+              Choose or switch your primary target to recalculate match %, missing gaps, and roadmap:
+            </p>
           </div>
           <select id="dashRoleSelect" class="sync-select" aria-label="Select Target Career Role"></select>
         </div>
@@ -282,12 +462,12 @@
     </section>
 
     <!-- ==========================================================================
-         PAGE 3: CAREER MATCH & COMPARISON
+         VIEW 4: CAREER MATCH & COMPARISON
          ========================================================================== -->
     <section class="view-page" id="view-career-match" aria-label="Career Matching & Comparison">
       <div class="section-head">
         <div>
-          <h2>Your Career Fit & Role Benchmark</h2>
+          <h2>Career Fit & Role Benchmark</h2>
           <p class="section-subtitle">
             Deterministic, explainable matching between your verified competencies and market benchmarks.
           </p>
@@ -295,137 +475,133 @@
         <span class="stage-tag-badge">Explainable AI Match</span>
       </div>
 
-      <!-- Primary Match Card -->
-      <div class="card card-gold primary-match-hero" id="primaryMatchHeroCard">
-        <div class="match-hero-main">
-          <div class="match-hero-info">
-            <span class="match-target-tag">Target Career Track</span>
-            <h3 class="match-hero-title" id="matchHeroTitle">Data Analyst</h3>
-            <p class="match-hero-sector" id="matchHeroSector">Analytics Sector • India Avg: ₹7-14 LPA</p>
-            
-            <div class="match-summary-tags" id="matchHeroTags">
-              <span class="badge badge-cert">✓ 4 Core Skills Matched</span>
-              <span class="badge" style="color:var(--accent-rose); border-color:rgba(244,63,94,0.3);">⚠️ 3 Missing Gaps</span>
+      <div id="careerMatchContentArea">
+        <!-- Primary Match Hero Card -->
+        <div class="card card-gold primary-match-hero" id="primaryMatchHeroCard">
+          <div class="match-hero-main">
+            <div class="match-hero-info">
+              <span class="match-target-tag">Target Career Track</span>
+              <h3 class="match-hero-title" id="matchHeroTitle">Select a Career</h3>
+              <p class="match-hero-sector" id="matchHeroSector">Choose a career in your dashboard to view calculations</p>
+              
+              <div class="match-summary-tags" id="matchHeroTags"></div>
+            </div>
+
+            <div class="match-hero-score-box">
+              <div class="match-score-circle">
+                <span class="match-big-pct" id="matchHeroPct">—</span>
+                <span class="match-score-sub">Fit Score</span>
+              </div>
             </div>
           </div>
 
-          <div class="match-hero-score-box">
-            <div class="match-score-circle">
-              <span class="match-big-pct" id="matchHeroPct">76%</span>
-              <span class="match-score-sub">Fit Score</span>
+          <!-- Score Breakdown Grid -->
+          <div class="match-breakdown-grid" id="matchBreakdownGrid">
+            <div class="breakdown-col">
+              <h5 class="breakdown-heading">Why This Score? (Algorithm Factors)</h5>
+              <div class="breakdown-list">
+                <div class="breakdown-item">
+                  <span>Core Skill Coverage</span>
+                  <strong id="matchFormulaCorePct">—</strong>
+                </div>
+                <div class="breakdown-item">
+                  <span>Emerging Tech Velocity Bonus</span>
+                  <strong id="matchFormulaEmergingBonus">—</strong>
+                </div>
+                <div class="breakdown-item highlight">
+                  <span>Final Match Score</span>
+                  <strong id="matchFormulaFinal">—</strong>
+                </div>
+              </div>
+              <div class="why-box" id="matchHeroExplanationText" style="margin-top:12px;"></div>
             </div>
-          </div>
-        </div>
 
-        <!-- Transparent Score Breakdown Accordion / Grid -->
-        <div class="match-breakdown-grid">
-          <div class="breakdown-col">
-            <h5 class="breakdown-heading">Why This Score? (Algorithm Factors)</h5>
-            <div class="breakdown-list">
-              <div class="breakdown-item">
-                <span>Core Skill Coverage (Weighted 85%)</span>
-                <strong id="matchFormulaCorePct">72%</strong>
+            <div class="breakdown-col">
+              <h5 class="breakdown-heading">Have vs Missing Breakdown</h5>
+              <div class="have-miss-box">
+                <div class="have-section">
+                  <span class="have-label">✓ Skills You Already Have:</span>
+                  <div class="skills-mini-pills" id="matchHavePills"></div>
+                </div>
+                <div class="miss-section" style="margin-top:12px;">
+                  <span class="miss-label">⚠️ Skills You Need to Build:</span>
+                  <div class="skills-mini-pills" id="matchMissPills"></div>
+                </div>
               </div>
-              <div class="breakdown-item">
-                <span>Emerging Tech Bonus (High Velocity)</span>
-                <strong id="matchFormulaEmergingBonus">+10 pts</strong>
-              </div>
-              <div class="breakdown-item highlight">
-                <span>Final Benchmark Fit Score</span>
-                <strong id="matchFormulaFinal">76 / 100</strong>
-              </div>
-            </div>
-            <div class="why-box" id="matchHeroExplanationText" style="margin-top:12px;"></div>
-          </div>
-
-          <div class="breakdown-col">
-            <h5 class="breakdown-heading">Have vs Missing Breakdown</h5>
-            <div class="have-miss-box">
-              <div class="have-section">
-                <span class="have-label">✓ Skills You Already Have:</span>
-                <div class="skills-mini-pills" id="matchHavePills"></div>
-              </div>
-              <div class="miss-section" style="margin-top:12px;">
-                <span class="miss-label">⚠️ Skills You Need to Build:</span>
-                <div class="skills-mini-pills" id="matchMissPills"></div>
-              </div>
-            </div>
-            
-            <div class="biggest-gap-callout" id="matchBiggestGapCallout">
-              <strong>Biggest Current Gap: Power BI</strong>
-              <p>Adding this skill is the fastest single path to raise your qualification from 76% to 92%.</p>
+              
+              <div class="biggest-gap-callout" id="matchBiggestGapCallout"></div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- All 12 Roles Ranked Fit List -->
-      <div style="margin-top:34px;">
-        <h3 style="font-size:20px; font-weight:700; margin-bottom:4px;">All Career Tracks Ranked for Your Profile</h3>
-        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
-          Click any card to expand transparent requirement gaps, SVG radar benchmarks, and "What-If" simulator:
-        </p>
-        <div class="reco-container" id="recoList"></div>
-      </div>
+        <!-- All 12 Roles Ranked Fit List -->
+        <div style="margin-top:34px;">
+          <h3 style="font-size:20px; font-weight:700; margin-bottom:4px;">All Career Tracks Ranked for Your Profile</h3>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
+            Explore how your current skills map to other domains and switch your primary target:
+          </p>
+          <div class="reco-container" id="recoList"></div>
+        </div>
 
-      <!-- Side-by-Side Career Path Comparison Matrix -->
-      <div style="margin-top:40px;">
-        <div class="section-head" style="margin-bottom:14px;">
-          <div>
-            <h3 style="font-size:20px; font-weight:700;">Compare Career Paths Side-by-Side</h3>
-            <p style="font-size:13px; color:var(--text-secondary);">Select 3 roles to evaluate skill overlap, compensation, job demand, and learning effort:</p>
+        <!-- Side-by-Side Career Path Comparison Matrix -->
+        <div style="margin-top:40px;">
+          <div class="section-head" style="margin-bottom:14px;">
+            <div>
+              <h3 style="font-size:20px; font-weight:700;">Compare Career Paths Side-by-Side</h3>
+              <p style="font-size:13px; color:var(--text-secondary);">Select 3 roles to evaluate skill overlap, compensation, and learning effort:</p>
+            </div>
           </div>
-        </div>
 
-        <div class="compare-selectors-row">
-          <select id="compareRole1" class="sync-select"></select>
-          <select id="compareRole2" class="sync-select"></select>
-          <select id="compareRole3" class="sync-select"></select>
-        </div>
+          <div class="compare-selectors-row">
+            <select id="compareRole1" class="sync-select" aria-label="Compare Role 1"></select>
+            <select id="compareRole2" class="sync-select" aria-label="Compare Role 2"></select>
+            <select id="compareRole3" class="sync-select" aria-label="Compare Role 3"></select>
+          </div>
 
-        <div class="table-responsive" style="margin-top:14px;">
-          <table class="modern-table compare-table" id="compareMatrixTable">
-            <thead>
-              <tr>
-                <th>Evaluation Dimension</th>
-                <th id="compHead1">Role 1</th>
-                <th id="compHead2">Role 2</th>
-                <th id="compHead3">Role 3</th>
-              </tr>
-            </thead>
-            <tbody id="compareMatrixBody"></tbody>
-          </table>
+          <div class="table-responsive" style="margin-top:14px;">
+            <table class="modern-table compare-table" id="compareMatrixTable">
+              <thead>
+                <tr>
+                  <th>Evaluation Dimension</th>
+                  <th id="compHead1">Role 1</th>
+                  <th id="compHead2">Role 2</th>
+                  <th id="compHead3">Role 3</th>
+                </tr>
+              </thead>
+              <tbody id="compareMatrixBody"></tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         PAGE 4: SKILLS & GAP ANALYSIS
+         VIEW 5: SKILLS & GAP ANALYSIS
          ========================================================================== -->
     <section class="view-page" id="view-skills-gaps" aria-label="Skills and Gap Analysis">
       <div class="section-head">
         <div>
           <h2>Your Skills Inventory & Gap Analysis</h2>
           <p class="section-subtitle">
-            Manage your verified competencies and explore categorized gaps prioritized by market hiring weights.
+            Manage your verified competencies and explore categorized gaps prioritized by hiring weights.
           </p>
         </div>
         <span class="stage-tag-badge">Gap Prioritization</span>
       </div>
 
-      <!-- Active Profile Skills Inventory Box -->
+      <!-- Verified Skills Box -->
       <div class="card" style="margin-bottom:28px;">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
           <div>
             <h3 style="font-size:18px; font-weight:700;">Verified Skills in Your Profile (<span id="profileSkillsCount">0</span>)</h3>
             <p style="font-size:12.5px; color:var(--text-secondary);">These skills drive your matching scores across all 12 career tracks:</p>
           </div>
-          <button class="btn btn-sm btn-secondary" id="openScannerBtn">📄 Parse Resume / LinkedIn Text</button>
+          <button class="btn btn-sm btn-secondary" id="skillsPageScanBtn" type="button">📄 Scan Resume Text</button>
         </div>
 
         <div class="chips-container" id="profileChips"></div>
         <div id="emptyChipHint" style="font-size:13px; color:var(--text-muted); font-style:italic; padding:12px 0;">
-          No skills added yet. Use the manual adder below, scan a resume, or try a sample profile.
+          No skills added yet. Add skills below or upload your resume.
         </div>
 
         <!-- Manual Add Controls -->
@@ -434,23 +610,23 @@
             + Add or Adjust an Individual Skill:
           </span>
           <div class="manual-add-row">
-            <select id="skillSelect" class="sync-select skill-select-box" aria-label="Select Skill to Add"></select>
+            <select id="skillsPageSelect" class="sync-select skill-select-box" aria-label="Select Skill to Add"></select>
             <div class="level-toggle-group" role="group" aria-label="Proficiency Level">
-              <button class="level-toggle-btn" data-lvl="30">Beginner (30%)</button>
-              <button class="level-toggle-btn active" data-lvl="60">Intermediate (60%)</button>
-              <button class="level-toggle-btn" data-lvl="90">Advanced (90%)</button>
+              <button class="level-toggle-btn" data-lvl="30" type="button">Beginner (30%)</button>
+              <button class="level-toggle-btn active" data-lvl="60" type="button">Intermediate (60%)</button>
+              <button class="level-toggle-btn" data-lvl="90" type="button">Advanced (90%)</button>
             </div>
-            <button class="btn btn-secondary" id="addSkillBtn">+ Add to Profile</button>
+            <button class="btn btn-secondary" id="skillsPageAddBtn" type="button">+ Add to Profile</button>
           </div>
         </div>
       </div>
 
-      <!-- Categorized Skill Gaps Breakdown (High / Medium / Optional) -->
+      <!-- Prioritized Gaps Breakdown -->
       <div>
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
           <div>
             <h3 style="font-size:20px; font-weight:700;">
-              Prioritized Skill Gaps for <span id="gapTargetRoleHeading" style="color:var(--accent-gold);">Data Analyst</span>
+              Prioritized Skill Gaps for <span id="gapTargetRoleHeading" style="color:var(--accent-gold);">Your Target Career</span>
             </h3>
             <p style="font-size:13px; color:var(--text-secondary);">
               Grouped by hiring weight and frequency in current job descriptions:
@@ -488,27 +664,27 @@
     </section>
 
     <!-- ==========================================================================
-         PAGE 5: PERSONALIZED LEARNING ROADMAP & PROJECTS
+         VIEW 6: ROADMAP & PROJECT RECOMMENDATIONS
          ========================================================================== -->
     <section class="view-page" id="view-roadmap" aria-label="Personalized Learning Roadmap">
       <div class="section-head">
         <div>
           <h2>Your 4-Week Actionable Learning Roadmap</h2>
           <p class="section-subtitle">
-            Structured step-by-step milestones to bridge your missing skills for <span id="roadmapRoleHeadingBadge" style="font-weight:700; color:var(--accent-gold);">Data Analyst</span>.
+            Structured step-by-step milestones to bridge your missing skills for <span id="roadmapRoleHeadingBadge" style="font-weight:700; color:var(--accent-gold);">Your Target Career</span>.
           </p>
         </div>
         <span class="stage-tag-badge">Action Plan</span>
       </div>
 
-      <!-- Roadmap Progress Bar Header -->
+      <!-- Roadmap Progress Header -->
       <div class="card roadmap-progress-card">
         <div class="roadmap-progress-top">
           <div>
             <span class="roadmap-progress-label">Roadmap Completion</span>
             <h3 class="roadmap-progress-title" id="roadmapProgressPct">0% Complete (0 of 8 tasks)</h3>
           </div>
-          <button class="btn btn-sm btn-ghost" id="resetRoadmapProgressBtn">Reset Checkboxes</button>
+          <button class="btn btn-sm btn-ghost" id="resetRoadmapProgressBtn" type="button">Reset Checkboxes</button>
         </div>
         <div class="roadmap-progress-track">
           <div class="roadmap-progress-fill" id="roadmapProgressBar" style="width: 0%;"></div>
@@ -518,7 +694,7 @@
       <!-- 4-Week Interactive Roadmap Container -->
       <div class="weekly-roadmap-container" id="weeklyRoadmapContainer"></div>
 
-      <!-- Tailored Portfolio Project Recommendations -->
+      <!-- Portfolio Projects -->
       <div style="margin-top:40px;">
         <div class="section-head" style="margin-bottom:12px;">
           <div>
@@ -531,17 +707,17 @@
         <div class="grid-3" id="projectRecommendationsContainer"></div>
       </div>
 
-      <!-- Top Industry Certifications Catalog -->
+      <!-- Curated Courses -->
       <div style="margin-top:40px;">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
           <div>
             <h3 style="font-size:20px; font-weight:700;">Curated Courses & Professional Certifications</h3>
-            <p style="font-size:13px; color:var(--text-secondary);">Recognized credentials from Google, Meta, IBM, AWS & DeepLearning.AI:</p>
+            <p style="font-size:13px; color:var(--text-secondary);">Industry-recognized curriculums from Google, Meta, IBM, AWS & DeepLearning.AI:</p>
           </div>
           <div class="course-filter-tags" id="roadmapCourseFilterTabs">
-            <button class="filter-chip active" data-filter="all">All</button>
-            <button class="filter-chip" data-filter="cert">Certifications</button>
-            <button class="filter-chip" data-filter="free">Free Guides</button>
+            <button class="filter-chip active" data-filter="all" type="button">All</button>
+            <button class="filter-chip" data-filter="cert" type="button">Certifications</button>
+            <button class="filter-chip" data-filter="free" type="button">Free Guides</button>
           </div>
         </div>
         <div class="grid-3" id="careerCoursesContainer"></div>
@@ -549,7 +725,7 @@
     </section>
 
     <!-- ==========================================================================
-         PAGE 6: JOBS & APPLICATION TRACKER
+         VIEW 7: JOBS & APPLICATION TRACKER
          ========================================================================== -->
     <section class="view-page" id="view-jobs" aria-label="Job Openings and Tracker">
       <div class="section-head">
@@ -562,48 +738,48 @@
         <span class="stage-tag-badge">Live Opportunities</span>
       </div>
 
-      <!-- Jobs Section Tabs -->
+      <!-- Subnavigation Tabs -->
       <div class="jobs-subnav-tabs" role="tablist">
-        <button class="jobs-subnav-btn active" id="tabJobsQualified" data-subtab="qualified">
+        <button class="jobs-subnav-btn active" id="tabJobsQualified" data-subtab="qualified" type="button">
           🟢 Jobs You Can Apply For Now (<span id="countJobsQualified">0</span>)
         </button>
-        <button class="jobs-subnav-btn" id="tabJobsGaps" data-subtab="gaps">
+        <button class="jobs-subnav-btn" id="tabJobsGaps" data-subtab="gaps" type="button">
           🟡 Jobs Requiring Additional Skills (<span id="countJobsGaps">0</span>)
         </button>
-        <button class="jobs-subnav-btn" id="tabJobsTracker" data-subtab="tracker">
+        <button class="jobs-subnav-btn" id="tabJobsTracker" data-subtab="tracker" type="button">
           📋 My Application Tracker (<span id="countJobsTracker">0</span>)
         </button>
       </div>
 
-      <!-- Portal Search Shortcuts -->
+      <!-- Portal Shortcuts -->
       <div class="card card-gold portal-shortcuts-card">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
           <div>
             <h4 style="font-size:15px; font-weight:700; color:var(--accent-gold);">🔍 Instant Pre-Filtered Search Queries</h4>
-            <p style="font-size:12.5px; color:var(--text-secondary);">Open verified, keyword-filtered live job feeds across major portals:</p>
+            <p style="font-size:12.5px; color:var(--text-secondary);">Open verified live job feeds for your active target role:</p>
           </div>
           <div class="portal-actions" id="jobsPortalActions"></div>
         </div>
       </div>
 
-      <!-- Qualified Jobs Container -->
+      <!-- Qualified Jobs -->
       <div class="jobs-view-section active" id="secJobsQualified">
         <div class="jobs-grid" id="jobsQualifiedContainer"></div>
       </div>
 
-      <!-- Jobs with Gaps Container -->
+      <!-- Jobs with Gaps -->
       <div class="jobs-view-section" id="secJobsGaps">
         <div class="jobs-grid" id="jobsGapsContainer"></div>
       </div>
 
-      <!-- Job Application Tracker Container -->
+      <!-- Application Tracker -->
       <div class="jobs-view-section" id="secJobsTracker">
         <div class="tracker-header-row">
           <div>
             <h3 style="font-size:18px; font-weight:700;">Job Application Tracker</h3>
-            <p style="font-size:12.5px; color:var(--text-secondary);">Drag or move jobs across stages to stay organized during hiring cycles:</p>
+            <p style="font-size:12.5px; color:var(--text-secondary);">Manage your pipeline across application stages:</p>
           </div>
-          <button class="btn btn-sm btn-primary" id="addCustomJobBtn">+ Add Custom Application</button>
+          <button class="btn btn-sm btn-primary" id="addCustomJobBtn" type="button">+ Add Custom Application</button>
         </div>
 
         <div class="tracker-board-grid">
@@ -636,7 +812,7 @@
     </section>
 
     <!-- ==========================================================================
-         PAGE 7: MARKET INTELLIGENCE & NEWS (WITH RICH IMAGERY)
+         VIEW 8: MARKET INTELLIGENCE & NEWS (WITH RICH IMAGES)
          ========================================================================== -->
     <section class="view-page" id="view-market" aria-label="Market Intelligence & News">
       <div class="section-head">
@@ -649,7 +825,7 @@
         <span class="stage-tag-badge">Market Pulse 2026</span>
       </div>
 
-      <!-- Real-Time Compensation Range Estimator -->
+      <!-- Salary Range Estimator -->
       <div class="salary-estimator-card">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
           <div>
@@ -678,15 +854,15 @@
         <div class="salary-tiers-row">
           <div class="salary-tier-box">
             <span class="tier-label">Entry Level (25th %)</span>
-            <div class="tier-val" id="salaryMinVal">₹7 LPA</div>
+            <div class="tier-val" id="salaryMinVal">—</div>
           </div>
           <div class="salary-tier-box tier-highlight">
             <span class="tier-label">Typical / Median (50th %)</span>
-            <div class="tier-val" id="salaryVal">₹12 - ₹20 LPA</div>
+            <div class="tier-val" id="salaryVal">—</div>
           </div>
           <div class="salary-tier-box">
             <span class="tier-label">Upper Range (90th %)</span>
-            <div class="tier-val" id="salaryMaxVal">₹24+ LPA</div>
+            <div class="tier-val" id="salaryMaxVal">—</div>
           </div>
         </div>
         <div class="salary-meta-note">
@@ -695,7 +871,7 @@
         </div>
       </div>
 
-      <!-- Market KPI Cards -->
+      <!-- KPI Summary Cards -->
       <div class="market-kpi-grid">
         <div class="market-kpi-card kpi-layoffs">
           <div class="kpi-top"><span class="kpi-tag">Tech Layoffs</span><span class="kpi-icon">📉</span></div>
@@ -719,17 +895,17 @@
         </div>
       </div>
 
-      <!-- News Controls: Search & Topic Filter -->
+      <!-- News Filters & Search -->
       <div class="card card-gold" style="margin-bottom:24px;">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
           <div class="news-category-filters" id="newsCategoryFilter" role="tablist">
-            <button class="filter-chip active" data-category="all">All Market Updates</button>
-            <button class="filter-chip" data-category="layoffs">🚨 Tech Layoffs</button>
-            <button class="filter-chip" data-category="emerging">✨ Emerging AI Roles</button>
-            <button class="filter-chip" data-category="hiring">🏢 India GCC Hiring</button>
-            <button class="filter-chip" data-category="salary">📈 Salary Shifts</button>
+            <button class="filter-chip active" data-category="all" type="button">All Market Updates</button>
+            <button class="filter-chip" data-category="layoffs" type="button">🚨 Tech Layoffs</button>
+            <button class="filter-chip" data-category="emerging" type="button">✨ Emerging AI Roles</button>
+            <button class="filter-chip" data-category="hiring" type="button">🏢 India GCC Hiring</button>
+            <button class="filter-chip" data-category="salary" type="button">📈 Salary Shifts</button>
           </div>
-          <button class="btn btn-sm btn-emerald" id="syncNewsBtn">
+          <button class="btn btn-sm btn-emerald" id="syncNewsBtn" type="button">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
             Refresh Intel Feeds
           </button>
@@ -741,63 +917,12 @@
         </div>
       </div>
 
-      <!-- Market News Grid (With Rich Visual Images!) -->
+      <!-- Editorial News Grid with Images -->
       <div class="news-grid-editorial" id="newsGridContainer" aria-live="polite"></div>
-
-      <!-- Job Market Shift Dynamics Table -->
-      <div style="margin-top:34px;">
-        <h3 style="font-size:20px; font-weight:700; margin-bottom:4px;">Industry Dynamics: What's Shrinking vs What's Expanding</h3>
-        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
-          Actionable guide to navigate headcount adjustments and target expanding sectors:
-        </p>
-        <div class="table-responsive">
-          <table class="modern-table">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Trend</th>
-                <th>Contracting Areas</th>
-                <th>Growth Vectors</th>
-                <th>Strategic Career Pivot</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>AI & Data</strong></td>
-                <td><span class="score-badge score-high">🔥 Massive Growth</span></td>
-                <td>Legacy manual ETL, basic repetitive reports</td>
-                <td>LLM Pipelines, RAG, MLOps, Vector DBs</td>
-                <td>Upskill from static SQL/Excel to Python & LLM tooling</td>
-              </tr>
-              <tr>
-                <td><strong>Software Engineering</strong></td>
-                <td><span class="score-badge score-med">⚡ Skill Pivot</span></td>
-                <td>Junior front-end without cloud/API depth</td>
-                <td>Fullstack TypeScript, Next.js, Cloud-native</td>
-                <td>Master end-to-end full-stack architectures</td>
-              </tr>
-              <tr>
-                <td><strong>Cloud & Infra</strong></td>
-                <td><span class="score-badge score-high">📈 Expansion</span></td>
-                <td>On-premises manual sysadmin</td>
-                <td>Kubernetes, Terraform, Platform Eng</td>
-                <td>Pursue AWS/Azure Solutions Architect & Docker/K8s</td>
-              </tr>
-              <tr>
-                <td><strong>Cybersecurity</strong></td>
-                <td><span class="score-badge score-high">🛡️ Critical Demand</span></td>
-                <td>Legacy perimeter-only firewalls</td>
-                <td>Cloud Security Posture (CSPM), Zero Trust</td>
-                <td>Zero-trust security credentials pay highest premiums</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </section>
 
     <!-- ==========================================================================
-         PAGE 8: METHODOLOGY & HOW SKILLBRIDGE WORKS
+         VIEW 9: METHODOLOGY PAGE
          ========================================================================== -->
     <section class="view-page" id="view-methodology" aria-label="SkillBridge Methodology">
       <div class="section-head">
@@ -823,7 +948,7 @@
           <div class="method-icon">🧠</div>
           <h3>2. Skill Extraction & Context Parsing</h3>
           <p>
-            When you upload or paste a resume, our parser extracts technology tokens and analyzes context windows for proficiency keywords (e.g. "Senior / Production / Architect" → 90% Advanced, "Basics / Coursework" → 30% Beginner).
+            When you upload or paste a resume, our parser extracts technology tokens and analyzes context windows for proficiency keywords without hallucinating fake scores.
           </p>
         </div>
 
@@ -842,24 +967,6 @@
             Every role has core weighted skills (weights 1 to 10). The base fit score is calculated as:
             <br>
             <code>Match = (Sum of [Candidate Level % × Skill Weight]) / Total Role Weight</code>
-            <br>
-            High-velocity emerging skills grant a transparent bonus (+10 to +15 pts) without black-box randomness.
-          </p>
-        </div>
-
-        <div class="card method-card">
-          <div class="method-icon">💰</div>
-          <h3>5. Salary Calculation Logic</h3>
-          <p>
-            Salary ranges are derived from verified India tech compensation surveys and Levels.fyi global benchmarks, modulated by experience tiers and candidate qualification factors.
-          </p>
-        </div>
-
-        <div class="card method-card">
-          <div class="method-icon">🛡️</div>
-          <h3>6. Data Integrity & Trust</h3>
-          <p>
-            SkillBridge never fabricates fake job listings, fake salaries, or black-box scores. If real data is unavailable, we explicitly state it rather than hallucinating estimates.
           </p>
         </div>
       </div>
@@ -868,191 +975,32 @@
   </main>
 
   <!-- ==========================================================================
-       MODAL 1: 3-STEP ONBOARDING & RESUME PARSER
-       ========================================================================== -->
-  <div class="modal-overlay" id="onboardingModal" role="dialog" aria-modal="true" aria-labelledby="onboardingModalTitle">
-    <div class="modal-window onboarding-window">
-      <div class="modal-header">
-        <h3 class="modal-title" id="onboardingModalTitle">Build Your SkillBridge Profile</h3>
-        <button class="modal-close-btn" id="closeOnboardingBtn" aria-label="Close Modal">&times;</button>
-      </div>
-
-      <!-- Step Indicators -->
-      <div class="wizard-steps-indicator">
-        <div class="wizard-step active" data-step="1"><span>1</span> Your Goal</div>
-        <div class="wizard-step" data-step="2"><span>2</span> Profile & Skills</div>
-        <div class="wizard-step" data-step="3"><span>3</span> Target Career</div>
-      </div>
-
-      <!-- Step 1: Goals -->
-      <div class="wizard-pane active" id="wizardStep1">
-        <h4 class="wizard-pane-title">What do you want help with today?</h4>
-        <p class="wizard-pane-desc">Select what best describes your primary objective:</p>
-        
-        <div class="goal-options-grid">
-          <label class="goal-option-card active">
-            <input type="radio" name="userGoal" value="career_path" checked>
-            <div class="goal-icon">🎯</div>
-            <div>
-              <strong>Find my best-fit career path</strong>
-              <span>Compare your current skills across 12 tech roles.</span>
-            </div>
-          </label>
-          <label class="goal-option-card">
-            <input type="radio" name="userGoal" value="skill_gaps">
-            <div class="goal-icon">⚡</div>
-            <div>
-              <strong>Discover my missing skill gaps</strong>
-              <span>See what's holding you back from passing interviews.</span>
-            </div>
-          </label>
-          <label class="goal-option-card">
-            <input type="radio" name="userGoal" value="roadmap">
-            <div class="goal-icon">🗺️</div>
-            <div>
-              <strong>Build a personalized learning roadmap</strong>
-              <span>Get weekly milestones and curated projects to build.</span>
-            </div>
-          </label>
-          <label class="goal-option-card">
-            <input type="radio" name="userGoal" value="jobs">
-            <div class="goal-icon">💼</div>
-            <div>
-              <strong>Find jobs I can apply for right now</strong>
-              <span>Discover matching openings in India & remote hubs.</span>
-            </div>
-          </label>
-        </div>
-
-        <div class="wizard-footer">
-          <div></div>
-          <button class="btn btn-primary" id="wizardToStep2">Next: Build Profile →</button>
-        </div>
-      </div>
-
-      <!-- Step 2: Resume Upload & Extraction -->
-      <div class="wizard-pane" id="wizardStep2">
-        <h4 class="wizard-pane-title">How would you like to add your skills?</h4>
-        <p class="wizard-pane-desc">Upload a resume file, paste text, or start with manual entry:</p>
-
-        <div class="resume-input-tabs">
-          <button class="resume-tab-btn active" data-res-mode="upload">📁 Upload File (PDF / TXT)</button>
-          <button class="resume-tab-btn" data-res-mode="paste">✏️ Paste Text / LinkedIn</button>
-          <button class="resume-tab-btn" data-res-mode="sample">⚡ Sample Profile</button>
-        </div>
-
-        <div class="resume-tab-content active" id="resModeUpload">
-          <div class="drop-zone" id="resumeDropZone">
-            <input type="file" id="resumeFileInput" accept=".pdf,.txt,.docx" class="file-input-hidden" aria-label="Upload Resume">
-            <div class="drop-icon">📄</div>
-            <p><strong>Click to browse</strong> or drag & drop your Resume PDF / TXT file here</p>
-            <span style="font-size:11px; color:var(--text-muted);">Client-side safe parsing • Zero cloud data loss</span>
-          </div>
-          <div id="fileUploadStatus" class="upload-status-text"></div>
-        </div>
-
-        <div class="resume-tab-content" id="resModePaste">
-          <textarea id="onboardingResumeText" class="resume-textarea" placeholder="Paste your resume experience, LinkedIn summary, or GitHub projects here... (e.g. 'Computer Science student experienced with Python, SQL queries, React frontend, Git, and Docker containerization on AWS...')"></textarea>
-          <button class="btn btn-emerald" id="onboardingScanTextBtn" style="margin-top:8px;">
-            Extract Skills from Text
-          </button>
-        </div>
-
-        <div class="resume-tab-content" id="resModeSample">
-          <div class="sample-preset-box">
-            <p style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">
-              Choose a realistic student persona to populate full skills and roadmaps instantly:
-            </p>
-            <div class="persona-chips" id="onboardingPersonaChips"></div>
-          </div>
-        </div>
-
-        <!-- Extraction Verification Drawer -->
-        <div class="extraction-review-box" id="extractionReviewBox" style="display:none;">
-          <div class="review-head">
-            <strong>Here's what we found (<span id="detectedSkillsCount">0</span> skills):</strong>
-            <span style="font-size:12px; color:var(--text-secondary);">Click ✕ to remove or add missing skills:</span>
-          </div>
-          <div class="chips-container" id="detectedChipsContainer"></div>
-        </div>
-
-        <div class="wizard-footer">
-          <button class="btn btn-ghost" id="wizardBackToStep1">← Back</button>
-          <button class="btn btn-primary" id="wizardToStep3">Next: Select Target Role →</button>
-        </div>
-      </div>
-
-      <!-- Step 3: Target Career Selection -->
-      <div class="wizard-pane" id="wizardStep3">
-        <h4 class="wizard-pane-title">What career are you aiming for?</h4>
-        <p class="wizard-pane-desc">Select your target role (you can change this anytime on the dashboard):</p>
-
-        <div class="role-cards-selection-grid" id="onboardingRoleGrid"></div>
-
-        <div class="wizard-footer">
-          <button class="btn btn-ghost" id="wizardBackToStep2">← Back</button>
-          <button class="btn btn-primary btn-lg" id="wizardFinishBtn">Generate My Career Plan →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       MODAL 2: DEVELOPER & API SETTINGS (MOVED OUT OF STUDENT VIEW)
+       SETTINGS & DEVELOPER MODAL
        ========================================================================== -->
   <div class="modal-overlay" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
     <div class="modal-window">
       <div class="modal-header">
-        <h3 class="modal-title" id="settingsModalTitle">Developer & API Settings</h3>
-        <button class="modal-close-btn" id="closeSettingsBtn">&times;</button>
+        <h3 class="modal-title" id="settingsModalTitle">Settings & Configuration</h3>
+        <button class="modal-close-btn" id="closeSettingsBtn" type="button" aria-label="Close Settings">&times;</button>
       </div>
-      <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
-        Configure live job market data feeds or sync custom Adzuna API credentials:
-      </p>
-
-      <div class="sync-source-tabs" style="margin-bottom:14px;">
-        <button class="sync-source-tab active" data-source="free_public">Free Public Feeds (Zero Setup)</button>
-        <button class="sync-source-tab" data-source="adzuna">Adzuna API (Custom Key)</button>
-      </div>
-
-      <div id="adzunaInputFields" style="display:none; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
-        <input type="text" id="adzunaId" class="sync-input" placeholder="Adzuna App ID">
-        <input type="text" id="adzunaKey" class="sync-input" placeholder="Adzuna App Key">
-        <select id="countrySelect" class="sync-select">
-          <option value="in">India (IN)</option>
-          <option value="us">United States (US)</option>
-          <option value="gb">United Kingdom (GB)</option>
-        </select>
+      
+      <div style="margin-bottom:20px;">
+        <h4 style="font-size:15px; font-weight:700; margin-bottom:6px;">Data & Profile Management</h4>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:14px;">
+          Manage your saved profile data or reset to start over:
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-secondary" id="modalEditProfileBtn" type="button">✏️ Edit My Profile</button>
+          <button class="btn btn-ghost" id="modalMethodologyBtn" type="button">📖 How It Works</button>
+          <button class="btn btn-ghost" id="clearStorageBtn" style="color:var(--accent-rose);" type="button">Reset All Data</button>
+        </div>
       </div>
 
-      <div class="sync-controls-row" style="margin-bottom:14px;">
-        <button class="btn btn-emerald" id="syncBtn">Sync Live Market Data</button>
-        <button class="btn btn-ghost" id="resetBtn">Reset Baseline Dataset</button>
-        <button class="btn btn-ghost" id="clearStorageBtn" style="color:var(--accent-rose);">Clear Local Data</button>
-      </div>
-
-      <div class="sync-log-box" id="syncLog">
-        <span>Live data engine ready. Connected to baseline benchmark dataset.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       MODAL 3: EXPORT CAREER AUDIT REPORT
-       ========================================================================== -->
-  <div class="modal-overlay" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle">
-    <div class="modal-window">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exportModalTitle">Career Fit Audit Report</h3>
-        <button class="modal-close-btn" id="closeModalBtn">&times;</button>
-      </div>
-      <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">
-        Formatted summary of verified skills, role qualifications, priority gaps, and action plan:
-      </p>
-      <div class="report-preview-box" id="reportPreview"></div>
-      <div style="display:flex; justify-content:flex-end; gap:10px;">
-        <button class="btn btn-secondary" id="printReportBtn">🖨️ Print / Save as PDF</button>
-        <button class="btn btn-primary" id="copyReportBtn">Copy Report Text</button>
+      <div style="border-top:1px solid var(--border-glass); padding-top:16px;">
+        <h4 style="font-size:15px; font-weight:700; margin-bottom:6px;">About SkillBridge</h4>
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
+          SkillBridge is an explainable career intelligence and personalized roadmap engine designed for students and early-career developers.
+        </p>
       </div>
     </div>
   </div>
@@ -1071,12 +1019,12 @@
       </header>
       <div class="help-chat-messages" id="helpChatMessages">
         <div class="help-chat-message guide-message">
-          Hi! I can analyze your specific skill gaps, explain your match score for <span id="chatRoleNameText">Data Analyst</span>, or recommend your next project.
+          Hi! I can analyze your specific skill gaps, explain your match scores, or recommend your next portfolio project.
         </div>
       </div>
       <div class="help-chat-prompts" id="helpChatPrompts">
-        <button type="button" data-help-prompt="Why is my match score what it is?">Why this score?</button>
         <button type="button" data-help-prompt="What should I learn first?">What to learn first?</button>
+        <button type="button" data-help-prompt="Why is my match score what it is?">Why this score?</button>
         <button type="button" data-help-prompt="What project should I build?">Recommended project</button>
         <button type="button" data-help-prompt="Find jobs matching my profile">Matching jobs</button>
       </div>
