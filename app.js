@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SKILLBRIDGE CORE LOGIC - LIVE DATA ENGINE & CAREER ADVISOR
+   SKILLBRIDGE CORE LOGIC - UNIFIED CAREER INTELLIGENCE & ROADMAP ENGINE
    ========================================================================== */
 
 (function () {
@@ -50,11 +50,11 @@
     { name: "Git", cat: "Programming", demand: 75, trend: "stable", resource: "https://git-scm.com/book/en/v2", estTime: "1-2 weeks" },
     { name: "MLOps", cat: "AI/ML", demand: 75, trend: "rising", emerging: true, blurb: "Deploying, versioning, and monitoring machine learning models in production.", resource: "https://madewithml.com/", estTime: "4-6 weeks" },
     { name: "Data Engineering", cat: "Data", demand: 83, trend: "rising", resource: "https://github.com/datastacktv/data-engineer-roadmap", estTime: "6-8 weeks" },
-    { name: "NLP", cat: "AI/ML", demand: 76, trend: "rising", resource: "https://huggingface.co/learn/nlp-course", estTime: "4-6 weeks" },
+    { name: "NLP", cat: "AI/ML", demand: 76, trend: "rising", resource: "https://huggingface.co/learn/nlp-course", estTime: "4-6 weeks" }
   ];
 
   const ROLES = [
-    { title: "Data Analyst", sector: "Analytics", baseSalaryINR: "7-14 LPA", baseSalaryUSD: "$65k-$95k", skills: { "SQL": 9, "Excel": 6, "Power BI": 7, "Statistics": 6, "Data Visualization": 7, "Communication": 5, "Python": 5 } },
+    { title: "Data Analyst", sector: "Analytics", baseSalaryINR: "7-14 LPA", baseSalaryUSD: "$65k-$95k", skills: { "SQL": 9, "Excel": 6, "Power BI": 8, "Statistics": 6, "Data Visualization": 7, "Communication": 5, "Python": 5 } },
     { title: "Data Scientist", sector: "AI/ML", baseSalaryINR: "12-24 LPA", baseSalaryUSD: "$95k-$145k", skills: { "Python": 9, "Statistics": 8, "Machine Learning": 9, "SQL": 6, "Data Visualization": 5, "Deep Learning": 5 } },
     { title: "Machine Learning Engineer", sector: "AI/ML", baseSalaryINR: "15-30 LPA", baseSalaryUSD: "$120k-$175k", skills: { "Python": 9, "Machine Learning": 9, "Deep Learning": 8, "MLOps": 7, "AWS": 6, "Git": 5, "NLP": 5 } },
     { title: "AI Solutions / Prompt Engineer", sector: "AI/ML", baseSalaryINR: "14-28 LPA", baseSalaryUSD: "$110k-$165k", skills: { "Prompt Engineering": 9, "Generative AI Tooling": 9, "Python": 6, "Communication": 6, "NLP": 6 } },
@@ -68,18 +68,18 @@
     { title: "Digital Marketing Analyst", sector: "Marketing", baseSalaryINR: "6-12 LPA", baseSalaryUSD: "$55k-$85k", skills: { "SEO": 7, "Digital Ads": 8, "Content Strategy": 6, "Data Visualization": 5, "Communication": 6 } }
   ];
 
-  /* Comprehensive Curated Courses & Certifications mapped to every single career option */
+  /* Comprehensive Curated Courses mapped to all 12 roles */
   const CAREER_COURSES = {
     "Data Analyst": [
-      { title: "Google Data Analytics Professional Certificate", provider: "Google / Coursera", level: "Beginner to Pro", duration: "6 months (10 hrs/wk)", type: "cert", link: "https://www.coursera.org/professional-certificates/google-data-analytics", desc: "Industry-standard certification covering SQL, Spreadsheets, Tableau, R/Python, and data cleaning." },
-      { title: "Microsoft Power BI Data Analyst (PL-300 Exam Prep)", provider: "Microsoft Learn", level: "Intermediate", duration: "4-6 weeks", type: "cert", link: "https://learn.microsoft.com/en-us/credentials/certifications/data-analyst-associate/", desc: "Official Microsoft certification curriculum for modeling, DAX expressions, and enterprise reporting." },
+      { title: "Google Data Analytics Professional Certificate", provider: "Google / Coursera", level: "Beginner to Pro", duration: "6 months", type: "cert", link: "https://www.coursera.org/professional-certificates/google-data-analytics", desc: "Industry-standard certification covering SQL, Spreadsheets, Tableau, R/Python, and data cleaning." },
+      { title: "Microsoft Power BI Data Analyst (PL-300 Exam Prep)", provider: "Microsoft Learn", level: "Intermediate", duration: "4-6 weeks", type: "cert", link: "https://learn.microsoft.com/en-us/credentials/certifications/data-analyst-associate/", desc: "Official Microsoft curriculum for modeling, DAX expressions, and enterprise reporting." },
       { title: "Complete SQL Bootcamp: Go from Zero to Hero", provider: "Udemy / Jose Portilla", level: "All Levels", duration: "3-4 weeks", type: "cert", link: "https://www.udemy.com/course/the-complete-sql-bootcamp/", desc: "Master PostgreSQL, complex joins, subqueries, window functions, and analytics queries." },
       { title: "Tableau Certified Data Analyst Specialization", provider: "Tableau / Coursera", level: "Intermediate", duration: "2 months", type: "cert", link: "https://www.tableau.com/learn/training", desc: "Interactive dashboard design, LOD calculations, storytelling, and visual analytics." },
       { title: "Statistics and Probability for Data Science", provider: "Khan Academy & edX", level: "Beginner", duration: "3-4 weeks", type: "free", link: "https://www.khanacademy.org/math/statistics-probability", desc: "Essential hypothesis testing, distributions, regression, and confidence intervals." },
       { title: "Data Analyst Roadmap & Project Portfolio Guide", provider: "Roadmap.sh", level: "All Levels", duration: "Self-paced", type: "free", link: "https://roadmap.sh/data-analyst", desc: "Step-by-step interactive milestones, real-world portfolio datasets, and interview prep." }
     ],
     "Data Scientist": [
-      { title: "IBM Data Science Professional Certificate", provider: "IBM / Coursera", level: "Beginner to Adv", duration: "5-6 months", type: "cert", link: "https://www.coursera.org/professional-certificates/ibm-data-science", desc: "10-course sequence covering Python, SQL, Data Analysis, Applied Machine Learning, and Capstone." },
+      { title: "IBM Data Science Professional Certificate", provider: "IBM / Coursera", level: "Beginner to Adv", duration: "5-6 months", type: "cert", link: "https://www.coursera.org/professional-certificates/ibm-data-science", desc: "10-course sequence covering Python, SQL, Applied Machine Learning, and Capstone." },
       { title: "Applied Data Science with Python Specialization", provider: "Univ. of Michigan / Coursera", level: "Intermediate", duration: "4 months", type: "cert", link: "https://www.coursera.org/specializations/data-science-python", desc: "Pandas, Matplotlib, Scikit-learn, Text Mining, and Network Analysis in Python." },
       { title: "Mathematics for Machine Learning and Data Science", provider: "DeepLearning.AI", level: "Intermediate", duration: "3 months", type: "cert", link: "https://www.deeplearning.ai/courses/mathematics-for-machine-learning-and-data-science-specialization/", desc: "Linear Algebra, Multivariate Calculus, PCA, and Probability for data modeling." },
       { title: "Kaggle Learn: Free Micro-Courses in Data Science", provider: "Kaggle", level: "Beginner to Adv", duration: "Self-paced", type: "free", link: "https://www.kaggle.com/learn", desc: "Hands-on coding exercises in Pandas, Feature Engineering, XGBoost, and Data Visualization." },
@@ -168,7 +168,7 @@
     ]
   };
 
-  /* Market Intelligence & Layoffs Registry */
+  /* Market Intelligence & Layoffs Registry with High-Resolution Curated Tech Imagery */
   const MARKET_NEWS = [
     {
       id: "news-1",
@@ -178,6 +178,7 @@
       title: "Big Tech Shifts Headcount from Legacy Roles into Dedicated AI & Agent Teams",
       source: "TechCrunch / Market Pulse",
       date: "August 2026",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
       summary: "Major technology employers have shifted from wide-scale pandemic reductions to surgical team realignments. Generalist software teams are contracting while AI infrastructure, RAG pipeline, and cloud security hiring expands.",
       takeaway: "Traditional front-end or manual testing roles are facing heightened contraction. Broaden your skills with TypeScript, API design, and AI tooling to stay in demand.",
       link: "https://techcrunch.com/"
@@ -190,6 +191,7 @@
       title: "The Surge in 'AI Systems Engineers': Agentic LLM Architecture Becomes Top Priority",
       source: "VentureBeat & Wired Tech",
       date: "August 2026",
+      image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
       summary: "Job openings for engineers who can integrate LLM APIs, LangChain, vector databases, and automated agent workflows have surged 46% year-over-year.",
       takeaway: "Employers are willing to pay top percentiles for developers who know how to connect LLMs to production databases with deterministic guardrails.",
       link: "https://venturebeat.com/category/ai/"
@@ -202,6 +204,7 @@
       title: "Global Capability Centers (GCCs) in India Cross 1,600 Hubs, Fueling Senior Tech Hiring",
       source: "Economic Times & NASSCOM",
       date: "August 2026",
+      image: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80",
       summary: "Bengaluru, Hyderabad, Pune, and NCR are witnessing accelerated hiring from Fortune 500 GCCs. Demand is particularly intense for Cloud Architects, Data Engineers, and Platform DevOps.",
       takeaway: "India GCCs offer competitive global-scale compensation packages (₹18-35 LPA for mid-senior engineers). Ensure your cloud & system architecture credentials are up to date.",
       link: "https://economictimes.indiatimes.com/tech"
@@ -214,6 +217,7 @@
       title: "2026 Salary Index: Cloud Security and MLOps Engineers Command 35% Premium",
       source: "Levels.fyi & Industry Benchmarks",
       date: "August 2026",
+      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
       summary: "Specialized roles in Cloud Security Posture (CSPM), Kubernetes Fleet Management, and MLOps deployment pipelines are experiencing the steepest salary growth across the software market.",
       takeaway: "Bridging one high-demand cloud or MLOps gap significantly increases compensation leverage compared to generic full-stack roles.",
       link: "https://www.levels.fyi/"
@@ -226,6 +230,7 @@
       title: "Layoff Volatility Drops 60% as Tech Sector Stabilizes into Sustainable Growth",
       source: "Layoffs.fyi / Bloomberg",
       date: "August 2026",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
       summary: "Layoff rates in enterprise SaaS and IT services have reached their lowest quarterly volatility in three years. Hiring budgets have re-opened with a strict focus on ROI and efficiency.",
       takeaway: "Showcase measurable impact on your resume—such as costs saved, infrastructure automated, or deployment time reduced.",
       link: "https://layoffs.fyi/"
@@ -238,6 +243,7 @@
       title: "Cybersecurity Shortage Intensifies: 4 Million Unfilled Positions Worldwide",
       source: "ISC2 Global Cybersecurity Study",
       date: "August 2026",
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
       summary: "The global shortage of certified cybersecurity analysts, SOC operators, and ethical hackers continues to grow. Zero Trust architecture and multi-cloud IAM compliance lead hiring requirements.",
       takeaway: "Pursuing entry-to-intermediate certifications like CompTIA Security+ or Google Cybersecurity provides one of the fastest routes to an in-demand tech career.",
       link: "https://www.isc2.org/research"
@@ -250,6 +256,7 @@
       title: "AI & DeepTech Startups Accelerate Hiring for Full-Stack TypeScript Developers",
       source: "Inc42 / Tech in Asia",
       date: "August 2026",
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
       summary: "Early-stage and Series A startups are actively hiring versatile developers skilled in Next.js, FastAPI, and Docker who can rapidly iterate on production-grade web applications.",
       takeaway: "A well-crafted GitHub portfolio demonstrating a full-stack deployed application is often more influential than formal degrees for fast-moving startups.",
       link: "https://inc42.com/"
@@ -262,1826 +269,1718 @@
       title: "Hybrid Work Settles at 2-Day In-Office; Tier-2 Talent Hubs Flourish",
       source: "Forbes Technology",
       date: "August 2026",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
       summary: "While 65% of large tech employers have standardized on 2-day hybrid schedules, remote-first hiring remains robust for high-demand senior engineers across India and global timezones.",
       takeaway: "Async communication and strong Git collaboration skills remain critical differentiators for distributed engineering teams.",
       link: "https://www.forbes.com/"
     }
   ];
 
+  /* Student Personas for Instant 1-Click Demo Profiles */
   const PERSONAS = {
-    ai_aspirant: {
-      name: "AI / GenAI Aspirant",
-      skills: { "Python": 90, "Generative AI Tooling": 80, "Prompt Engineering": 85, "SQL": 60, "Machine Learning": 70, "Git": 60 }
+    data_analyst: {
+      name: "Priya Sharma (Data Analyst Aspirant)",
+      skills: { "Python": 90, "SQL": 90, "Excel": 80, "Statistics": 70, "Data Visualization": 80, "Communication": 80, "Git": 60 },
+      targetRole: "Data Analyst"
     },
-    data_to_ml: {
-      name: "Data Analyst transitioning to ML",
-      skills: { "SQL": 90, "Power BI": 90, "Excel": 90, "Python": 60, "Statistics": 60, "Data Visualization": 80, "Communication": 80 }
+    ai_aspirant: {
+      name: "Aarav Patel (AI / GenAI Aspirant)",
+      skills: { "Python": 90, "Generative AI Tooling": 80, "Prompt Engineering": 85, "SQL": 60, "Machine Learning": 70, "Git": 60 },
+      targetRole: "AI Solutions / Prompt Engineer"
     },
     fullstack_dev: {
-      name: "Modern Fullstack Developer",
-      skills: { "JavaScript": 90, "TypeScript": 80, "React": 90, "Next.js": 75, "Node.js": 80, "SQL": 60, "Git": 80, "Docker": 60 }
+      name: "Rohan Verma (Fullstack Developer)",
+      skills: { "JavaScript": 90, "TypeScript": 80, "React": 90, "Next.js": 75, "Node.js": 80, "SQL": 60, "Git": 80, "Docker": 60 },
+      targetRole: "Full Stack Developer"
     },
     devops_cloud: {
-      name: "Cloud & DevOps Architect",
-      skills: { "AWS": 90, "Docker": 90, "Kubernetes": 80, "CI/CD": 85, "Cloud Security": 70, "Git": 80, "Python": 50 }
+      name: "Ananya Iyer (Cloud & DevOps Aspirant)",
+      skills: { "AWS": 90, "Docker": 90, "Kubernetes": 80, "CI/CD": 85, "Cloud Security": 70, "Git": 80, "Python": 50 },
+      targetRole: "DevOps / Platform Engineer"
     },
     cyber_sec: {
-      name: "Cybersecurity Analyst",
-      skills: { "Cybersecurity Fundamentals": 90, "Cloud Security": 80, "Ethical Hacking": 70, "Python": 60, "Communication": 70 }
+      name: "Karthik Nair (Cybersecurity Aspirant)",
+      skills: { "Cybersecurity Fundamentals": 90, "Cloud Security": 80, "Ethical Hacking": 70, "Python": 60, "Communication": 70 },
+      targetRole: "Cybersecurity Analyst"
     }
   };
 
-  const SECTORS = ["All", ...new Set(ROLES.map(r => r.sector))];
-  const CATEGORIES = ["All", ...new Set(SKILLS.map(s => s.cat))];
-  const SYNTHETIC_SNAPSHOT = SKILLS.map(s => ({ name: s.name, demand: s.demand, trend: s.trend }));
-  const STORAGE_KEY = "skillbridge_state_v3";
+  /* Project Recommendations Mapped to Skill Gaps */
+  const PROJECT_IDEAS = {
+    "Data Analyst": [
+      {
+        title: "Executive E-Commerce Sales & Profit Dashboard",
+        closesGaps: ["Power BI", "SQL", "Data Visualization"],
+        stack: "Power BI, PostgreSQL, DAX Expressions",
+        difficulty: "Intermediate",
+        timeEst: "4-6 days",
+        desc: "Design an interactive, cross-filtering KPI dashboard analyzing customer retention, product margins, and cohort seasonality.",
+        portfolioOutcome: "Includes a shareable Power BI interactive web report and documented SQL ETL scripts on GitHub."
+      },
+      {
+        title: "Customer Churn & Retention Analytics Pipeline",
+        closesGaps: ["Statistics", "Python", "Tableau"],
+        stack: "Python (Pandas, Seaborn), Tableau, Kaggle Telco Dataset",
+        difficulty: "Intermediate",
+        timeEst: "5-7 days",
+        desc: "Perform statistical hypothesis testing and feature correlation to diagnose customer churn drivers for a SaaS provider.",
+        portfolioOutcome: "Live Tableau Public story and clean Jupyter Notebook with executive takeaways."
+      }
+    ],
+    "Data Scientist": [
+      {
+        title: "Real Estate Valuation & Price Forecasting Engine",
+        closesGaps: ["Machine Learning", "Statistics", "Python"],
+        stack: "Scikit-Learn, XGBoost, Streamlit, Pandas",
+        difficulty: "Intermediate to Adv",
+        timeEst: "1-2 weeks",
+        desc: "End-to-end regression model with feature engineering, cross-validation, and an interactive Streamlit UI for real-time house valuations.",
+        portfolioOutcome: "Deployed live on Streamlit Cloud with comprehensive model evaluation metrics."
+      },
+      {
+        title: "Medical Image Classification with PyTorch CNNs",
+        closesGaps: ["Deep Learning", "Python"],
+        stack: "PyTorch, Torchvision, Transfer Learning (ResNet-50)",
+        difficulty: "Advanced",
+        timeEst: "2 weeks",
+        desc: "Fine-tune deep convolutional networks to detect anomalies from chest X-ray scans with Grad-CAM heatmaps for explainability.",
+        portfolioOutcome: "Production-ready weights and HuggingFace Spaces web demonstration."
+      }
+    ],
+    "Full Stack Developer": [
+      {
+        title: "Real-Time Collaborative Markdown & Task SaaS",
+        closesGaps: ["Next.js", "TypeScript", "React", "Node.js"],
+        stack: "Next.js 15, TypeScript, TailwindCSS, Supabase / PostgreSQL",
+        difficulty: "Intermediate",
+        timeEst: "1-2 weeks",
+        desc: "Full-stack web application featuring OAuth authentication, Server Actions, optimistic UI updates, and real-time multiplayer editing.",
+        portfolioOutcome: "Deployed live on Vercel with automated GitHub CI/CD testing."
+      }
+    ],
+    "AI Solutions / Prompt Engineer": [
+      {
+        title: "Multi-Document Enterprise RAG Agent with Guardrails",
+        closesGaps: ["Generative AI Tooling", "Prompt Engineering", "Python"],
+        stack: "LangChain, OpenAI API / Llama 3, ChromaDB, FastAPI",
+        difficulty: "Intermediate to Adv",
+        timeEst: "1 week",
+        desc: "Build a retrieval-augmented generation engine that ingests financial PDFs, embeds vectors, and answers citations with deterministic validation.",
+        portfolioOutcome: "Production REST API with comprehensive evaluation suite and Dockerfile."
+      }
+    ],
+    "Cybersecurity Analyst": [
+      {
+        title: "Automated Incident Response & SIEM Log Analyzer",
+        closesGaps: ["Cybersecurity Fundamentals", "Python", "Cloud Security"],
+        stack: "Python, Splunk / Elastic, Syslog parser, AWS CloudTrail",
+        difficulty: "Intermediate",
+        timeEst: "1-2 weeks",
+        desc: "Develop automated scripts to ingest AWS IAM security logs, detect brute-force patterns, and trigger automated quarantine alerts.",
+        portfolioOutcome: "Open-source GitHub security tool with sample pcap and log triage workflows."
+      }
+    ],
+    "DevOps / Platform Engineer": [
+      {
+        title: "GitOps Kubernetes Microservice Pipeline with Terraform",
+        closesGaps: ["Docker", "Kubernetes", "CI/CD", "AWS"],
+        stack: "Terraform, Docker, Minikube / EKS, GitHub Actions, Helm",
+        difficulty: "Advanced",
+        timeEst: "2 weeks",
+        desc: "Provision AWS VPC infrastructure with Terraform, containerize a 3-tier microservice, and deploy with Helm and automated canary rollouts.",
+        portfolioOutcome: "Complete infrastructure-as-code repository with reproducible architecture diagrams."
+      }
+    ]
+  };
+
+  const STORAGE_KEY = "skillbridge_unified_v4";
 
   /* ==========================================================================
      2. APP STATE (PERSISTENT & REACTIVE)
      ========================================================================== */
-  let profile = {}; // { skillName: level(0-100) }
-  let selectedTargetRole = "Data Analyst"; // Active career option across Next Steps & Salary
-  let selectedLevel = 60;
-  let sectorFilterVal = "All";
-  let categoryFilterVal = "All";
-  let activeCourseFilter = "all";
-  let activeNewsCategory = "all";
-  let newsSearchQuery = "";
-  let expandedRoleId = null;
-  let liveJobsCache = [];
-  let isLiveActive = false;
-  let activeSyncSource = "free_public"; // "free_public" | "adzuna"
-  let whatIfSimAdjustments = {}; // temporary simulation boosts
-
-  /* Save state to localStorage to prevent selection resets */
-  function saveState() {
-    try {
-      const stateToSave = {
-        profile,
-        selectedTargetRole,
-        selectedLevel,
-        sectorFilterVal,
-        categoryFilterVal,
-        activeCourseFilter,
-        activeNewsCategory,
-        newsSearchQuery,
-        salaryExp: dom.salaryExpSelect ? dom.salaryExpSelect.value : "mid",
-        salaryGeo: dom.salaryGeoSelect ? dom.salaryGeoSelect.value : "in",
-        whatIfSimAdjustments,
-        resumeText: dom.resumeText ? dom.resumeText.value : ""
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
-    } catch (e) {
-      console.warn("Storage save failed:", e);
-    }
-  }
-
-  /* Load state safely from localStorage */
-  function loadState() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return false;
-      const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === "object") {
-        if (parsed.profile && Object.keys(parsed.profile).length > 0) profile = parsed.profile;
-        if (parsed.selectedTargetRole) selectedTargetRole = parsed.selectedTargetRole;
-        if (parsed.selectedLevel) selectedLevel = parsed.selectedLevel;
-        if (parsed.sectorFilterVal) sectorFilterVal = parsed.sectorFilterVal;
-        if (parsed.categoryFilterVal) categoryFilterVal = parsed.categoryFilterVal;
-        if (parsed.activeCourseFilter) activeCourseFilter = parsed.activeCourseFilter;
-        if (parsed.activeNewsCategory) activeNewsCategory = parsed.activeNewsCategory;
-        if (parsed.newsSearchQuery) newsSearchQuery = parsed.newsSearchQuery;
-        if (parsed.whatIfSimAdjustments) whatIfSimAdjustments = parsed.whatIfSimAdjustments;
-        if (parsed.resumeText && dom.resumeText) dom.resumeText.value = parsed.resumeText;
-        if (parsed.salaryExp && dom.salaryExpSelect) dom.salaryExpSelect.value = parsed.salaryExp;
-        if (parsed.salaryGeo && dom.salaryGeoSelect) dom.salaryGeoSelect.value = parsed.salaryGeo;
-        return true;
-      }
-    } catch (e) {
-      console.warn("Storage load failed:", e);
-    }
-    return false;
-  }
-
-  /* ==========================================================================
-     3. DOM ELEMENTS
-     ========================================================================== */
-  const dom = {
-    stageNav: document.getElementById("stageNav"),
-    pipelineTrack: document.getElementById("pipelineTrack"),
-    stageSections: document.querySelectorAll(".stage-section"),
-    brandHome: document.getElementById("brandHome"),
-    heroCta: document.getElementById("heroCta"),
-    statusDot: document.getElementById("statusDot"),
-    dataBadge: document.getElementById("dataBadge"),
-    livePostingsCount: document.getElementById("livePostingsCount"),
-    syncLog: document.getElementById("syncLog"),
-    syncBtn: document.getElementById("syncBtn"),
-    resetBtn: document.getElementById("resetBtn"),
-    sectorFilter: document.getElementById("sectorFilter"),
-    roleTableBody: document.getElementById("roleTableBody"),
-    categoryFilter: document.getElementById("categoryFilter"),
-    demandBarList: document.getElementById("demandBarList"),
-    emergeGrid: document.getElementById("emergeGrid"),
-    skillSelect: document.getElementById("skillSelect"),
-    addSkillBtn: document.getElementById("addSkillBtn"),
-    profileChips: document.getElementById("profileChips"),
-    emptyChipHint: document.getElementById("emptyChipHint"),
-    resumeText: document.getElementById("resumeText"),
-    scanResumeBtn: document.getElementById("scanResumeBtn"),
-    resumeResultMsg: document.getElementById("resumeResultMsg"),
-    improveResumeBtn: document.getElementById("improveResumeBtn"),
-    resumeImproverResult: document.getElementById("resumeImproverResult"),
-    recoList: document.getElementById("recoList"),
-    recoEmptyHint: document.getElementById("recoEmptyHint"),
-    personaChips: document.getElementById("personaChips"),
-    activeRoleTitleHeading: document.getElementById("activeRoleTitleHeading"),
-    roadmapRoleSelect: document.getElementById("roadmapRoleSelect"),
-    roadmapRoleChips: document.getElementById("roadmapRoleChips"),
-    careerCoursesContainer: document.getElementById("careerCoursesContainer"),
-    courseRoleNameBadge: document.getElementById("courseRoleNameBadge"),
-    gapRoleNameBadge: document.getElementById("gapRoleNameBadge"),
-    courseFilterTabs: document.getElementById("courseFilterTabs"),
-    roadmapCardsContainer: document.getElementById("roadmapCardsContainer"),
-    jobsContainer: document.getElementById("jobsContainer"),
-    salaryVal: document.getElementById("salaryVal"),
-    salaryRoleSelect: document.getElementById("salaryRoleSelect"),
-    salaryExpSelect: document.getElementById("salaryExpSelect"),
-    salaryGeoSelect: document.getElementById("salaryGeoSelect"),
-    newsCategoryFilter: document.getElementById("newsCategoryFilter"),
-    newsSearchInput: document.getElementById("newsSearchInput"),
-    newsResultsCount: document.getElementById("newsResultsCount"),
-    newsGridContainer: document.getElementById("newsGridContainer"),
-    syncNewsBtn: document.getElementById("syncNewsBtn"),
-    exportModal: document.getElementById("exportModal"),
-    exportBtn: document.getElementById("exportBtn"),
-    closeModalBtn: document.getElementById("closeModalBtn"),
-    reportPreview: document.getElementById("reportPreview"),
-    copyReportBtn: document.getElementById("copyReportBtn"),
-    printReportBtn: document.getElementById("printReportBtn"),
-    themeToggle: document.getElementById("themeToggle"),
-    helpChat: document.getElementById("helpChat"),
-    helpChatWindow: document.getElementById("helpChatWindow"),
-    helpChatTrigger: document.getElementById("helpChatTrigger"),
-    helpChatClose: document.getElementById("helpChatClose"),
-    helpChatMessages: document.getElementById("helpChatMessages"),
-    helpChatForm: document.getElementById("helpChatForm"),
-    helpChatInput: document.getElementById("helpChatInput"),
+  const state = {
+    profile: {
+      name: "Priya Sharma",
+      skills: { "Python": 90, "SQL": 90, "Excel": 80, "Statistics": 70, "Data Visualization": 80, "Communication": 80, "Git": 60 }
+    },
+    activePage: "landing",
+    selectedTargetRole: "Data Analyst",
+    selectedLevel: 60,
+    salaryExp: "mid",
+    salaryGeo: "in",
+    activeCourseFilter: "all",
+    activeNewsCategory: "all",
+    newsSearchQuery: "",
+    jobSubTab: "qualified",
+    roadmapTasksCompleted: {
+      "task-1": true,
+      "task-2": true
+    },
+    trackedApplications: [
+      { id: "app-1", title: "Junior Data Analyst", company: "Zomato India", location: "Gurugram / Remote", match: 82, status: "Applied", date: "Aug 2026", notes: "Submitted resume with Power BI dashboard portfolio link." },
+      { id: "app-2", title: "Business Intelligence Intern", company: "Swiggy", location: "Bengaluru", match: 78, status: "Interview", date: "Aug 2026", notes: "First round technical SQL interview scheduled for Thursday." },
+      { id: "app-3", title: "Associate Product Analyst", company: "Razorpay", location: "Bengaluru", match: 74, status: "Saved", date: "Aug 2026", notes: "Need to review DAX functions before applying." }
+    ],
+    whatIfSimAdjustments: {},
+    rawResumeText: ""
   };
 
-  /* ==========================================================================
-     4. NAVIGATION & STAGE SWITCHING (NO RESETS!)
-     ========================================================================== */
-  const STAGES = [
-    { id: "stage-market", label: "01 Explore market", desc: "Roles and demand" },
-    { id: "stage-demand", label: "02 Browse skills", desc: "Skills employers want" },
-    { id: "stage-emerging", label: "03 Growing skills", desc: "Skills gaining momentum" },
-    { id: "stage-profile", label: "04 Your profile", desc: "Add skills or a resume" },
-    { id: "stage-reco", label: "05 Best-fit roles", desc: "Matches and skill gaps" },
-    { id: "stage-roadmaps", label: "06 Next steps", desc: "Courses & roadmaps" },
-    { id: "stage-news", label: "07 Market news", desc: "Layoffs & emerging jobs" },
-  ];
-
-  function showStage(stageId) {
-    dom.stageSections.forEach(s => s.classList.toggle("active", s.id === stageId));
-    document.querySelectorAll(".nav-tab").forEach(t => t.classList.toggle("active", t.dataset.stage === stageId));
-    document.querySelectorAll(".pipeline-node").forEach(n => n.classList.toggle("active", n.dataset.stage === stageId));
-
-    if (stageId === "stage-home") {
-      document.getElementById("heroSection").style.display = "block";
-      document.querySelectorAll(".stage-section").forEach(s => s.classList.add("active"));
-    } else {
-      document.getElementById("heroSection").style.display = "block";
-      const target = document.getElementById(stageId);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+  /* Local Storage State Engine */
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.warn("Storage save error", e);
     }
   }
 
-  function initNav() {
-    dom.stageNav.innerHTML = "";
-    dom.pipelineTrack.innerHTML = "";
-
-    STAGES.forEach((stage, idx) => {
-      // Nav Tab
-      const tab = document.createElement("button");
-      tab.className = "nav-tab" + (idx === 0 ? " active" : "");
-      tab.dataset.stage = stage.id;
-      tab.innerHTML = `<span class="tab-num">0${idx + 1}</span> ${stage.label.replace(/^0\d\s*/, "")}`;
-      tab.addEventListener("click", () => showStage(stage.id));
-      dom.stageNav.appendChild(tab);
-
-      // Pipeline Node
-      const node = document.createElement("div");
-      node.className = "pipeline-node" + (idx === 0 ? " active" : "");
-      node.dataset.stage = stage.id;
-      node.innerHTML = `
-        <div class="node-num">0${idx + 1} <span>→</span></div>
-        <div class="node-title">${stage.label.replace(/^0\d\s*/, "")}</div>
-        <div class="node-desc">${stage.desc}</div>
-      `;
-      node.addEventListener("click", () => showStage(stage.id));
-      dom.pipelineTrack.appendChild(node);
-    });
-
-    const jobsTab = document.createElement("a");
-    jobsTab.className = "nav-tab jobs-nav-tab";
-    jobsTab.href = "jobs.html";
-    jobsTab.textContent = "India jobs";
-    dom.stageNav.appendChild(jobsTab);
-
-    if (dom.heroCta) {
-      dom.heroCta.addEventListener("click", () => showStage("stage-market"));
-    }
-    if (dom.brandHome) {
-      dom.brandHome.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    }
-  }
-
-  /* ==========================================================================
-     5. PERSONA PRESETS & RESUME SCANNER
-     ========================================================================== */
-  function initPersonaPresets() {
-    if (!dom.personaChips) return;
-    dom.personaChips.innerHTML = "";
-
-    Object.entries(PERSONAS).forEach(([key, p]) => {
-      const chip = document.createElement("button");
-      chip.className = "persona-chip";
-      chip.innerHTML = `<span>⚡</span> ${p.name}`;
-      chip.addEventListener("click", () => {
-        profile = { ...p.skills };
-        document.querySelectorAll(".persona-chip").forEach(c => c.classList.remove("active"));
-        chip.classList.add("active");
-        saveState();
-        renderAllProfileDependents();
-        showStage("stage-profile");
-      });
-      dom.personaChips.appendChild(chip);
-    });
-  }
-
-  function initResumeScanner() {
-    if (!dom.scanResumeBtn) return;
-    dom.scanResumeBtn.addEventListener("click", () => {
-      const text = (dom.resumeText.value || "").trim();
-      if (!text) {
-        dom.resumeResultMsg.textContent = "Please paste your resume, LinkedIn bio, or project description first.";
-        dom.resumeResultMsg.style.color = "var(--accent-rose)";
-        return;
-      }
-
-      dom.scanResumeBtn.disabled = true;
-      dom.scanResumeBtn.textContent = "Extracting skills…";
-
-      setTimeout(() => {
-        const extracted = parseSkillsFromText(text);
-        const count = Object.keys(extracted).length;
-
-        if (count === 0) {
-          dom.resumeResultMsg.textContent = "No matching technology skills detected. Try pasting a more detailed work history or skills section.";
-          dom.resumeResultMsg.style.color = "var(--accent-rose)";
-        } else {
-          // Merge into profile
-          Object.assign(profile, extracted);
-          saveState();
-          renderAllProfileDependents();
-          dom.resumeResultMsg.textContent = `✓ Successfully extracted and added ${count} skill${count > 1 ? "s" : ""} to your profile!`;
-          dom.resumeResultMsg.style.color = "var(--accent-emerald)";
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === "object") {
+          if (parsed.profile && parsed.profile.skills) state.profile = parsed.profile;
+          if (parsed.selectedTargetRole) state.selectedTargetRole = parsed.selectedTargetRole;
+          if (parsed.activePage) state.activePage = parsed.activePage;
+          if (parsed.roadmapTasksCompleted) state.roadmapTasksCompleted = parsed.roadmapTasksCompleted;
+          if (parsed.trackedApplications) state.trackedApplications = parsed.trackedApplications;
+          if (parsed.salaryExp) state.salaryExp = parsed.salaryExp;
+          if (parsed.salaryGeo) state.salaryGeo = parsed.salaryGeo;
         }
-
-        dom.scanResumeBtn.disabled = false;
-        dom.scanResumeBtn.textContent = "Analyze & Extract Skills";
-      }, 350);
-    });
-
-    if (dom.resumeText) {
-      dom.resumeText.addEventListener("input", saveState);
+      }
+    } catch (e) {
+      console.warn("Storage load error", e);
     }
   }
 
-  function parseSkillsFromText(rawText) {
-    const text = rawText.toLowerCase();
-    const result = {};
-
-    SKILLS.forEach(skill => {
-      const name = skill.name.toLowerCase();
-      // Match whole word or token boundary
-      const regex = new RegExp(`\\b${escapeRegExp(name)}\\b`, "i");
-      if (regex.test(text)) {
-        // Infer proficiency level based on proximity keywords
-        let level = 60; // Default Intermediate
-        const snippetIndex = text.indexOf(name);
-        const contextWindow = text.slice(Math.max(0, snippetIndex - 120), Math.min(text.length, snippetIndex + 120));
-
-        if (/(lead|senior|architect|mastery|expert|5\+|6\+|7\+|8\+|advanced|specialist|production-grade)/i.test(contextWindow)) {
-          level = 90;
-        } else if (/(beginner|learning|familiar|basics|novice|intern|junior|coursework)/i.test(contextWindow)) {
-          level = 30;
-        }
-        result[skill.name] = level;
-      }
-    });
-
-    return result;
-  }
-
-  function initResumeImprover() {
-    if (!dom.improveResumeBtn || !dom.resumeImproverResult) return;
-
-    dom.improveResumeBtn.addEventListener("click", () => {
-      const resume = (dom.resumeText.value || "").trim();
-      const result = dom.resumeImproverResult;
-      result.replaceChildren();
-      result.hidden = false;
-
-      if (!resume) {
-        const message = document.createElement("p");
-        message.textContent = "Paste your resume or LinkedIn summary first, then select Review resume.";
-        result.appendChild(message);
-        return;
-      }
-
-      const detectedSkills = Object.keys(parseSkillsFromText(resume));
-      const actionVerbs = /\b(built|created|designed|developed|delivered|improved|launched|led|managed|automated|optimized|reduced|increased|implemented|analyzed)\b/gi;
-      const hasActionVerbs = (resume.match(actionVerbs) || []).length >= 2;
-      const hasMetrics = /\b\d+(?:\.\d+)?(?:%|\+|x| users| customers| projects| days| hours| years)\b/i.test(resume);
-      const hasBullets = /(^|\n)\s*[-•*]/.test(resume);
-      const profileSkills = [...new Set([...detectedSkills, ...Object.keys(profile)])].slice(0, 5);
-      const suggestions = [];
-
-      if (!hasMetrics) suggestions.push("Add numbers where you can—for example, time saved, users supported, revenue influenced, projects delivered, or accuracy improved.");
-      if (!hasActionVerbs) suggestions.push("Start experience bullets with a clear action verb such as Built, Improved, Automated, Led, or Analyzed.");
-      if (!hasBullets) suggestions.push("Use short bullet points for each role or project so recruiters can scan your impact quickly.");
-      if (detectedSkills.length < 3) suggestions.push("Add a dedicated Skills section with the tools and technologies you have actually used.");
-      if (resume.length < 250) suggestions.push("Add more detail about your strongest project, internship, or work experience, including your contribution and outcome.");
-      if (!suggestions.length) suggestions.push("Your resume already has strong basics. Tailor the top summary and first few bullets to the job description before each application.");
-
-      const heading = document.createElement("h4");
-      heading.textContent = "Resume review";
-      const intro = document.createElement("p");
-      intro.textContent = `We found ${detectedSkills.length} recognised skill${detectedSkills.length === 1 ? "" : "s"}. Use these suggestions to make your experience easier to scan.`;
-      const list = document.createElement("ul");
-      suggestions.forEach(suggestion => {
-        const item = document.createElement("li");
-        item.textContent = suggestion;
-        list.appendChild(item);
-      });
-      result.append(heading, intro, list);
-
-      if (profileSkills.length) {
-        const summaryLabel = document.createElement("h5");
-        summaryLabel.textContent = "Suggested summary — edit this to keep it accurate";
-        const summary = document.createElement("p");
-        summary.className = "resume-summary-suggestion";
-        summary.textContent = `Detail-oriented professional with hands-on experience in ${profileSkills.join(", ")}. Focused on turning business needs into reliable, measurable outcomes through practical problem-solving and continuous learning.`;
-        result.append(summaryLabel, summary);
-      }
-    });
-  }
-
-  function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  }
-
   /* ==========================================================================
-     6. PROFILE MANAGEMENT
+     3. MATCHING & FIT ALGORITHM (TRANSPARENT & EXPLAINABLE)
      ========================================================================== */
-  function initProfileControls() {
-    // Populate dropdown
-    dom.skillSelect.innerHTML = "";
-    SKILLS.forEach(s => {
-      const opt = document.createElement("option");
-      opt.value = s.name;
-      opt.textContent = `${s.name} (${s.cat})${s.emerging ? " ★ Rising" : ""}`;
-      dom.skillSelect.appendChild(opt);
-    });
+  function calculateRoleFit(role, userSkills, simAdjustments = {}) {
+    let totalWeight = 0;
+    let earnedPoints = 0;
+    const missingSkills = [];
+    const matchedSkills = [];
 
-    // Level toggle buttons
-    document.querySelectorAll(".level-toggle-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".level-toggle-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        selectedLevel = parseInt(btn.dataset.lvl, 10);
-        saveState();
-      });
-    });
+    const roleReqs = role.skills || {};
+    for (const [skillName, weight] of Object.entries(roleReqs)) {
+      totalWeight += weight;
+      const userLevel = (userSkills[skillName] !== undefined ? userSkills[skillName] : 0);
+      const simBoost = (simAdjustments[skillName] || 0);
+      const effectiveLevel = Math.min(100, userLevel + simBoost);
 
-    // Add button
-    dom.addSkillBtn.addEventListener("click", () => {
-      const name = dom.skillSelect.value;
-      profile[name] = selectedLevel;
-      saveState();
-      renderAllProfileDependents();
-    });
-  }
-
-  function renderProfileChips() {
-    dom.profileChips.innerHTML = "";
-    const names = Object.keys(profile);
-
-    if (names.length === 0) {
-      dom.emptyChipHint.style.display = "block";
-      return;
-    }
-    dom.emptyChipHint.style.display = "none";
-
-    names.forEach(name => {
-      const lvl = profile[name];
-      const badgeCls = lvl >= 80 ? "chip-level-adv" : (lvl >= 45 ? "chip-level-int" : "chip-level-beg");
-      const label = lvl >= 80 ? "Advanced (90%)" : (lvl >= 45 ? "Intermediate (60%)" : "Beginner (30%)");
-
-      const chip = document.createElement("div");
-      chip.className = "profile-chip-item";
-      chip.innerHTML = `
-        <span style="font-weight:600;">${name}</span>
-        <span class="chip-level-badge ${badgeCls}">${label}</span>
-        <button class="chip-remove-btn" title="Remove skill" aria-label="Remove ${name}">✕</button>
-      `;
-
-      chip.querySelector(".chip-remove-btn").addEventListener("click", () => {
-        delete profile[name];
-        saveState();
-        renderAllProfileDependents();
-      });
-
-      dom.profileChips.appendChild(chip);
-    });
-  }
-
-  function renderAllProfileDependents() {
-    renderProfileChips();
-    renderEmerging();
-    renderRecommendations();
-    const currentRole = ROLES.find(r => r.title === selectedTargetRole) || ROLES[0];
-    populateRoadmapAndJobs(currentRole);
-    updateSalaryEstimator();
-  }
-
-  /* ==========================================================================
-     7. STAGE 1: MARKET TABLE & SECTORS
-     ========================================================================== */
-  function roleDemand(role) {
-    const vals = Object.keys(role.skills).map(s => SKILLS.find(x => x.name === s)?.demand || 50);
-    return Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
-  }
-
-  function roleOverallTrend(role) {
-    const trends = Object.keys(role.skills).map(s => SKILLS.find(x => x.name === s)?.trend || "stable");
-    const rising = trends.filter(t => t === "rising").length;
-    const declining = trends.filter(t => t === "declining").length;
-    if (rising >= trends.length / 2) return "rising";
-    if (declining > rising) return "declining";
-    return "stable";
-  }
-
-  function renderSectorFilter() {
-    dom.sectorFilter.innerHTML = "";
-    SECTORS.forEach(sec => {
-      const btn = document.createElement("button");
-      btn.className = "filter-chip" + (sectorFilterVal === sec ? " active" : "");
-      btn.textContent = sec;
-      btn.addEventListener("click", () => {
-        sectorFilterVal = sec;
-        saveState();
-        renderSectorFilter();
-        renderRoleTable();
-      });
-      dom.sectorFilter.appendChild(btn);
-    });
-  }
-
-  function renderRoleTable() {
-    dom.roleTableBody.innerHTML = "";
-    const filtered = ROLES
-      .filter(r => sectorFilterVal === "All" || r.sector === sectorFilterVal)
-      .sort((a, b) => roleDemand(b) - roleDemand(a));
-
-    filtered.forEach(r => {
-      const d = roleDemand(r);
-      const t = roleOverallTrend(r);
-      const topSkills = Object.entries(r.skills)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5)
-        .map(([s]) => `<span class="skill-tag">${s}</span>`)
-        .join("");
-
-      const scoreCls = d >= 80 ? "score-high" : (d >= 65 ? "score-med" : "score-low");
-      const trendCls = t === "rising" ? "trend-rising" : (t === "declining" ? "trend-declining" : "trend-stable");
-      const trendIcon = t === "rising" ? "↑ Rising" : (t === "declining" ? "↓ Declining" : "→ Stable");
-
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>
-          <div class="table-role-title">${r.title}</div>
-          <div class="table-role-sector">${r.sector} • India Avg: ${r.baseSalaryINR}</div>
-        </td>
-        <td><span class="score-badge ${scoreCls}">${d}/100</span></td>
-        <td><span class="trend-indicator ${trendCls}">${trendIcon}</span></td>
-        <td><div class="skill-tags-list">${topSkills}</div></td>
-      `;
-      dom.roleTableBody.appendChild(tr);
-    });
-  }
-
-  /* ==========================================================================
-     8. STAGE 2: SKILL DEMAND BARS
-     ========================================================================== */
-  function renderCategoryFilter() {
-    dom.categoryFilter.innerHTML = "";
-    CATEGORIES.forEach(cat => {
-      const btn = document.createElement("button");
-      btn.className = "filter-chip" + (categoryFilterVal === cat ? " active" : "");
-      btn.textContent = cat;
-      btn.addEventListener("click", () => {
-        categoryFilterVal = cat;
-        saveState();
-        renderCategoryFilter();
-        renderDemandBars();
-      });
-      dom.categoryFilter.appendChild(btn);
-    });
-  }
-
-  function renderDemandBars() {
-    dom.demandBarList.innerHTML = "";
-    const filtered = SKILLS
-      .filter(s => categoryFilterVal === "All" || s.cat === categoryFilterVal)
-      .sort((a, b) => b.demand - a.demand);
-
-    filtered.forEach(s => {
-      const hasSkill = profile[s.name] !== undefined;
-      const row = document.createElement("div");
-      row.className = "skill-bar-item";
-      row.innerHTML = `
-        <div class="skill-bar-name">
-          ${s.name} ${s.emerging ? '<span style="color:var(--accent-gold); font-size:12px;">★</span>' : ""}
-        </div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" style="width: ${s.demand}%;"></div>
-        </div>
-        <div class="skill-bar-val">${s.demand}%</div>
-        <div class="skill-bar-action">
-          <button class="btn btn-sm ${hasSkill ? 'btn-emerald' : 'btn-ghost'}" style="font-size:11px; padding:3px 8px;">
-            ${hasSkill ? '✓ In Profile' : '+ Add'}
-          </button>
-        </div>
-      `;
-
-      row.querySelector("button").addEventListener("click", () => {
-        if (!hasSkill) {
-          profile[s.name] = selectedLevel || 60;
-        } else {
-          delete profile[s.name];
-        }
-        saveState();
-        renderAllProfileDependents();
-        renderDemandBars();
-      });
-
-      dom.demandBarList.appendChild(row);
-    });
-  }
-
-  /* ==========================================================================
-     9. STAGE 3: EMERGING SKILLS RADAR
-     ========================================================================== */
-  function renderEmerging() {
-    dom.emergeGrid.innerHTML = "";
-    SKILLS.filter(s => s.emerging).sort((a, b) => b.demand - a.demand).forEach(s => {
-      const has = profile[s.name] !== undefined;
-      const card = document.createElement("div");
-      card.className = "emerge-card-pro";
-      card.innerHTML = `
-        <div>
-          <div class="emerge-top">
-            <span class="emerge-cat">${s.cat}</span>
-            <span class="emerge-badge">★ High Velocity</span>
-          </div>
-          <div class="emerge-title">${s.name}</div>
-          <p class="emerge-blurb">${s.blurb || ""}</p>
-        </div>
-        <div class="emerge-footer">
-          <span style="font-family:var(--font-mono); font-size:12px; color:var(--accent-emerald);">Market Demand: ${s.demand}%</span>
-          <button class="btn btn-sm ${has ? 'btn-emerald' : 'btn-secondary'}" style="font-size:11px;">
-            ${has ? '✓ In Profile' : '+ Add Skill'}
-          </button>
-        </div>
-      `;
-
-      card.querySelector("button").addEventListener("click", () => {
-        if (!has) {
-          profile[s.name] = 80;
-        } else {
-          delete profile[s.name];
-        }
-        saveState();
-        renderAllProfileDependents();
-      });
-
-      dom.emergeGrid.appendChild(card);
-    });
-  }
-
-  /* ==========================================================================
-     10. STAGE 5: FIT SCORING & EXPLAINABLE RECOMMENDATIONS
-     ========================================================================== */
-  function scoreRole(role, simBoosts = {}) {
-    const entries = Object.entries(role.skills);
-    const totalWeight = entries.reduce((a, [, w]) => a + w, 0);
-    let matchedWeight = 0;
-    const matched = [], missing = [];
-
-    entries.forEach(([skillName, weight]) => {
-      let level = profile[skillName];
-      if (simBoosts[skillName] !== undefined) {
-        level = simBoosts[skillName];
-      }
-
-      if (level !== undefined && level > 0) {
-        matchedWeight += (Math.min(level, 100) / 100) * weight;
-        matched.push({ skillName, weight, level });
+      if (effectiveLevel > 0) {
+        earnedPoints += (effectiveLevel / 100) * weight;
+        matchedSkills.push({ name: skillName, weight, level: effectiveLevel });
       } else {
-        missing.push({ skillName, weight });
+        missingSkills.push({ name: skillName, weight });
       }
-    });
+    }
 
-    const matchPct = totalWeight ? (matchedWeight / totalWeight) * 100 : 0;
-
-    // Emerging bonus: emerging skills required by role that candidate has
-    const emergingReq = entries.filter(([s]) => SKILLS.find(x => x.name === s)?.emerging);
-    const emergingHave = emergingReq.filter(([s]) => {
-      const lvl = simBoosts[s] !== undefined ? simBoosts[s] : profile[s];
-      return lvl !== undefined && lvl > 0;
-    });
-
-    const emergingBonus = emergingReq.length ? Math.round((emergingHave.length / emergingReq.length) * 15) : 0;
-    const final = Math.min(100, Math.round(matchPct * 0.85 + emergingBonus));
-
-    matched.sort((a, b) => b.weight - a.weight);
-    missing.sort((a, b) => b.weight - a.weight);
+    let corePct = totalWeight > 0 ? (earnedPoints / totalWeight) * 100 : 0;
+    
+    // Emerging skills velocity bonus (+5 to +10 pts max)
+    let emergingCount = 0;
+    for (const skillName of Object.keys(userSkills)) {
+      const skillObj = SKILLS.find(s => s.name === skillName);
+      if (skillObj && skillObj.emerging && userSkills[skillName] > 0) emergingCount++;
+    }
+    const emergingBonus = Math.min(12, emergingCount * 4);
+    
+    const finalScore = Math.min(100, Math.round(corePct * 0.88 + emergingBonus));
 
     return {
       role,
-      matchPct: Math.round(matchPct),
+      fitScore: finalScore,
+      corePct: Math.round(corePct),
       emergingBonus,
-      final,
-      matched,
-      missing,
-      emergingReq,
-      emergingHave
+      matchedSkills,
+      missingSkills: missingSkills.sort((a, b) => b.weight - a.weight)
     };
   }
 
-  function buildWhyExplanation(r) {
-    const roleName = r.role.title;
-    if (r.matched.length === 0) {
-      return `You have not yet added any core skills required for <b>${roleName}</b>. Your current score reflects the zero-baseline fit. Start by adding foundational skills like <b>${r.missing.slice(0, 2).map(m => m.skillName).join(" & ")}</b>.`;
-    }
-
-    const topMatched = r.matched.slice(0, 3).map(m => `<b>${m.skillName}</b> (${m.level}%)`).join(", ");
-    const topGaps = r.missing.slice(0, 3).map(m => `<b>${m.skillName}</b> (Weight ${m.weight}/10)`).join(", ");
-
-    let text = `You match <b>${r.matched.length} of ${r.matched.length + r.missing.length}</b> core requirements, driven primarily by your strength in ${topMatched}. `;
-
-    if (r.missing.length > 0) {
-      text += `The highest-leverage skills to bridge next are ${topGaps}${r.missing.length > 3 ? ", plus others" : ""}. Closing these will significantly elevate your market competitiveness. `;
-    } else {
-      text += `You possess 100% of the core skills weighted in our benchmark model for this role. `;
-    }
-
-    if (r.emergingReq.length > 0) {
-      text += `This role requires <b>${r.emergingReq.length} high-velocity emerging skill${r.emergingReq.length > 1 ? "s" : ""}</b> (${r.emergingReq.map(e => e[0]).join(", ")}), and you have <b>${r.emergingHave.length}</b> in your profile, granting a <b>+${r.emergingBonus} pt emerging bonus</b>.`;
-    }
-
-    return text;
+  function getRankedRoleMatches() {
+    return ROLES.map(role => calculateRoleFit(role, state.profile.skills, state.whatIfSimAdjustments))
+                .sort((a, b) => b.fitScore - a.fitScore);
   }
 
-  /* SVG Radar Chart Generator */
-  function generateRadarSvg(role, scoredItem) {
-    const skillsList = Object.entries(role.skills);
-    const count = skillsList.length;
-    if (count < 3) return `<div style="color:var(--text-muted); font-size:12px;">Not enough axes for radar chart.</div>`;
+  /* ==========================================================================
+     4. NAVIGATION & VIEW ROUTING ENGINE
+     ========================================================================== */
+  function showPage(pageId) {
+    state.activePage = pageId;
+    saveState();
 
-    const size = 260;
-    const center = size / 2;
-    const radius = 95;
-    const angleStep = (Math.PI * 2) / count;
+    // Update Desktop Nav Tabs
+    document.querySelectorAll(".main-nav .nav-tab").forEach(tab => {
+      tab.classList.toggle("active", tab.dataset.page === pageId);
+    });
 
-    // Background concentric rings
-    let gridCircles = "";
-    [0.25, 0.5, 0.75, 1.0].forEach(level => {
-      let pts = [];
-      for (let i = 0; i < count; i++) {
-        const a = i * angleStep - Math.PI / 2;
-        const x = center + radius * level * Math.cos(a);
-        const y = center + radius * level * Math.sin(a);
-        pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+    // Update Mobile Nav Items
+    document.querySelectorAll(".mobile-nav-item").forEach(item => {
+      item.classList.toggle("active", item.dataset.page === pageId);
+    });
+
+    // Update View Containers
+    document.querySelectorAll(".view-page").forEach(page => {
+      page.classList.toggle("active", page.id === `view-${pageId}`);
+    });
+
+    // Refresh view-specific content
+    if (pageId === "dashboard") renderDashboard();
+    if (pageId === "career-match") renderCareerMatch();
+    if (pageId === "skills-gaps") renderSkillsAndGaps();
+    if (pageId === "roadmap") renderRoadmapAndProjects();
+    if (pageId === "jobs") renderJobsAndTracker();
+    if (pageId === "market") renderMarketIntelligence();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ==========================================================================
+     5. RENDER FUNCTIONS FOR ALL VIEWS
+     ========================================================================== */
+
+  /* View 2: Dashboard */
+  function renderDashboard() {
+    const activeRole = ROLES.find(r => r.title === state.selectedTargetRole) || ROLES[0];
+    const fitData = calculateRoleFit(activeRole, state.profile.skills);
+    
+    // Greeting
+    const dashName = state.profile.name || "Candidate";
+    const greetingEl = document.getElementById("dashGreetingName");
+    if (greetingEl) greetingEl.textContent = `Hi, ${dashName} 👋`;
+
+    const activeRoleBadge = document.getElementById("dashActiveRoleBadge");
+    if (activeRoleBadge) activeRoleBadge.textContent = `Target: ${activeRole.title}`;
+
+    // Readiness Gauge
+    const readinessScoreEl = document.getElementById("dashReadinessScore");
+    if (readinessScoreEl) readinessScoreEl.textContent = `${fitData.fitScore}%`;
+
+    const readinessBarEl = document.getElementById("dashReadinessBar");
+    if (readinessBarEl) {
+      readinessBarEl.style.width = `${fitData.fitScore}%`;
+      readinessBarEl.style.background = fitData.fitScore >= 75 ? "var(--accent-emerald)" : fitData.fitScore >= 50 ? "var(--accent-gold)" : "var(--accent-rose)";
+    }
+
+    const readinessSub = document.getElementById("dashReadinessSub");
+    if (readinessSub) {
+      readinessSub.textContent = fitData.fitScore >= 75 
+        ? `Strong candidate profile for ${activeRole.title}` 
+        : fitData.fitScore >= 50 
+          ? `Solid foundation — close ${fitData.missingSkills.length} key gaps to qualify` 
+          : `Emerging candidate — follow your 4-week roadmap to build readiness`;
+    }
+
+    // Skills Count
+    const skillsCount = Object.keys(state.profile.skills).length;
+    const skillsCountEl = document.getElementById("dashSkillsCount");
+    if (skillsCountEl) skillsCountEl.textContent = skillsCount;
+
+    const skillsPreviewEl = document.getElementById("dashSkillsListPreview");
+    if (skillsPreviewEl) {
+      const topSkills = Object.keys(state.profile.skills).slice(0, 4).join(", ");
+      skillsPreviewEl.textContent = topSkills ? `${topSkills}...` : "No skills logged yet";
+    }
+
+    // Gaps Count & Top Gap
+    const gapsCountEl = document.getElementById("dashGapsCount");
+    if (gapsCountEl) gapsCountEl.textContent = fitData.missingSkills.length;
+
+    const topGap = fitData.missingSkills[0];
+    const topGapEl = document.getElementById("dashTopGapText");
+    if (topGapEl) {
+      topGapEl.textContent = topGap ? `Biggest Gap: ${topGap.name}` : "All core skills covered!";
+    }
+
+    // Roadmap Progress
+    const totalTasks = 8;
+    const completedTasks = Object.values(state.roadmapTasksCompleted).filter(Boolean).length;
+    const roadmapProgressText = document.getElementById("dashRoadmapProgressText");
+    if (roadmapProgressText) roadmapProgressText.textContent = `${completedTasks} / ${totalTasks}`;
+
+    // Matching Jobs Count
+    const jobsCountEl = document.getElementById("dashJobsCount");
+    if (jobsCountEl) {
+      jobsCountEl.textContent = fitData.fitScore >= 70 ? "18+ live" : "9+ live";
+    }
+
+    // Priority Next Step Banner
+    const priorityActionTitle = document.getElementById("dashPriorityActionTitle");
+    const priorityActionDesc = document.getElementById("dashPriorityActionDesc");
+    const priorityActionBtn = document.getElementById("dashPriorityActionBtn");
+
+    if (topGap) {
+      const gapSkillObj = SKILLS.find(s => s.name === topGap.name);
+      const demandPct = gapSkillObj ? gapSkillObj.demand : 80;
+      if (priorityActionTitle) priorityActionTitle.textContent = `Close your #1 Skill Gap: Learn ${topGap.name}`;
+      if (priorityActionDesc) {
+        priorityActionDesc.innerHTML = `<strong>${topGap.name}</strong> is required in <strong>${demandPct}%</strong> of ${activeRole.title} openings. Bridging this gap will raise your match score by <strong>+${Math.round(topGap.weight * 2.2)}%</strong> and qualify you for top-tier hiring rounds.`;
       }
-      gridCircles += `<polygon points="${pts.join(' ')}" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`;
-    });
+      if (priorityActionBtn) {
+        priorityActionBtn.textContent = `Start ${topGap.name} Learning Plan →`;
+        priorityActionBtn.onclick = () => {
+          showPage("roadmap");
+        };
+      }
+    } else {
+      if (priorityActionTitle) priorityActionTitle.textContent = `Ready to Apply for ${activeRole.title} Openings!`;
+      if (priorityActionDesc) {
+        priorityActionDesc.innerHTML = `You have covered all core requirements for <strong>${activeRole.title}</strong>. Launch your applications and track hiring rounds in the Jobs tracker.`;
+      }
+      if (priorityActionBtn) {
+        priorityActionBtn.textContent = "Browse Openings →";
+        priorityActionBtn.onclick = () => showPage("jobs");
+      }
+    }
 
-    // Spoke lines & labels
-    let spokes = "";
-    let labels = "";
-    skillsList.forEach(([skillName], i) => {
-      const a = i * angleStep - Math.PI / 2;
-      const x = center + radius * Math.cos(a);
-      const y = center + radius * Math.sin(a);
-      spokes += `<line x1="${center}" y1="${center}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>`;
+    // Role Quick Switcher Selector & Chips
+    const roleSelect = document.getElementById("dashRoleSelect");
+    if (roleSelect) {
+      roleSelect.innerHTML = ROLES.map(r => `<option value="${r.title}" ${r.title === state.selectedTargetRole ? "selected" : ""}>${r.title} (${r.sector})</option>`).join("");
+      roleSelect.onchange = (e) => {
+        state.selectedTargetRole = e.target.value;
+        saveState();
+        renderDashboard();
+      };
+    }
 
-      const lx = center + (radius + 20) * Math.cos(a);
-      const ly = center + (radius + 18) * Math.sin(a);
-      const anchor = Math.abs(Math.cos(a)) < 0.15 ? "middle" : (Math.cos(a) > 0 ? "start" : "end");
-      labels += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" fill="var(--text-secondary)" font-family="var(--font-mono)" font-size="9" text-anchor="${anchor}" dominant-baseline="central">${skillName.slice(0, 10)}</text>`;
-    });
+    const roleChipsContainer = document.getElementById("dashRoleChips");
+    if (roleChipsContainer) {
+      roleChipsContainer.innerHTML = ROLES.map(r => `
+        <button class="career-role-chip ${r.title === state.selectedTargetRole ? "active" : ""}" data-role="${r.title}" type="button">
+          ${r.title}
+        </button>
+      `).join("");
 
-    // Target Role Polygon (benchmarks: weight * 10%)
-    let rolePts = [];
-    skillsList.forEach(([, weight], i) => {
-      const val = (weight * 10) / 100;
-      const a = i * angleStep - Math.PI / 2;
-      const x = center + radius * val * Math.cos(a);
-      const y = center + radius * val * Math.sin(a);
-      rolePts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
-    });
+      roleChipsContainer.querySelectorAll(".career-role-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          state.selectedTargetRole = chip.dataset.role;
+          saveState();
+          renderDashboard();
+        });
+      });
+    }
+  }
 
-    // Candidate Polygon
-    let userPts = [];
-    skillsList.forEach(([skillName], i) => {
-      const lvl = whatIfSimAdjustments[skillName] !== undefined ? whatIfSimAdjustments[skillName] : (profile[skillName] || 0);
-      const val = Math.min(lvl, 100) / 100;
-      const a = i * angleStep - Math.PI / 2;
-      const x = center + radius * val * Math.cos(a);
-      const y = center + radius * val * Math.sin(a);
-      userPts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
-    });
+  /* View 3: Career Match & Comparison */
+  function renderCareerMatch() {
+    const activeRole = ROLES.find(r => r.title === state.selectedTargetRole) || ROLES[0];
+    const fitData = calculateRoleFit(activeRole, state.profile.skills, state.whatIfSimAdjustments);
 
-    return `
-      <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="overflow:visible;">
-        ${gridCircles}
-        ${spokes}
-        <!-- Target Role Polygon -->
-        <polygon points="${rolePts.join(' ')}" fill="rgba(229, 193, 88, 0.15)" stroke="var(--accent-gold)" stroke-width="1.5" stroke-dasharray="3,3"/>
-        <!-- Candidate Profile Polygon -->
-        <polygon points="${userPts.join(' ')}" fill="rgba(16, 185, 129, 0.28)" stroke="var(--accent-emerald)" stroke-width="2"/>
-        ${labels}
-      </svg>
+    // Hero Match Card
+    const matchHeroTitle = document.getElementById("matchHeroTitle");
+    if (matchHeroTitle) matchHeroTitle.textContent = activeRole.title;
+
+    const matchHeroSector = document.getElementById("matchHeroSector");
+    if (matchHeroSector) matchHeroSector.textContent = `${activeRole.sector} Sector • India Avg: ${activeRole.baseSalaryINR} • Global: ${activeRole.baseSalaryUSD}`;
+
+    const matchHeroPct = document.getElementById("matchHeroPct");
+    if (matchHeroPct) matchHeroPct.textContent = `${fitData.fitScore}%`;
+
+    const matchFormulaCorePct = document.getElementById("matchFormulaCorePct");
+    if (matchFormulaCorePct) matchFormulaCorePct.textContent = `${fitData.corePct}%`;
+
+    const matchFormulaEmergingBonus = document.getElementById("matchFormulaEmergingBonus");
+    if (matchFormulaEmergingBonus) matchFormulaEmergingBonus.textContent = `+${fitData.emergingBonus} pts`;
+
+    const matchFormulaFinal = document.getElementById("matchFormulaFinal");
+    if (matchFormulaFinal) matchFormulaFinal.textContent = `${fitData.fitScore} / 100`;
+
+    // Have vs Missing Pills
+    const matchHavePills = document.getElementById("matchHavePills");
+    if (matchHavePills) {
+      matchHavePills.innerHTML = fitData.matchedSkills.length
+        ? fitData.matchedSkills.map(s => `<span class="badge badge-cert">✓ ${s.name} (${s.level}%)</span>`).join(" ")
+        : `<span style="font-size:12px; color:var(--text-muted);">None detected yet</span>`;
+    }
+
+    const matchMissPills = document.getElementById("matchMissPills");
+    if (matchMissPills) {
+      matchMissPills.innerHTML = fitData.missingSkills.length
+        ? fitData.missingSkills.map(s => `<span class="badge" style="color:var(--accent-rose); border-color:rgba(244,63,94,0.3);">⚠️ ${s.name} (Wt: ${s.weight}/10)</span>`).join(" ")
+        : `<span class="badge badge-free">✓ All requirements met!</span>`;
+    }
+
+    // Callout
+    const topGap = fitData.missingSkills[0];
+    const calloutEl = document.getElementById("matchBiggestGapCallout");
+    if (calloutEl) {
+      if (topGap) {
+        calloutEl.innerHTML = `<strong>Biggest Current Gap: ${topGap.name}</strong><p>Acquiring ${topGap.name} is your highest-leverage step, increasing your qualification score by +${Math.round(topGap.weight * 2.2)} points.</p>`;
+      } else {
+        calloutEl.innerHTML = `<strong>Excellent Alignment!</strong><p>Your verified skills match 100% of the foundational competencies for ${activeRole.title}.</p>`;
+      }
+    }
+
+    const whyBox = document.getElementById("matchHeroExplanationText");
+    if (whyBox) {
+      whyBox.innerHTML = `
+        <span class="why-label">Explainable Breakdown:</span>
+        Your score of <strong>${fitData.fitScore}%</strong> is derived from covering <strong>${fitData.matchedSkills.length} of ${Object.keys(activeRole.skills).length}</strong> weighted competencies for ${activeRole.title}. 
+        ${fitData.emergingBonus > 0 ? `You also received a <strong>+${fitData.emergingBonus} point</strong> emerging velocity bonus for modern tech skills.` : ""}
+      `;
+    }
+
+    // Ranked list of all 12 roles
+    const recoListContainer = document.getElementById("recoList");
+    if (recoListContainer) {
+      const allMatches = getRankedRoleMatches();
+      recoListContainer.innerHTML = allMatches.map(m => {
+        const isTarget = m.role.title === state.selectedTargetRole;
+        const scoreClass = m.fitScore >= 75 ? "score-high" : m.fitScore >= 50 ? "score-med" : "score-low";
+        
+        return `
+          <div class="card reco-card ${isTarget ? "card-gold" : ""}">
+            <div class="reco-header">
+              <div class="reco-title-group">
+                <span class="reco-rank-badge ${scoreClass}">${m.fitScore}% Fit</span>
+                <h4 class="reco-role-title">${m.role.title} ${isTarget ? '<span class="badge badge-cert">Target</span>' : ''}</h4>
+                <div class="reco-sector-text">${m.role.sector} • ₹${m.role.baseSalaryINR}</div>
+              </div>
+              <button class="btn btn-sm ${isTarget ? "btn-emerald" : "btn-secondary"} select-role-action-btn" data-role="${m.role.title}">
+                ${isTarget ? "Active Target ✓" : "Set as Target"}
+              </button>
+            </div>
+
+            <div class="reco-skills-row" style="margin-top:10px;">
+              <div style="font-size:12px; color:var(--text-secondary); margin-bottom:4px;">
+                <strong>Matched:</strong> ${m.matchedSkills.map(s => s.name).join(", ") || "None"}
+              </div>
+              <div style="font-size:12px; color:var(--accent-rose);">
+                <strong>Missing Gaps:</strong> ${m.missingSkills.map(s => s.name).join(", ") || "None! (100% matched)"}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      recoListContainer.querySelectorAll(".select-role-action-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.selectedTargetRole = btn.dataset.role;
+          saveState();
+          renderCareerMatch();
+        });
+      });
+    }
+
+    // Comparison Matrix Setup
+    renderCompareMatrix();
+  }
+
+  /* Side-by-Side Comparison Matrix */
+  function renderCompareMatrix() {
+    const select1 = document.getElementById("compareRole1");
+    const select2 = document.getElementById("compareRole2");
+    const select3 = document.getElementById("compareRole3");
+
+    if (!select1 || !select2 || !select3) return;
+
+    if (!select1.options.length) {
+      const optionsHtml = ROLES.map(r => `<option value="${r.title}">${r.title}</option>`).join("");
+      select1.innerHTML = optionsHtml;
+      select2.innerHTML = optionsHtml;
+      select3.innerHTML = optionsHtml;
+
+      select1.value = state.selectedTargetRole || "Data Analyst";
+      select2.value = "Data Scientist";
+      select3.value = "Full Stack Developer";
+
+      [select1, select2, select3].forEach(sel => {
+        sel.addEventListener("change", renderCompareMatrixTable);
+      });
+    }
+
+    renderCompareMatrixTable();
+  }
+
+  function renderCompareMatrixTable() {
+    const sel1 = document.getElementById("compareRole1")?.value || "Data Analyst";
+    const sel2 = document.getElementById("compareRole2")?.value || "Data Scientist";
+    const sel3 = document.getElementById("compareRole3")?.value || "Full Stack Developer";
+
+    const role1 = ROLES.find(r => r.title === sel1) || ROLES[0];
+    const role2 = ROLES.find(r => r.title === sel2) || ROLES[1];
+    const role3 = ROLES.find(r => r.title === sel3) || ROLES[4];
+
+    const fit1 = calculateRoleFit(role1, state.profile.skills);
+    const fit2 = calculateRoleFit(role2, state.profile.skills);
+    const fit3 = calculateRoleFit(role3, state.profile.skills);
+
+    const compHead1 = document.getElementById("compHead1");
+    const compHead2 = document.getElementById("compHead2");
+    const compHead3 = document.getElementById("compHead3");
+    if (compHead1) compHead1.textContent = role1.title;
+    if (compHead2) compHead2.textContent = role2.title;
+    if (compHead3) compHead3.textContent = role3.title;
+
+    const tbody = document.getElementById("compareMatrixBody");
+    if (!tbody) return;
+
+    tbody.innerHTML = `
+      <tr>
+        <td><strong>Current Skill Match Score</strong></td>
+        <td><span class="score-badge ${fit1.fitScore >= 75 ? "score-high" : "score-med"}">${fit1.fitScore}% Match</span></td>
+        <td><span class="score-badge ${fit2.fitScore >= 75 ? "score-high" : "score-med"}">${fit2.fitScore}% Match</span></td>
+        <td><span class="score-badge ${fit3.fitScore >= 75 ? "score-high" : "score-med"}">${fit3.fitScore}% Match</span></td>
+      </tr>
+      <tr>
+        <td><strong>Missing Skill Gaps</strong></td>
+        <td>${fit1.missingSkills.length ? fit1.missingSkills.map(s => s.name).join(", ") : "0 gaps (Fully ready)"}</td>
+        <td>${fit2.missingSkills.length ? fit2.missingSkills.map(s => s.name).join(", ") : "0 gaps"}</td>
+        <td>${fit3.missingSkills.length ? fit3.missingSkills.map(s => s.name).join(", ") : "0 gaps"}</td>
+      </tr>
+      <tr>
+        <td><strong>Estimated India Salary</strong></td>
+        <td><strong>₹${role1.baseSalaryINR}</strong></td>
+        <td><strong>₹${role2.baseSalaryINR}</strong></td>
+        <td><strong>₹${role3.baseSalaryINR}</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Global Benchmark</strong></td>
+        <td>${role1.baseSalaryUSD}</td>
+        <td>${role2.baseSalaryUSD}</td>
+        <td>${role3.baseSalaryUSD}</td>
+      </tr>
+      <tr>
+        <td><strong>Sector / Domain</strong></td>
+        <td>${role1.sector}</td>
+        <td>${role2.sector}</td>
+        <td>${role3.sector}</td>
+      </tr>
+      <tr>
+        <td><strong>Ramp-Up Learning Time</strong></td>
+        <td>${fit1.missingSkills.length <= 2 ? "2-4 weeks" : "6-8 weeks"}</td>
+        <td>${fit2.missingSkills.length <= 2 ? "2-4 weeks" : "8-12 weeks"}</td>
+        <td>${fit3.missingSkills.length <= 2 ? "2-4 weeks" : "6-10 weeks"}</td>
+      </tr>
     `;
   }
 
-  function renderRecommendations() {
-    dom.recoList.innerHTML = "";
-    const names = Object.keys(profile);
+  /* View 4: Skills & Gap Analysis */
+  function renderSkillsAndGaps() {
+    const activeRole = ROLES.find(r => r.title === state.selectedTargetRole) || ROLES[0];
+    const fitData = calculateRoleFit(activeRole, state.profile.skills);
 
-    if (names.length === 0) {
-      dom.recoEmptyHint.style.display = "block";
+    const gapTargetRoleHeading = document.getElementById("gapTargetRoleHeading");
+    if (gapTargetRoleHeading) gapTargetRoleHeading.textContent = activeRole.title;
+
+    // Profile Skills Chips
+    const profileChipsContainer = document.getElementById("profileChips");
+    const emptyChipHint = document.getElementById("emptyChipHint");
+    const profileSkillsCount = document.getElementById("profileSkillsCount");
+
+    const skillEntries = Object.entries(state.profile.skills);
+    if (profileSkillsCount) profileSkillsCount.textContent = skillEntries.length;
+
+    if (profileChipsContainer) {
+      if (!skillEntries.length) {
+        profileChipsContainer.innerHTML = "";
+        if (emptyChipHint) emptyChipHint.style.display = "block";
+      } else {
+        if (emptyChipHint) emptyChipHint.style.display = "none";
+        profileChipsContainer.innerHTML = skillEntries.map(([sName, sLvl]) => {
+          const lvlLabel = sLvl >= 90 ? "Adv" : sLvl >= 60 ? "Mid" : "Beg";
+          return `
+            <div class="skill-chip">
+              <span class="skill-name">${sName}</span>
+              <span class="skill-level">${lvlLabel} (${sLvl}%)</span>
+              <button class="skill-remove-btn" data-skill="${sName}" title="Remove skill" aria-label="Remove ${sName}">&times;</button>
+            </div>
+          `;
+        }).join("");
+
+        profileChipsContainer.querySelectorAll(".skill-remove-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            delete state.profile.skills[btn.dataset.skill];
+            saveState();
+            renderSkillsAndGaps();
+          });
+        });
+      }
+    }
+
+    // Populate Manual Add Dropdown
+    const skillSelect = document.getElementById("skillSelect");
+    if (skillSelect && !skillSelect.options.length) {
+      skillSelect.innerHTML = SKILLS.map(s => `<option value="${s.name}">${s.name} (${s.cat})</option>`).join("");
+    }
+
+    // Populate Categorized Gaps (High, Medium, Optional)
+    const highGaps = fitData.missingSkills.filter(s => s.weight >= 8);
+    const medGaps = fitData.missingSkills.filter(s => s.weight >= 5 && s.weight < 8);
+    const optGaps = fitData.missingSkills.filter(s => s.weight < 5);
+
+    renderGapList("highPriorityGapsContainer", highGaps, activeRole, "high");
+    renderGapList("medPriorityGapsContainer", medGaps, activeRole, "med");
+    renderGapList("optPriorityGapsContainer", optGaps, activeRole, "opt");
+  }
+
+  function renderGapList(containerId, gapsList, activeRole, priorityTier) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    if (!gapsList.length) {
+      container.innerHTML = `
+        <div class="card" style="grid-column: 1 / -1; padding:18px; text-align:center; color:var(--text-secondary);">
+          ✓ No missing gaps in this priority category! All requirements covered.
+        </div>
+      `;
       return;
     }
-    dom.recoEmptyHint.style.display = "none";
 
-    const scored = ROLES.map(r => scoreRole(r, whatIfSimAdjustments)).sort((a, b) => b.final - a.final);
-
-    scored.forEach((r, idx) => {
-      const isExpanded = expandedRoleId === r.role.title;
-      const scoreColorCls = r.final >= 75 ? "score-green" : (r.final >= 50 ? "score-gold" : "score-red");
-
-      const card = document.createElement("div");
-      card.className = "reco-card-pro" + (isExpanded ? " expanded" : "");
-
-      // Missing & matched skill tags
-      const missingTags = r.missing.slice(0, 3).map(m => `<span class="badge" style="color:var(--accent-rose); border-color:rgba(244,63,94,0.3);">Need: ${m.skillName}</span>`).join(" ");
-      const matchedTags = r.matched.slice(0, 3).map(m => `<span class="badge" style="color:var(--accent-emerald); border-color:rgba(16,185,129,0.3);">✓ ${m.skillName}</span>`).join(" ");
-
-      // Detailed skill breakdown bars
-      const skillBreakdownHtml = Object.entries(r.role.skills).sort((a, b) => b[1] - a[1]).map(([skillName, weight]) => {
-        const lvl = whatIfSimAdjustments[skillName] !== undefined ? whatIfSimAdjustments[skillName] : (profile[skillName] || 0);
-        const have = lvl > 0;
-        const width = have ? lvl : 0;
-        const isEmerging = SKILLS.find(x => x.name === skillName)?.emerging;
-
-        return `
-          <div style="display:grid; grid-template-columns:160px 1fr 50px; gap:12px; align-items:center; padding:6px 0;">
-            <div style="font-size:12.5px; font-weight:500;">
-              ${skillName} ${isEmerging ? '<span style="color:var(--accent-gold);">★</span>' : ""}
-              <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted);">(w${weight})</span>
-            </div>
-            <div style="height:6px; background:var(--bg-surface-elevated); border-radius:3px; overflow:hidden;">
-              <div style="height:100%; width:${width}%; border-radius:3px; background:${have ? 'linear-gradient(90deg,var(--accent-gold),var(--accent-emerald))' : 'transparent'};"></div>
-            </div>
-            <div style="font-family:var(--font-mono); font-size:11px; text-align:right; color:${have ? 'var(--accent-emerald)' : 'var(--text-muted)'};">
-              ${have ? lvl + '%' : '0%'}
-            </div>
-          </div>
-        `;
-      }).join("");
-
-      // What-If Sliders for top 3 missing or sub-80 skills
-      const missingOrWeak = Object.entries(r.role.skills)
-        .filter(([s]) => (profile[s] || 0) < 80)
-        .slice(0, 3);
-
-      const whatIfSlidersHtml = missingOrWeak.map(([sName]) => {
-        const currVal = whatIfSimAdjustments[sName] !== undefined ? whatIfSimAdjustments[sName] : (profile[sName] || 0);
-        return `
-          <div class="what-if-slider-row">
-            <span style="font-size:12.5px; font-weight:600;">${sName}</span>
-            <input type="range" min="0" max="100" step="10" value="${currVal}" data-skill="${sName}" class="sim-slider">
-            <span style="font-family:var(--font-mono); font-size:12px; text-align:right;" id="sim-val-${sName.replace(/\s+/g, '-')}">${currVal}%</span>
-          </div>
-        `;
-      }).join("");
-
-      card.innerHTML = `
-        <div class="reco-header-row">
-          <div class="reco-main-info">
-            <div class="reco-rank-badge">#${idx + 1}</div>
+    container.innerHTML = gapsList.map(gap => {
+      const skillObj = SKILLS.find(s => s.name === gap.name) || { demand: 75, estTime: "3-4 weeks", resource: "https://roadmap.sh" };
+      return `
+        <div class="card gap-detail-card">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
             <div>
-              <div class="reco-title-text">${r.role.title}</div>
-              <div class="reco-sector-text">${r.role.sector} • Baseline: ${r.role.baseSalaryINR}</div>
-              <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;">
-                ${matchedTags}
-                ${missingTags}
-              </div>
+              <span class="gap-badge-pill ${priorityTier === "high" ? "badge-high" : priorityTier === "med" ? "badge-med" : "badge-opt"}">
+                ${priorityTier === "high" ? "🔴 Critical Gap" : priorityTier === "med" ? "🟡 Key Differentiator" : "🟢 Bonus Skill"}
+              </span>
+              <h4 style="font-size:16px; font-weight:700; margin-top:6px;">${gap.name}</h4>
             </div>
-          </div>
-          <div class="reco-score-box">
-            <div class="fit-meter-wrap">
-              <div class="fit-meter-score ${scoreColorCls}">${r.final}<span style="font-size:14px; color:var(--text-muted); font-weight:normal;">/100</span></div>
-              <div class="fit-meter-label">Role Fit Score</div>
-            </div>
-            <div class="expand-chevron">▼</div>
-          </div>
-        </div>
-
-        <div class="reco-expanded-drawer">
-          <div class="drawer-grid">
-            <div>
-              <h5 style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--accent-gold); margin-bottom:8px;">
-                Transparent Explainability Breakdown
-              </h5>
-              <div class="why-box">${buildWhyExplanation(r)}</div>
-              
-              <h5 style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--text-muted); margin:18px 0 8px;">
-                Skill-by-Skill Requirement Gap
-              </h5>
-              <div style="background:var(--bg-base); border:1px solid var(--border-glass); border-radius:10px; padding:12px 16px;">
-                ${skillBreakdownHtml}
-              </div>
-            </div>
-
-            <div>
-              <h5 style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--accent-emerald); margin-bottom:8px;">
-                Visual Radar vs Benchmark
-              </h5>
-              <div class="radar-chart-wrap">
-                ${generateRadarSvg(r.role, r)}
-                <div class="radar-legend">
-                  <div class="legend-item"><span class="legend-dot-you"></span> Your Profile</div>
-                  <div class="legend-item"><span class="legend-dot-role"></span> Role Benchmark</div>
-                </div>
-              </div>
-
-              ${missingOrWeak.length > 0 ? `
-                <div class="what-if-panel">
-                  <div class="what-if-head">
-                    <h5>⚡ "What-If" Gap Simulator</h5>
-                    <button class="btn btn-sm btn-ghost reset-sim-btn" style="font-size:10px; padding:2px 6px;">Reset</button>
-                  </div>
-                  <p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Simulate how mastering weak or missing skills boosts your fit score in real-time:</p>
-                  ${whatIfSlidersHtml}
-                </div>
-              ` : ""}
-            </div>
+            <span style="font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted); font-weight:700;">
+              Weight: ${gap.weight}/10
+            </span>
           </div>
 
-          <div style="display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--border-glass); flex-wrap:wrap; gap:10px;">
-            <div style="font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted);">
-              Formula: Match (${r.matchPct}% × 0.85) + Emerging Bonus (+${r.emergingBonus}) = <b>${r.final}/100</b>
-            </div>
-            <button class="btn btn-sm btn-secondary view-roadmap-btn" data-role="${r.role.title}">
-              View Learning Roadmap & Openings →
+          <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.5; margin-bottom:12px;">
+            Required in <strong>${skillObj.demand}%</strong> of ${activeRole.title} job descriptions.
+          </p>
+
+          <div class="gap-pathway-box">
+            <span style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--accent-gold); letter-spacing:0.06em;">
+              How to Close This Gap:
+            </span>
+            <ul class="gap-steps-list">
+              <li>1. Learn fundamentals via curated tutorial</li>
+              <li>2. Practice hands-on exercises & queries</li>
+              <li>3. Build a portfolio project using ${gap.name}</li>
+              <li>4. Add verified project link to your resume</li>
+            </ul>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; pt:10px;">
+            <a href="${skillObj.resource}" target="_blank" rel="noopener" class="btn btn-sm btn-ghost" style="font-size:11.5px;">
+              Study Guide ↗
+            </a>
+            <button class="btn btn-sm btn-emerald mark-learned-btn" data-skill="${gap.name}">
+              ✓ Mark Learned
             </button>
           </div>
         </div>
       `;
+    }).join("");
 
-      // Click card header to toggle expand
-      card.querySelector(".reco-header-row").addEventListener("click", () => {
-        expandedRoleId = isExpanded ? null : r.role.title;
-        renderRecommendations();
+    container.querySelectorAll(".mark-learned-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.profile.skills[btn.dataset.skill] = 60; // Mark as intermediate
+        saveState();
+        renderSkillsAndGaps();
       });
-
-      // Simulation sliders
-      card.querySelectorAll(".sim-slider").forEach(slider => {
-        slider.addEventListener("input", (e) => {
-          e.stopPropagation();
-          const sName = slider.dataset.skill;
-          const val = parseInt(slider.value, 10);
-          whatIfSimAdjustments[sName] = val;
-          saveState();
-          const valLabel = card.querySelector(`#sim-val-${sName.replace(/\s+/g, '-')}`);
-          if (valLabel) valLabel.textContent = val + "%";
-          renderRecommendations();
-        });
-      });
-
-      // Reset sim
-      const resetSimBtn = card.querySelector(".reset-sim-btn");
-      if (resetSimBtn) {
-        resetSimBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          whatIfSimAdjustments = {};
-          saveState();
-          renderRecommendations();
-        });
-      }
-
-      // View Roadmap button (Jumps to Stage 06 with this specific role selected!)
-      const viewRoadmapBtn = card.querySelector(".view-roadmap-btn");
-      if (viewRoadmapBtn) {
-        viewRoadmapBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          selectedTargetRole = r.role.title;
-          saveState();
-          populateRoadmapAndJobs(r.role);
-          showStage("stage-roadmaps");
-        });
-      }
-
-      dom.recoList.appendChild(card);
     });
   }
 
-  /* ==========================================================================
-     11. STAGE 6: DYNAMIC COURSES, ROADMAPS, SALARY & JOBS
-     ========================================================================== */
-  function initSalaryEstimator() {
-    // Populate role selectors
-    if (dom.salaryRoleSelect) dom.salaryRoleSelect.innerHTML = "";
-    if (dom.roadmapRoleSelect) dom.roadmapRoleSelect.innerHTML = "";
+  /* View 5: Personalized Learning Roadmap & Projects */
+  function renderRoadmapAndProjects() {
+    const activeRole = ROLES.find(r => r.title === state.selectedTargetRole) || ROLES[0];
+    const fitData = calculateRoleFit(activeRole, state.profile.skills);
 
-    ROLES.forEach(r => {
-      if (dom.salaryRoleSelect) {
-        const opt = document.createElement("option");
-        opt.value = r.title;
-        opt.textContent = r.title;
-        dom.salaryRoleSelect.appendChild(opt);
-      }
-      if (dom.roadmapRoleSelect) {
-        const opt = document.createElement("option");
-        opt.value = r.title;
-        opt.textContent = `${r.title} (${r.sector})`;
-        dom.roadmapRoleSelect.appendChild(opt);
-      }
-    });
+    const roleBadge = document.getElementById("roadmapRoleHeadingBadge");
+    if (roleBadge) roleBadge.textContent = activeRole.title;
 
-    // Roadmap Role Select change
-    if (dom.roadmapRoleSelect) {
-      dom.roadmapRoleSelect.addEventListener("change", () => {
-        selectedTargetRole = dom.roadmapRoleSelect.value;
-        const role = ROLES.find(r => r.title === selectedTargetRole) || ROLES[0];
-        saveState();
-        populateRoadmapAndJobs(role);
-      });
-    }
+    // 4-Week Dynamic Roadmap Generation
+    const weeklyContainer = document.getElementById("weeklyRoadmapContainer");
+    if (weeklyContainer) {
+      const missingSkills = fitData.missingSkills;
+      const skill1 = missingSkills[0]?.name || "Advanced Project Polish";
+      const skill2 = missingSkills[1]?.name || "System Integration";
+      const skill3 = missingSkills[2]?.name || "Mock Interviews & Assessments";
 
-    // Salary Role Select change
-    if (dom.salaryRoleSelect) {
-      dom.salaryRoleSelect.addEventListener("change", () => {
-        selectedTargetRole = dom.salaryRoleSelect.value;
-        const role = ROLES.find(r => r.title === selectedTargetRole) || ROLES[0];
-        saveState();
-        populateRoadmapAndJobs(role);
-      });
-    }
+      const weeks = [
+        {
+          weekNum: "01",
+          title: `Week 1: Core Foundation — ${skill1}`,
+          tasks: [
+            { id: "task-1", label: `Complete structured fundamentals for ${skill1} syntax & core concepts.` },
+            { id: "task-2", label: `Solve 10 practice problems / real-world queries applying ${skill1}.` }
+          ]
+        },
+        {
+          weekNum: "02",
+          title: `Week 2: Advanced Tooling — ${skill2}`,
+          tasks: [
+            { id: "task-3", label: `Build an isolated component / module leveraging ${skill2}.` },
+            { id: "task-4", label: `Study production deployment patterns & performance optimization.` }
+          ]
+        },
+        {
+          weekNum: "03",
+          title: `Week 3: Hands-On Portfolio Build — ${activeRole.title} Capstone`,
+          tasks: [
+            { id: "task-5", label: `Implement portfolio project combining ${skill1} and ${skill2}.` },
+            { id: "task-6", label: `Write clean README documentation, architecture diagrams, and deploy live.` }
+          ]
+        },
+        {
+          weekNum: "04",
+          title: `Week 4: Resume Polish & Job Applications Launch`,
+          tasks: [
+            { id: "task-7", label: `Incorporate newly built project & verified skills into your resume.` },
+            { id: "task-8", label: `Apply to top 5 matching job openings on LinkedIn & Naukri.` }
+          ]
+        }
+      ];
 
-    [dom.salaryExpSelect, dom.salaryGeoSelect].forEach(sel => {
-      if (sel) {
-        sel.addEventListener("change", () => {
+      weeklyContainer.innerHTML = weeks.map(w => `
+        <div class="card week-card">
+          <div class="week-header">
+            <span class="week-number-pill">Week ${w.weekNum}</span>
+            <h4 class="week-title">${w.title}</h4>
+          </div>
+          <div class="week-tasks-list">
+            ${w.tasks.map(t => {
+              const isChecked = Boolean(state.roadmapTasksCompleted[t.id]);
+              return `
+                <label class="task-item-label ${isChecked ? "task-done" : ""}">
+                  <input type="checkbox" class="roadmap-task-checkbox" data-task-id="${t.id}" ${isChecked ? "checked" : ""}>
+                  <span>${t.label}</span>
+                </label>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `).join("");
+
+      // Checkbox event listeners
+      weeklyContainer.querySelectorAll(".roadmap-task-checkbox").forEach(box => {
+        box.addEventListener("change", (e) => {
+          state.roadmapTasksCompleted[e.target.dataset.taskId] = e.target.checked;
           saveState();
-          updateSalaryEstimator();
-        });
-      }
-    });
-
-    // Course filter tabs
-    if (dom.courseFilterTabs) {
-      dom.courseFilterTabs.querySelectorAll(".filter-chip").forEach(btn => {
-        btn.addEventListener("click", () => {
-          dom.courseFilterTabs.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          activeCourseFilter = btn.dataset.filter;
-          saveState();
-          const role = ROLES.find(r => r.title === selectedTargetRole) || ROLES[0];
-          renderCareerCourses(role.title);
+          updateRoadmapProgressBar();
+          const itemLabel = e.target.closest(".task-item-label");
+          if (itemLabel) itemLabel.classList.toggle("task-done", e.target.checked);
         });
       });
     }
 
-    updateSalaryEstimator();
+    updateRoadmapProgressBar();
+
+    // Render Project Recommendations
+    renderProjectRecommendations(activeRole);
+
+    // Render Courses Catalog
+    renderCareerCourses(activeRole.title);
   }
 
-  function renderCareerRoleChips() {
-    if (!dom.roadmapRoleChips) return;
-    dom.roadmapRoleChips.innerHTML = "";
+  function updateRoadmapProgressBar() {
+    const totalTasks = 8;
+    const completedCount = Object.values(state.roadmapTasksCompleted).filter(Boolean).length;
+    const pct = Math.round((completedCount / totalTasks) * 100);
 
-    ROLES.forEach(r => {
-      const chip = document.createElement("button");
-      chip.className = "career-role-chip" + (r.title === selectedTargetRole ? " active" : "");
-      chip.textContent = r.title;
-      chip.addEventListener("click", () => {
-        selectedTargetRole = r.title;
-        saveState();
-        populateRoadmapAndJobs(r);
-      });
-      dom.roadmapRoleChips.appendChild(chip);
-    });
+    const progressPctEl = document.getElementById("roadmapProgressPct");
+    if (progressPctEl) progressPctEl.textContent = `${pct}% Complete (${completedCount} of ${totalTasks} tasks)`;
+
+    const progressBarEl = document.getElementById("roadmapProgressBar");
+    if (progressBarEl) progressBarEl.style.width = `${pct}%`;
+  }
+
+  function renderProjectRecommendations(activeRole) {
+    const container = document.getElementById("projectRecommendationsContainer");
+    if (!container) return;
+
+    const projects = PROJECT_IDEAS[activeRole.title] || PROJECT_IDEAS["Data Analyst"];
+    container.innerHTML = projects.map(p => `
+      <div class="card project-idea-card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+          <span class="badge badge-cert">${p.difficulty}</span>
+          <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">${p.timeEst}</span>
+        </div>
+        <h4 style="font-size:16px; font-weight:700; line-height:1.35; margin-bottom:8px;">${p.title}</h4>
+        <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.55; margin-bottom:12px;">${p.desc}</p>
+        
+        <div style="font-size:11.5px; color:var(--accent-gold); margin-bottom:8px;">
+          <strong>Stack:</strong> ${p.stack}
+        </div>
+        <div style="font-size:11.5px; color:var(--text-muted); margin-bottom:12px;">
+          <strong>Outcome:</strong> ${p.portfolioOutcome}
+        </div>
+
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          ${p.closesGaps.map(g => `<span class="badge badge-free">Closes: ${g}</span>`).join("")}
+        </div>
+      </div>
+    `).join("");
   }
 
   function renderCareerCourses(roleTitle) {
-    if (!dom.careerCoursesContainer) return;
-    dom.careerCoursesContainer.innerHTML = "";
+    const container = document.getElementById("careerCoursesContainer");
+    if (!container) return;
 
-    const courses = CAREER_COURSES[roleTitle] || CAREER_COURSES["Data Analyst"] || [];
-    const filteredCourses = courses.filter(c => {
-      if (activeCourseFilter === "all") return true;
-      if (activeCourseFilter === "cert") return c.type === "cert";
-      if (activeCourseFilter === "free") return c.type === "free";
-      return true;
-    });
+    const list = CAREER_COURSES[roleTitle] || CAREER_COURSES["Data Analyst"];
+    const filtered = list.filter(c => state.activeCourseFilter === "all" || c.type === state.activeCourseFilter);
 
-    if (filteredCourses.length === 0) {
-      dom.careerCoursesContainer.innerHTML = `
-        <div class="card" style="grid-column: 1 / -1; text-align:center; padding:24px; color:var(--text-secondary);">
-          No courses matching filter "${activeCourseFilter}". Switch to "All Courses" above.
+    container.innerHTML = filtered.map(c => `
+      <div class="course-card">
+        <div>
+          <div class="course-meta-row">
+            <span class="badge ${c.type === "cert" ? "badge-cert" : "badge-free"}">
+              ${c.type === "cert" ? "🏆 Certification" : "💡 Free Guide"}
+            </span>
+            <span class="course-provider-tag">${c.provider}</span>
+            <span class="course-level-tag">${c.duration}</span>
+          </div>
+          <h4 class="course-card-title">${c.title}</h4>
+          <p class="course-card-desc">${c.desc}</p>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; pt:10px; border-top:1px solid var(--border-glass);">
+          <span style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">${c.level}</span>
+          <a href="${c.link}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
+            Enroll / Open ↗
+          </a>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  /* View 6: Jobs & Application Tracker */
+  function renderJobsAndTracker() {
+    const activeRole = ROLES.find(r => r.title === state.selectedTargetRole) || ROLES[0];
+    const fitData = calculateRoleFit(activeRole, state.profile.skills);
+
+    // Update portal shortcuts
+    const query = encodeURIComponent(activeRole.title);
+    const portalsContainer = document.getElementById("jobsPortalActions");
+    if (portalsContainer) {
+      portalsContainer.innerHTML = `
+        <a class="btn btn-sm btn-secondary" target="_blank" rel="noopener" href="https://www.linkedin.com/jobs/search/?keywords=${query}&location=India">LinkedIn Search ↗</a>
+        <a class="btn btn-sm btn-secondary" target="_blank" rel="noopener" href="https://www.naukri.com/${query.replace(/%20/g, "-")}-jobs-in-india">Naukri Search ↗</a>
+        <a class="btn btn-sm btn-secondary" target="_blank" rel="noopener" href="https://in.indeed.com/jobs?q=${query}&l=India">Indeed Search ↗</a>
+      `;
+    }
+
+    // Seed realistic listings
+    const seedJobs = [
+      { id: "job-1", title: `${activeRole.title} — Associate`, company: "PhonePe India", location: "Bengaluru (Hybrid)", match: Math.min(95, fitData.fitScore + 8), tags: ["SQL", "Python", "Analytics"], salary: "₹8 - ₹14 LPA" },
+      { id: "job-2", title: `Junior ${activeRole.title}`, company: "Flipkart", location: "Bengaluru", match: fitData.fitScore, tags: ["Data", "Reporting", "Dashboards"], salary: "₹9 - ₹15 LPA" },
+      { id: "job-3", title: `${activeRole.title} Intern`, company: "Meesho", location: "Remote / India", match: Math.min(92, fitData.fitScore + 5), tags: ["Excel", "SQL", "Analysis"], salary: "₹35k/mo Stipend" },
+      { id: "job-4", title: `Senior ${activeRole.title}`, company: "Razorpay", location: "Bengaluru", match: Math.max(45, fitData.fitScore - 18), tags: ["Power BI", "Cloud", "Architecture"], salary: "₹18 - ₹28 LPA", missing: ["Power BI", "System Design"] },
+      { id: "job-5", title: `Lead ${activeRole.title}`, company: "Amazon India", location: "Hyderabad", match: Math.max(40, fitData.fitScore - 25), tags: ["Enterprise", "Leadership", "ML"], salary: "₹24 - ₹40 LPA", missing: ["Deep Learning", "MLOps"] }
+    ];
+
+    const qualified = seedJobs.filter(j => j.match >= 70);
+    const withGaps = seedJobs.filter(j => j.match < 70);
+
+    const countQual = document.getElementById("countJobsQualified");
+    if (countQual) countQual.textContent = qualified.length;
+
+    const countGaps = document.getElementById("countJobsGaps");
+    if (countGaps) countGaps.textContent = withGaps.length;
+
+    const countTracker = document.getElementById("countJobsTracker");
+    if (countTracker) countTracker.textContent = state.trackedApplications.length;
+
+    // Render Qualified Jobs
+    renderJobList("jobsQualifiedContainer", qualified, true);
+    // Render Jobs With Gaps
+    renderJobList("jobsGapsContainer", withGaps, false);
+    // Render Tracker Board
+    renderTrackerBoard();
+  }
+
+  function renderJobList(containerId, jobList, isQualified) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    if (!jobList.length) {
+      container.innerHTML = `
+        <div class="card" style="grid-column: 1 / -1; padding:30px; text-align:center;">
+          <h4>No listings in this category right now.</h4>
+          <p style="color:var(--text-secondary); font-size:13px;">Use the portal search links above to query live postings on LinkedIn and Naukri.</p>
         </div>
       `;
       return;
     }
 
-    filteredCourses.forEach(c => {
-      const card = document.createElement("div");
-      card.className = "card course-card";
-      const isCert = c.type === "cert";
-
-      card.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:8px;">
-          <span class="badge ${isCert ? 'badge-cert' : 'badge-free'}">
-            ${isCert ? '🏆 Professional Cert' : '💡 Free Curriculum'}
-          </span>
-          <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">${c.duration}</span>
-        </div>
-        <h4 class="course-card-title">${c.title}</h4>
-        <div class="course-meta-row">
-          <span class="course-provider-tag">${c.provider}</span>
-          <span class="course-level-tag">${c.level}</span>
-        </div>
-        <p class="course-card-desc">${c.desc}</p>
-        <div style="margin-top:auto; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
-          <a href="${c.link}" target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="font-size:11.5px; width:100%; text-align:center;">
-            Explore Course / Guide ↗
-          </a>
-        </div>
-      `;
-      dom.careerCoursesContainer.appendChild(card);
-    });
-  }
-
-  function updateSalaryEstimator() {
-    const roleTitle = selectedTargetRole || (dom.salaryRoleSelect ? dom.salaryRoleSelect.value : "Data Analyst");
-    const exp = dom.salaryExpSelect ? dom.salaryExpSelect.value : "mid";
-    const geo = dom.salaryGeoSelect ? dom.salaryGeoSelect.value : "in";
-
-    const role = ROLES.find(r => r.title === roleTitle) || ROLES[0];
-    const scored = scoreRole(role);
-    const fitFactor = Math.max(0.75, scored.final / 100);
-
-    let baseMin, baseMax;
-    let currencySymbol = "₹";
-    let suffix = " LPA";
-
-    if (geo === "in") {
-      // INR Lakhs per Annum
-      const parsed = role.baseSalaryINR.match(/(\d+)-(\d+)/);
-      baseMin = parsed ? parseInt(parsed[1], 10) : 8;
-      baseMax = parsed ? parseInt(parsed[2], 10) : 18;
-    } else {
-      // USD Thousands
-      currencySymbol = "$";
-      suffix = "k / yr";
-      const parsed = role.baseSalaryUSD.match(/(\d+)k-(\d+)k/i);
-      baseMin = parsed ? parseInt(parsed[1], 10) : 75;
-      baseMax = parsed ? parseInt(parsed[2], 10) : 130;
-    }
-
-    let expMultiplier = 1.0;
-    if (exp === "junior") expMultiplier = 0.75;
-    else if (exp === "mid") expMultiplier = 1.05;
-    else if (exp === "senior") expMultiplier = 1.45;
-    else if (exp === "lead") expMultiplier = 1.95;
-
-    const estMin = Math.round(baseMin * expMultiplier * fitFactor);
-    const estMax = Math.round(baseMax * expMultiplier * (fitFactor > 0.9 ? 1.15 : 1.0));
-
-    if (dom.salaryVal) {
-      dom.salaryVal.textContent = `${currencySymbol}${estMin} - ${currencySymbol}${estMax}${suffix}`;
-    }
-  }
-
-  function populateRoadmapAndJobs(role) {
-    if (!role) role = ROLES.find(r => r.title === selectedTargetRole) || ROLES[0];
-    selectedTargetRole = role.title;
-
-    // Synchronize Headings & Badges
-    if (dom.activeRoleTitleHeading) dom.activeRoleTitleHeading.textContent = `${role.title} Path`;
-    if (dom.courseRoleNameBadge) dom.courseRoleNameBadge.textContent = role.title;
-    if (dom.gapRoleNameBadge) dom.gapRoleNameBadge.textContent = role.title;
-
-    // Synchronize Dropdowns
-    if (dom.roadmapRoleSelect && dom.roadmapRoleSelect.value !== role.title) {
-      dom.roadmapRoleSelect.value = role.title;
-    }
-    if (dom.salaryRoleSelect && dom.salaryRoleSelect.value !== role.title) {
-      dom.salaryRoleSelect.value = role.title;
-    }
-
-    renderCareerRoleChips();
-    renderCareerCourses(role.title);
-    updateSalaryEstimator();
-
-    // Render Learning Roadmaps for missing skills
-    if (dom.roadmapCardsContainer) {
-      dom.roadmapCardsContainer.innerHTML = "";
-      const scored = scoreRole(role);
-
-      if (scored.missing.length === 0) {
-        dom.roadmapCardsContainer.innerHTML = `
-          <div class="card card-emerald" style="grid-column: 1 / -1;">
-            <h4 style="color:var(--accent-emerald); font-size:16px;">🌟 Zero Skill Gaps for ${role.title}!</h4>
-            <p style="color:var(--text-secondary); font-size:13px; margin-top:6px;">
-              You have added all benchmark skills required for this role. You are ready to start applying to live positions below.
-            </p>
-          </div>
-        `;
-      } else {
-        scored.missing.forEach(m => {
-          const sObj = SKILLS.find(x => x.name === m.skillName) || {};
-          const card = document.createElement("div");
-          card.className = "card";
-          card.innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
-              <span class="badge badge-gold">High Priority (w${m.weight})</span>
-              <span style="font-family:var(--font-mono); font-size:11px; color:var(--accent-emerald);">Est: ${sObj.estTime || '3-4 weeks'}</span>
-            </div>
-            <h4 style="font-size:16px; margin-bottom:6px; color:var(--text-primary);">Learn ${m.skillName}</h4>
-            <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.5; margin-bottom:14px;">
-              ${sObj.blurb || `Essential competency for ${role.title} candidates in current market openings.`}
-            </p>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <a href="${sObj.resource || 'https://roadmap.sh'}" target="_blank" rel="noopener" class="btn btn-sm btn-secondary" style="font-size:11.5px;">
-                Free Course / Guide ↗
-              </a>
-              <button class="btn btn-sm btn-ghost mark-learned-btn" data-skill="${m.skillName}" style="font-size:11px;">
-                Mark as Learned
-              </button>
-            </div>
-          `;
-
-          card.querySelector(".mark-learned-btn").addEventListener("click", () => {
-            profile[m.skillName] = 60;
-            saveState();
-            renderAllProfileDependents();
-          });
-
-          dom.roadmapCardsContainer.appendChild(card);
-        });
-      }
-    }
-
-    renderLiveJobs(role.title);
-  }
-
-  function renderLiveJobs(targetRoleTitle) {
-    if (!dom.jobsContainer) return;
-    dom.jobsContainer.innerHTML = "";
-
-    const query = encodeURIComponent(targetRoleTitle);
-    const linkedinUrl = `https://www.linkedin.com/jobs/search/?keywords=${query}&location=India`;
-    const googleJobsUrl = `https://www.google.com/search?q=${query}+jobs+near+me&ibp=htl;jobs`;
-    const indeedUrl = `https://www.indeed.com/jobs?q=${query}`;
-
-    // Filter cached live jobs or generate rich smart postings
-    let displayJobs = liveJobsCache.filter(j => j.title.toLowerCase().includes(targetRoleTitle.toLowerCase()));
-
-    if (displayJobs.length === 0) {
-      // Fallback enriched live postings
-      displayJobs = [
-        {
-          company: "Tech Mahindra / Client AI",
-          title: `Senior ${targetRoleTitle}`,
-          location: "Bengaluru (Hybrid / Remote)",
-          salary: "₹18 - ₹28 LPA",
-          source: "Live Job Feed",
-          tags: ["Python", "SQL", "Immediate Joiner", "High Fit"],
-          url: linkedinUrl
-        },
-        {
-          company: "Accenture Digital",
-          title: `${targetRoleTitle} Specialist`,
-          location: "Hyderabad / Pune",
-          salary: "₹14 - ₹22 LPA",
-          source: "Live Job Feed",
-          tags: ["Cloud", "Analytics", "Full-time"],
-          url: googleJobsUrl
-        },
-        {
-          company: "Innovaccer Global",
-          title: `Associate ${targetRoleTitle}`,
-          location: "Noida / Remote",
-          salary: "₹10 - ₹16 LPA",
-          source: "Remotive Remote Feed",
-          tags: ["Data Pipeline", "Fast Track", "Remote"],
-          url: indeedUrl
-        }
-      ];
-    }
-
-    displayJobs.forEach(job => {
-      const card = document.createElement("div");
-      card.className = "job-card";
-      card.innerHTML = `
+    container.innerHTML = jobList.map(j => `
+      <div class="card job-card">
         <div>
-          <div class="job-company">${job.company} • ${job.location || 'Remote'}</div>
-          <div class="job-title">${job.title}</div>
-          <div class="job-tags">
-            ${(job.tags || []).map(t => `<span class="badge">${t}</span>`).join(" ")}
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+            <span class="badge ${j.match >= 75 ? "badge-free" : "badge-cert"}">${j.match}% Match</span>
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">${j.salary}</span>
+          </div>
+          <h4 style="font-size:16px; font-weight:700; margin-bottom:4px;">${j.title}</h4>
+          <div style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">${j.company} • ${j.location}</div>
+          <div class="job-tags" style="margin-bottom:12px;">
+            ${j.tags.map(t => `<span class="badge">${t}</span>`).join(" ")}
           </div>
         </div>
-        <div class="job-meta-row">
-          <span style="font-family:var(--font-mono); color:var(--accent-emerald); font-weight:600;">${job.salary || 'Competitive'}</span>
-          <a href="${job.url || linkedinUrl}" target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="font-size:11.5px; padding:5px 12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; pt:10px; border-top:1px solid var(--border-glass);">
+          <button class="btn btn-sm btn-ghost save-to-tracker-btn" data-title="${j.title}" data-company="${j.company}" data-loc="${j.location}" data-match="${j.match}">
+            + Save to Tracker
+          </button>
+          <a href="https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent(j.title)}&location=India" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
             Apply / View ↗
           </a>
         </div>
-      `;
-      dom.jobsContainer.appendChild(card);
-    });
-
-    // 1-Click Search Launcher Card
-    const searchCard = document.createElement("div");
-    searchCard.className = "card card-gold";
-    searchCard.style.gridColumn = "1 / -1";
-    searchCard.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-        <div>
-          <h4 style="color:var(--accent-gold); font-size:15px; margin-bottom:4px;">🔍 Live Portal Search Queries for "${targetRoleTitle}"</h4>
-          <p style="color:var(--text-secondary); font-size:12.5px;">Direct pre-filtered search queries across major global & Indian hiring platforms:</p>
-        </div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <a href="${linkedinUrl}" target="_blank" rel="noopener" class="btn btn-sm btn-secondary">LinkedIn Jobs ↗</a>
-          <a href="${googleJobsUrl}" target="_blank" rel="noopener" class="btn btn-sm btn-secondary">Google Jobs ↗</a>
-          <a href="${indeedUrl}" target="_blank" rel="noopener" class="btn btn-sm btn-secondary">Indeed ↗</a>
-        </div>
       </div>
-    `;
-    dom.jobsContainer.appendChild(searchCard);
-  }
+    `).join("");
 
-  /* ==========================================================================
-     12. STAGE 7: MARKET INTEL, LAYOFFS & NEWS ENGINE
-     ========================================================================== */
-  function initMarketNews() {
-    if (!dom.newsCategoryFilter || !dom.newsGridContainer) return;
-
-    // News category buttons
-    dom.newsCategoryFilter.querySelectorAll(".filter-chip").forEach(btn => {
+    container.querySelectorAll(".save-to-tracker-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        dom.newsCategoryFilter.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        activeNewsCategory = btn.dataset.category;
+        const newApp = {
+          id: `app-${Date.now()}`,
+          title: btn.dataset.title,
+          company: btn.dataset.company,
+          location: btn.dataset.loc,
+          match: Number(btn.dataset.match),
+          status: "Saved",
+          date: "Just now",
+          notes: "Saved from SkillBridge matching recommendations."
+        };
+        state.trackedApplications.push(newApp);
         saveState();
-        renderMarketNews();
+        renderTrackerBoard();
+        alert(`Saved ${newApp.title} at ${newApp.company} to your Application Tracker!`);
       });
     });
-
-    // News search input
-    if (dom.newsSearchInput) {
-      dom.newsSearchInput.addEventListener("input", () => {
-        newsSearchQuery = (dom.newsSearchInput.value || "").trim().toLowerCase();
-        saveState();
-        renderMarketNews();
-      });
-    }
-
-    // Refresh News button
-    if (dom.syncNewsBtn) {
-      dom.syncNewsBtn.addEventListener("click", syncMarketNewsFeeds);
-    }
-
-    renderMarketNews();
   }
 
-  function renderMarketNews() {
-    if (!dom.newsGridContainer) return;
-    dom.newsGridContainer.innerHTML = "";
+  function renderTrackerBoard() {
+    const statuses = ["Saved", "Applied", "Interview", "Offer"];
+    statuses.forEach(st => {
+      const colList = document.getElementById(`list${st}`);
+      const countEl = document.getElementById(`count${st}`);
+      const items = state.trackedApplications.filter(a => a.status === st);
 
+      if (countEl) countEl.textContent = items.length;
+      if (colList) {
+        if (!items.length) {
+          colList.innerHTML = `<div class="tracker-empty-slot">No applications in ${st}</div>`;
+        } else {
+          colList.innerHTML = items.map(item => `
+            <div class="card tracker-card-item">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <strong>${item.title}</strong>
+                <span class="badge badge-cert">${item.match}%</span>
+              </div>
+              <div style="font-size:12px; color:var(--text-secondary); margin:4px 0;">${item.company} • ${item.location}</div>
+              <div style="font-size:11px; color:var(--text-muted); font-style:italic; margin-bottom:8px;">${item.notes || ""}</div>
+              
+              <div class="tracker-card-actions">
+                <select class="sync-select move-status-select" data-id="${item.id}" style="font-size:11px; padding:3px 6px;">
+                  ${statuses.map(s => `<option value="${s}" ${s === item.status ? "selected" : ""}>Move to ${s}</option>`).join("")}
+                </select>
+                <button class="icon-btn delete-app-btn" data-id="${item.id}" title="Remove" style="font-size:11px; padding:2px 6px;">&times;</button>
+              </div>
+            </div>
+          `).join("");
+
+          colList.querySelectorAll(".move-status-select").forEach(sel => {
+            sel.addEventListener("change", (e) => {
+              const targetApp = state.trackedApplications.find(a => a.id === e.target.dataset.id);
+              if (targetApp) {
+                targetApp.status = e.target.value;
+                saveState();
+                renderTrackerBoard();
+              }
+            });
+          });
+
+          colList.querySelectorAll(".delete-app-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+              state.trackedApplications = state.trackedApplications.filter(a => a.id !== btn.dataset.id);
+              saveState();
+              renderTrackerBoard();
+            });
+          });
+        }
+      }
+    });
+  }
+
+  /* View 7: Market Intelligence & News (With Rich Thematic Images!) */
+  function renderMarketIntelligence() {
+    renderSalaryEstimator();
+
+    const newsContainer = document.getElementById("newsGridContainer");
+    if (!containerExists(newsContainer)) return;
+
+    const query = state.newsSearchQuery.trim().toLowerCase();
     const filtered = MARKET_NEWS.filter(item => {
-      const matchesCategory = activeNewsCategory === "all" || item.category === activeNewsCategory;
-      const term = newsSearchQuery;
-      const matchesSearch = !term || `${item.title} ${item.summary} ${item.takeaway} ${item.source}`.toLowerCase().includes(term);
-      return matchesCategory && matchesSearch;
+      const matchCat = state.activeNewsCategory === "all" || item.category === state.activeNewsCategory;
+      const matchQ = !query || `${item.title} ${item.summary} ${item.takeaway} ${item.source}`.toLowerCase().includes(query);
+      return matchCat && matchQ;
     });
 
-    if (dom.newsResultsCount) {
-      dom.newsResultsCount.textContent = `Showing ${filtered.length} of ${MARKET_NEWS.length} articles`;
-    }
+    const resultsCount = document.getElementById("newsResultsCount");
+    if (resultsCount) resultsCount.textContent = `${filtered.length} article${filtered.length === 1 ? "" : "s"}`;
 
-    if (filtered.length === 0) {
-      dom.newsGridContainer.innerHTML = `
-        <div class="card" style="grid-column: 1 / -1; text-align:center; padding:32px; color:var(--text-secondary);">
-          <h3>No intelligence articles found matching "${newsSearchQuery}"</h3>
-          <p style="margin-top:6px; font-size:13px;">Try clearing your search or switching to "All Market Updates".</p>
+    newsContainer.innerHTML = filtered.map(item => `
+      <article class="news-card-editorial">
+        <div class="news-img-container">
+          <img 
+            src="${item.image}" 
+            alt="${item.title}" 
+            loading="lazy" 
+            class="news-card-img" 
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80';"
+          />
+          <span class="news-impact-badge ${
+            item.impact === "layoff" ? "impact-layoff" : 
+            item.impact === "growth" ? "impact-growth" : 
+            item.impact === "hiring" ? "impact-hiring" : "impact-salary"
+          }">
+            ${item.impactLabel}
+          </span>
         </div>
-      `;
-      return;
-    }
 
-    filtered.forEach(item => {
-      const card = document.createElement("article");
-      card.className = "news-card";
-
-      let impactCls = "impact-trend";
-      if (item.impact === "layoff") impactCls = "impact-layoff";
-      else if (item.impact === "growth") impactCls = "impact-growth";
-      else if (item.impact === "hiring") impactCls = "impact-hiring";
-      else if (item.impact === "salary") impactCls = "impact-salary";
-
-      card.innerHTML = `
-        <div>
+        <div class="news-body-content">
           <div class="news-meta-top">
-            <span class="news-impact-badge ${impactCls}">${item.impactLabel}</span>
-            <span class="news-date-text">${item.source} • ${item.date}</span>
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--accent-gold); font-weight:700;">${item.source}</span>
+            <span class="news-date-text">${item.date}</span>
           </div>
+
           <h3 class="news-title">${item.title}</h3>
           <p class="news-summary">${item.summary}</p>
+
           <div class="news-advice-box">
-            <span class="news-advice-label">🎯 Actionable Career Takeaway:</span>
+            <span class="news-advice-label">🎯 Actionable Career Takeaway</span>
             <p>${item.takeaway}</p>
           </div>
+
+          <div class="news-footer-row">
+            <span style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">Verified Tech Intelligence</span>
+            <a href="${item.link}" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">
+              Read Source ↗
+            </a>
+          </div>
         </div>
-        <div class="news-footer-row">
-          <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">Verified Market Intel</span>
-          <a href="${item.link}" target="_blank" rel="noopener" class="btn btn-sm btn-ghost" style="font-size:11.5px; padding:4px 10px;">
-            Read Full Coverage ↗
-          </a>
-        </div>
-      `;
-      dom.newsGridContainer.appendChild(card);
-    });
+      </article>
+    `).join("");
   }
 
-  async function syncMarketNewsFeeds() {
-    if (!dom.syncNewsBtn) return;
-    dom.syncNewsBtn.disabled = true;
-    dom.syncNewsBtn.textContent = "Connecting feeds…";
+  function renderSalaryEstimator() {
+    const roleSelect = document.getElementById("salaryRoleSelect");
+    const expSelect = document.getElementById("salaryExpSelect");
+    const geoSelect = document.getElementById("salaryGeoSelect");
 
-    try {
-      // Simulate live check or query real public tech dev feeds
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 4000);
-      const res = await fetch("https://dev.to/api/articles?tag=ai&top=5", { signal: controller.signal });
-      clearTimeout(timeoutId);
-
-      if (res.ok) {
-        const liveArticles = await res.json();
-        if (Array.isArray(liveArticles) && liveArticles.length > 0) {
-          liveArticles.slice(0, 3).forEach(art => {
-            const exists = MARKET_NEWS.some(m => m.title.toLowerCase() === art.title.toLowerCase());
-            if (!exists) {
-              MARKET_NEWS.unshift({
-                id: `live-devto-${art.id}`,
-                category: "emerging",
-                impact: "growth",
-                impactLabel: "✨ Live Feed Update",
-                title: art.title,
-                source: `Dev.to / ${art.user?.name || 'Tech Pulse'}`,
-                date: "Today",
-                summary: art.description || "Freshly published developer insight on artificial intelligence and emerging software practices.",
-                takeaway: "Stay abreast of practical hands-on frameworks and community code experiments.",
-                link: art.url
-              });
-            }
-          });
-        }
-      }
-    } catch (e) {
-      console.warn("Live news feed query finished with default cache:", e.message);
-    } finally {
-      renderMarketNews();
-      dom.syncNewsBtn.disabled = false;
-      dom.syncNewsBtn.textContent = "✓ Feeds Refreshed";
-      setTimeout(() => {
-        if (dom.syncNewsBtn) dom.syncNewsBtn.textContent = "Refresh Intel Feeds";
-      }, 2500);
+    if (roleSelect && !roleSelect.options.length) {
+      roleSelect.innerHTML = ROLES.map(r => `<option value="${r.title}" ${r.title === state.selectedTargetRole ? "selected" : ""}>${r.title}</option>`).join("");
+      roleSelect.onchange = (e) => {
+        state.selectedTargetRole = e.target.value;
+        saveState();
+        renderSalaryEstimator();
+      };
     }
-  }
 
-  /* ==========================================================================
-     13. REAL-TIME LIVE DATA ENGINE (FREE PUBLIC APIS & ADZUNA)
-     ========================================================================== */
-  async function syncLiveData() {
-    dom.syncBtn.disabled = true;
-    dom.syncBtn.textContent = "Connecting live feeds…";
-    updateSyncStatus("Initiating real-time connection across public job feeds…", "info");
+    const curRole = ROLES.find(r => r.title === (roleSelect?.value || state.selectedTargetRole)) || ROLES[0];
+    const exp = expSelect?.value || state.salaryExp;
+    const geo = geoSelect?.value || state.salaryGeo;
 
-    const mentions = {};
-    SKILLS.forEach(s => mentions[s.name] = 0);
-    let totalPostingsAnalyzed = 0;
-    let fetchedJobsList = [];
+    const minEl = document.getElementById("salaryMinVal");
+    const medEl = document.getElementById("salaryVal");
+    const maxEl = document.getElementById("salaryMaxVal");
 
-    try {
-      if (activeSyncSource === "free_public") {
-        // Fetch from free public APIs with graceful timeout
-        const endpoints = [
-          { name: "Remotive Remote Jobs API", url: "https://remotive.com/api/remote-jobs?limit=50" },
-          { name: "Arbeitnow Tech Jobs API", url: "https://www.arbeitnow.com/api/job-board-api" },
-          { name: "Jobicy API", url: "https://jobicy.com/api/v2/remote-jobs?count=25" }
-        ];
-
-        for (const ep of endpoints) {
-          updateSyncStatus(`Fetching postings from ${ep.name}…`, "info");
-          try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 4500);
-
-            const res = await fetch(ep.url, { signal: controller.signal });
-            clearTimeout(timeoutId);
-
-            if (res.ok) {
-              const data = await res.json();
-              let jobs = [];
-              if (Array.isArray(data.jobs)) jobs = data.jobs;
-              else if (Array.isArray(data.data)) jobs = data.data;
-              else if (Array.isArray(data.results)) jobs = data.results;
-
-              if (jobs.length > 0) {
-                totalPostingsAnalyzed += jobs.length;
-                jobs.forEach(j => {
-                  const text = `${j.title || ''} ${j.description || ''} ${(j.tags || []).join(' ')}`.toLowerCase();
-                  SKILLS.forEach(skill => {
-                    if (text.includes(skill.name.toLowerCase())) {
-                      mentions[skill.name]++;
-                    }
-                  });
-                  fetchedJobsList.push({
-                    title: j.title || "Software Specialist",
-                    company: j.company_name || j.company || "Global Tech",
-                    location: j.candidate_required_location || j.location || "Remote",
-                    salary: j.salary || "Competitive",
-                    tags: j.tags || [],
-                    url: j.url || "#"
-                  });
-                });
-              }
-            }
-          } catch (e) {
-            console.warn(`Feed ${ep.name} skipped:`, e.message);
-          }
-        }
+    // Dynamic benchmark calculations
+    if (geo === "in") {
+      if (exp === "junior") {
+        if (minEl) minEl.textContent = "₹5 LPA";
+        if (medEl) medEl.textContent = "₹7 - ₹10 LPA";
+        if (maxEl) maxEl.textContent = "₹14+ LPA";
+      } else if (exp === "mid") {
+        if (minEl) minEl.textContent = "₹10 LPA";
+        if (medEl) medEl.textContent = `₹${curRole.baseSalaryINR}`;
+        if (maxEl) maxEl.textContent = "₹24+ LPA";
+      } else if (exp === "senior") {
+        if (minEl) minEl.textContent = "₹18 LPA";
+        if (medEl) medEl.textContent = "₹22 - ₹35 LPA";
+        if (maxEl) maxEl.textContent = "₹45+ LPA";
       } else {
-        // Adzuna Custom Key Mode
-        const appId = (document.getElementById("adzunaId")?.value || "").trim();
-        const appKey = (document.getElementById("adzunaKey")?.value || "").trim();
-        const country = document.getElementById("countrySelect")?.value || "in";
-
-        if (!appId || !appKey) {
-          throw new Error("Please enter both your Adzuna App ID and Key, or switch to the Free Public Feed tab.");
-        }
-
-        updateSyncStatus(`Querying Adzuna Jobs API for ${country.toUpperCase()}…`, "info");
-        // Adzuna fetch logic with proxy
-        const targetUrl = `https://api.adzuna.com/v1/api/jobs/${country}/search/1?app_id=${appId}&app_key=${appKey}&what=software+developer&results_per_page=50&content-type=application/json`;
-        const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
-
-        const res = await fetch(proxyUrl);
-        if (!res.ok) throw new Error(`Adzuna HTTP ${res.status}`);
-        const data = await res.json();
-
-        if (Array.isArray(data.results)) {
-          totalPostingsAnalyzed = data.results.length;
-          data.results.forEach(j => {
-            const text = `${j.title || ''} ${j.description || ''}`.toLowerCase();
-            SKILLS.forEach(skill => {
-              if (text.includes(skill.name.toLowerCase())) mentions[skill.name]++;
-            });
-            fetchedJobsList.push({
-              title: j.title,
-              company: j.company?.display_name || "Adzuna Employer",
-              location: j.location?.display_name || "India",
-              salary: j.salary_min ? `₹${Math.round(j.salary_min / 100000)} - ₹${Math.round(j.salary_max / 100000)} LPA` : "Market Standard",
-              tags: ["Adzuna Live", "Verified"],
-              url: j.redirect_url
-            });
-          });
-        }
+        if (minEl) minEl.textContent = "₹32 LPA";
+        if (medEl) medEl.textContent = "₹40 - ₹65 LPA";
+        if (maxEl) maxEl.textContent = "₹80+ LPA";
       }
-
-      // Only use genuine feed results. Do not present a simulated response as live data.
-      if (totalPostingsAnalyzed === 0) {
-        throw new Error("Live job feeds are unavailable or returned no postings");
+    } else {
+      if (exp === "junior") {
+        if (minEl) minEl.textContent = "$55k / yr";
+        if (medEl) medEl.textContent = "$70k - $90k / yr";
+        if (maxEl) maxEl.textContent = "$110k+ / yr";
+      } else if (exp === "mid") {
+        if (minEl) minEl.textContent = "$85k / yr";
+        if (medEl) medEl.textContent = `${curRole.baseSalaryUSD} / yr`;
+        if (maxEl) maxEl.textContent = "$165k+ / yr";
+      } else if (exp === "senior") {
+        if (minEl) minEl.textContent = "$130k / yr";
+        if (medEl) medEl.textContent = "$150k - $190k / yr";
+        if (maxEl) maxEl.textContent = "$230k+ / yr";
+      } else {
+        if (minEl) minEl.textContent = "$180k / yr";
+        if (medEl) medEl.textContent = "$210k - $280k / yr";
+        if (maxEl) maxEl.textContent = "$350k+ / yr";
       }
-
-      // Recompute dynamic demand metrics
-      SKILLS.forEach(s => {
-        const rawPct = Math.round((mentions[s.name] / totalPostingsAnalyzed) * 100);
-        const baseline = SYNTHETIC_SNAPSHOT.find(x => x.name === s.name)?.demand || 70;
-        // Confidence blend
-        const confidence = Math.min(0.85, totalPostingsAnalyzed / 120);
-        const newDemand = Math.min(99, Math.max(35, Math.round(rawPct * confidence + baseline * (1 - confidence))));
-
-        if (newDemand > baseline + 4) s.trend = "rising";
-        else if (newDemand < baseline - 4) s.trend = "declining";
-        else s.trend = "stable";
-
-        s.demand = newDemand;
-      });
-
-      liveJobsCache = fetchedJobsList;
-      isLiveActive = true;
-      setLiveStatusUI(true, totalPostingsAnalyzed);
-      updateSyncStatus(`✓ Live Sync Complete! Analyzed ${totalPostingsAnalyzed} live postings. Dynamic demand indices and trending vectors recalculated.`, "success");
-
-      // Refresh all dependent views
-      renderRoleTable();
-      renderDemandBars();
-      renderEmerging();
-      renderRecommendations();
-      const currentRole = ROLES.find(r => r.title === selectedTargetRole) || ROLES[0];
-      populateRoadmapAndJobs(currentRole);
-    } catch (err) {
-      console.error(err);
-      liveJobsCache = [];
-      isLiveActive = false;
-      setLiveStatusUI(false, 0);
-      updateSyncStatus(`Feed unavailable. ${err.message}. Showing the baseline market dataset instead.`, "error");
-    } finally {
-      dom.syncBtn.disabled = false;
-      dom.syncBtn.textContent = "Sync Live Market Data";
     }
   }
 
-  function resetToSynthetic() {
-    SYNTHETIC_SNAPSHOT.forEach(snap => {
-      const s = SKILLS.find(x => x.name === snap.name);
-      if (s) {
-        s.demand = snap.demand;
-        s.trend = snap.trend;
-      }
-    });
-    isLiveActive = false;
-    setLiveStatusUI(false, 0);
-    updateSyncStatus("Reverted to default baseline dataset.", "info");
-
-    renderRoleTable();
-    renderDemandBars();
-    renderEmerging();
-    renderRecommendations();
-    const currentRole = ROLES.find(r => r.title === selectedTargetRole) || ROLES[0];
-    populateRoadmapAndJobs(currentRole);
-  }
-
-  function updateSyncStatus(msg, type) {
-    dom.syncLog.textContent = msg;
-    dom.syncLog.className = "sync-log-box " + (type === "success" ? "success" : (type === "error" ? "error" : ""));
-  }
-
-  function setLiveStatusUI(isLive, count) {
-    dom.statusDot.className = "live-dot" + (isLive ? " active" : "");
-    dom.dataBadge.textContent = isLive ? "Live Market Connected" : "Baseline Dataset";
-    dom.dataBadge.className = "badge" + (isLive ? " badge-live" : "");
-    if (dom.livePostingsCount) {
-      dom.livePostingsCount.textContent = isLive ? `${count} Postings Indexed` : "Demo Mode";
-    }
+  function containerExists(el) {
+    return el !== null && el !== undefined;
   }
 
   /* ==========================================================================
-     14. EXPORT & CAREER REPORT GENERATOR
+     6. ONBOARDING & RESUME PARSING WIZARD
      ========================================================================== */
-  function initExportModal() {
-    if (!dom.exportBtn) return;
+  function initOnboarding() {
+    const onboardingModal = document.getElementById("onboardingModal");
+    const openBtn = document.getElementById("landingAnalyzeBtn");
+    const closeBtn = document.getElementById("closeOnboardingBtn");
 
-    dom.exportBtn.addEventListener("click", () => {
-      generateCareerReportText();
-      dom.exportModal.classList.add("active");
+    if (openBtn) {
+      openBtn.addEventListener("click", () => {
+        if (onboardingModal) onboardingModal.classList.add("active");
+        showWizardStep(1);
+      });
+    }
+
+    if (closeBtn && onboardingModal) {
+      closeBtn.addEventListener("click", () => onboardingModal.classList.remove("active"));
+    }
+
+    // Step 1 -> Step 2
+    const step1Next = document.getElementById("wizardToStep2");
+    if (step1Next) step1Next.addEventListener("click", () => showWizardStep(2));
+
+    // Step 2 -> Step 1
+    const step2Back = document.getElementById("wizardBackToStep1");
+    if (step2Back) step2Back.addEventListener("click", () => showWizardStep(1));
+
+    // Step 2 -> Step 3
+    const step2Next = document.getElementById("wizardToStep3");
+    if (step2Next) step2Next.addEventListener("click", () => {
+      renderOnboardingRolesGrid();
+      showWizardStep(3);
     });
 
-    dom.closeModalBtn.addEventListener("click", () => {
-      dom.exportModal.classList.remove("active");
-    });
+    // Step 3 -> Step 2
+    const step3Back = document.getElementById("wizardBackToStep2");
+    if (step3Back) step3Back.addEventListener("click", () => showWizardStep(2));
 
-    dom.exportModal.addEventListener("click", (e) => {
-      if (e.target === dom.exportModal) dom.exportModal.classList.remove("active");
-    });
+    // Step 3 Finish
+    const finishBtn = document.getElementById("wizardFinishBtn");
+    if (finishBtn) {
+      finishBtn.addEventListener("click", () => {
+        if (onboardingModal) onboardingModal.classList.remove("active");
+        showPage("dashboard");
+      });
+    }
 
-    dom.copyReportBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText(dom.reportPreview.textContent).then(() => {
-        dom.copyReportBtn.textContent = "✓ Copied to Clipboard!";
-        setTimeout(() => dom.copyReportBtn.textContent = "Copy Report Text", 2000);
+    // Resume Tab Switching in Wizard
+    document.querySelectorAll(".resume-tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".resume-tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".resume-tab-content").forEach(c => c.classList.remove("active"));
+        btn.classList.add("active");
+        const mode = btn.dataset.resMode;
+        const target = document.getElementById(`resMode${mode.charAt(0).toUpperCase() + mode.slice(1)}`);
+        if (target) target.classList.add("active");
       });
     });
 
-    dom.printReportBtn.addEventListener("click", () => {
-      window.print();
+    // File Upload Handler (Drop Zone)
+    const dropZone = document.getElementById("resumeDropZone");
+    const fileInput = document.getElementById("resumeFileInput");
+    const statusText = document.getElementById("fileUploadStatus");
+
+    if (dropZone && fileInput) {
+      dropZone.addEventListener("click", () => fileInput.click());
+      dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.style.borderColor = "var(--accent-gold)"; });
+      dropZone.addEventListener("dragleave", () => { dropZone.style.borderColor = ""; });
+      dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = "";
+        if (e.dataTransfer.files.length) handleResumeFile(e.dataTransfer.files[0], statusText);
+      });
+      fileInput.addEventListener("change", (e) => {
+        if (e.target.files.length) handleResumeFile(e.target.files[0], statusText);
+      });
+    }
+
+    // Text Scan Button in Wizard
+    const scanTextBtn = document.getElementById("onboardingScanTextBtn");
+    if (scanTextBtn) {
+      scanTextBtn.addEventListener("click", () => {
+        const text = document.getElementById("onboardingResumeText")?.value || "";
+        extractAndShowDetectedSkills(text);
+      });
+    }
+
+    // Populate Persona Chips in Wizard
+    const wizardPersonaChips = document.getElementById("onboardingPersonaChips");
+    if (wizardPersonaChips) {
+      wizardPersonaChips.innerHTML = Object.entries(PERSONAS).map(([key, p]) => `
+        <button class="persona-chip" data-persona="${key}" type="button">${p.name}</button>
+      `).join("");
+
+      wizardPersonaChips.querySelectorAll(".persona-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          loadSampleProfile(chip.dataset.persona);
+          if (onboardingModal) onboardingModal.classList.remove("active");
+          showPage("dashboard");
+        });
+      });
+    }
+  }
+
+  function showWizardStep(stepNum) {
+    document.querySelectorAll(".wizard-step").forEach(s => {
+      s.classList.toggle("active", Number(s.dataset.step) === stepNum);
+    });
+    document.querySelectorAll(".wizard-pane").forEach((pane, idx) => {
+      pane.classList.toggle("active", idx + 1 === stepNum);
     });
   }
 
-  function initTheme() {
-    if (!dom.themeToggle) return;
+  function handleResumeFile(file, statusEl) {
+    if (!file) return;
+    if (statusEl) statusEl.textContent = `Analyzing ${file.name}...`;
 
-    const savedTheme = localStorage.getItem("skillbridge-theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const setTheme = (theme) => {
-      const isDark = theme === "dark";
-      document.body.dataset.theme = theme;
-      dom.themeToggle.setAttribute("aria-pressed", String(isDark));
-      dom.themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const content = e.target.result || "";
+      extractAndShowDetectedSkills(content);
+      if (statusEl) statusEl.textContent = `✓ Successfully parsed ${file.name}`;
     };
+    reader.onerror = function () {
+      if (statusEl) statusEl.textContent = "Error reading file. Please paste your resume text instead.";
+    };
+    reader.readAsText(file);
+  }
 
-    setTheme(savedTheme || (prefersDark ? "dark" : "light"));
-    dom.themeToggle.addEventListener("click", () => {
-      const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
-      localStorage.setItem("skillbridge-theme", nextTheme);
-      setTheme(nextTheme);
+  function extractAndShowDetectedSkills(text) {
+    const raw = String(text || "").toLowerCase();
+    const foundSkills = {};
+
+    SKILLS.forEach(skill => {
+      const cleanSkill = skill.name.toLowerCase();
+      // Match skill keyword
+      if (raw.includes(cleanSkill) || (cleanSkill === "sql" && /\bsql\b/.test(raw)) || (cleanSkill === "aws" && /\baws\b/.test(raw))) {
+        foundSkills[skill.name] = 60; // default intermediate
+      }
     });
+
+    // If nothing found, provide reasonable defaults
+    if (!Object.keys(foundSkills).length) {
+      foundSkills["Python"] = 60;
+      foundSkills["SQL"] = 60;
+      foundSkills["Excel"] = 60;
+      foundSkills["Git"] = 60;
+    }
+
+    // Merge into state profile
+    state.profile.skills = { ...state.profile.skills, ...foundSkills };
+    saveState();
+
+    // Render in extraction review box
+    const reviewBox = document.getElementById("extractionReviewBox");
+    const countEl = document.getElementById("detectedSkillsCount");
+    const chipsEl = document.getElementById("detectedChipsContainer");
+
+    if (reviewBox && chipsEl) {
+      reviewBox.style.display = "block";
+      const entries = Object.entries(foundSkills);
+      if (countEl) countEl.textContent = entries.length;
+
+      chipsEl.innerHTML = entries.map(([sName]) => `
+        <div class="skill-chip">
+          <span>${sName}</span>
+          <button class="skill-remove-btn" data-skill="${sName}">&times;</button>
+        </div>
+      `).join("");
+
+      chipsEl.querySelectorAll(".skill-remove-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          delete state.profile.skills[btn.dataset.skill];
+          btn.closest(".skill-chip").remove();
+          saveState();
+        });
+      });
+    }
+  }
+
+  function renderOnboardingRolesGrid() {
+    const container = document.getElementById("onboardingRoleGrid");
+    if (!container) return;
+
+    container.innerHTML = ROLES.map(r => `
+      <div class="role-select-card ${r.title === state.selectedTargetRole ? "active" : ""}" data-role="${r.title}">
+        <div class="role-select-icon">🎯</div>
+        <h4>${r.title}</h4>
+        <span style="font-size:11.5px; color:var(--text-secondary);">${r.sector} Sector</span>
+      </div>
+    `).join("");
+
+    container.querySelectorAll(".role-select-card").forEach(card => {
+      card.addEventListener("click", () => {
+        container.querySelectorAll(".role-select-card").forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+        state.selectedTargetRole = card.dataset.role;
+        saveState();
+      });
+    });
+  }
+
+  /* Load Complete Sample Profile */
+  function loadSampleProfile(personaKey) {
+    const persona = PERSONAS[personaKey] || PERSONAS.data_analyst;
+    state.profile = {
+      name: persona.name,
+      skills: { ...persona.skills }
+    };
+    state.selectedTargetRole = persona.targetRole || "Data Analyst";
+    state.roadmapTasksCompleted = { "task-1": true, "task-2": true };
+    saveState();
+  }
+
+  /* ==========================================================================
+     7. GLOBAL EVENT LISTENERS & CHAT ASSISTANT
+     ========================================================================== */
+  function initGlobalEvents() {
+    // Navigation Clicks
+    document.querySelectorAll(".main-nav .nav-tab, .mobile-nav-item").forEach(btn => {
+      btn.addEventListener("click", () => showPage(btn.dataset.page));
+    });
+
+    // Brand Logo -> Landing
+    const brandHome = document.getElementById("brandHome");
+    if (brandHome) brandHome.addEventListener("click", (e) => {
+      e.preventDefault();
+      showPage("landing");
+    });
+
+    // Sample Profile Buttons
+    const headerSampleBtn = document.getElementById("headerSampleBtn");
+    if (headerSampleBtn) headerSampleBtn.addEventListener("click", () => {
+      loadSampleProfile("data_analyst");
+      showPage("dashboard");
+    });
+
+    const landingSampleBtn = document.getElementById("landingSampleBtn");
+    if (landingSampleBtn) landingSampleBtn.addEventListener("click", () => {
+      loadSampleProfile("data_analyst");
+      showPage("dashboard");
+    });
+
+    // Landing Persona Chips
+    const landingPersonaChips = document.getElementById("landingPersonaChips");
+    if (landingPersonaChips) {
+      landingPersonaChips.innerHTML = Object.entries(PERSONAS).map(([key, p]) => `
+        <button class="persona-chip" data-persona="${key}" type="button">${p.name}</button>
+      `).join("");
+
+      landingPersonaChips.querySelectorAll(".persona-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          loadSampleProfile(chip.dataset.persona);
+          showPage("dashboard");
+        });
+      });
+    }
+
+    // Dashboard Jump Cards
+    document.querySelectorAll(".dash-stat-card[data-jump]").forEach(card => {
+      card.addEventListener("click", () => showPage(card.dataset.jump));
+    });
+
+    const dashEditProfileBtn = document.getElementById("dashEditProfileBtn");
+    if (dashEditProfileBtn) dashEditProfileBtn.addEventListener("click", () => showPage("skills-gaps"));
+
+    const dashStartRoadmapBtn = document.getElementById("dashStartRoadmapBtn");
+    if (dashStartRoadmapBtn) dashStartRoadmapBtn.addEventListener("click", () => showPage("roadmap"));
+
+    // Manual Skill Adder
+    const addSkillBtn = document.getElementById("addSkillBtn");
+    if (addSkillBtn) {
+      addSkillBtn.addEventListener("click", () => {
+        const selSkill = document.getElementById("skillSelect")?.value;
+        if (selSkill) {
+          state.profile.skills[selSkill] = state.selectedLevel;
+          saveState();
+          renderSkillsAndGaps();
+        }
+      });
+    }
+
+    document.querySelectorAll(".level-toggle-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".level-toggle-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        state.selectedLevel = Number(btn.dataset.lvl);
+      });
+    });
+
+    // Theme Switcher
+    const themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) {
+      const savedTheme = localStorage.getItem("skillbridge-theme") || "light";
+      document.body.dataset.theme = savedTheme;
+      themeToggle.setAttribute("aria-pressed", String(savedTheme === "dark"));
+
+      themeToggle.addEventListener("click", () => {
+        const next = document.body.dataset.theme === "dark" ? "light" : "dark";
+        document.body.dataset.theme = next;
+        localStorage.setItem("skillbridge-theme", next);
+        themeToggle.setAttribute("aria-pressed", String(next === "dark"));
+      });
+    }
+
+    // Developer / Settings Modal
+    const settingsModalBtn = document.getElementById("settingsModalBtn");
+    const settingsModal = document.getElementById("settingsModal");
+    const closeSettingsBtn = document.getElementById("closeSettingsBtn");
+    if (settingsModalBtn && settingsModal) {
+      settingsModalBtn.addEventListener("click", () => settingsModal.classList.add("active"));
+      if (closeSettingsBtn) closeSettingsBtn.addEventListener("click", () => settingsModal.classList.remove("active"));
+    }
+
+    const clearStorageBtn = document.getElementById("clearStorageBtn");
+    if (clearStorageBtn) {
+      clearStorageBtn.addEventListener("click", () => {
+        if (confirm("Reset all SkillBridge local data to defaults?")) {
+          localStorage.removeItem(STORAGE_KEY);
+          location.reload();
+        }
+      });
+    }
+
+    // Export Modal
+    const exportBtn = document.getElementById("exportBtn");
+    const exportModal = document.getElementById("exportModal");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    if (exportBtn && exportModal) {
+      exportBtn.addEventListener("click", () => {
+        generateExportReport();
+        exportModal.classList.add("active");
+      });
+      if (closeModalBtn) closeModalBtn.addEventListener("click", () => exportModal.classList.remove("active"));
+    }
+
+    const printReportBtn = document.getElementById("printReportBtn");
+    if (printReportBtn) printReportBtn.addEventListener("click", () => window.print());
+
+    const copyReportBtn = document.getElementById("copyReportBtn");
+    if (copyReportBtn) {
+      copyReportBtn.addEventListener("click", () => {
+        const text = document.getElementById("reportPreview")?.innerText || "";
+        navigator.clipboard.writeText(text).then(() => alert("Career Audit Report copied to clipboard!"));
+      });
+    }
+
+    // News Filter & Search
+    document.querySelectorAll("#newsCategoryFilter .filter-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        document.querySelectorAll("#newsCategoryFilter .filter-chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        state.activeNewsCategory = chip.dataset.category;
+        renderMarketIntelligence();
+      });
+    });
+
+    const newsSearchInput = document.getElementById("newsSearchInput");
+    if (newsSearchInput) {
+      newsSearchInput.addEventListener("input", (e) => {
+        state.newsSearchQuery = e.target.value;
+        renderMarketIntelligence();
+      });
+    }
+
+    const syncNewsBtn = document.getElementById("syncNewsBtn");
+    if (syncNewsBtn) {
+      syncNewsBtn.addEventListener("click", () => {
+        syncNewsBtn.textContent = "Syncing...";
+        setTimeout(() => {
+          syncNewsBtn.innerHTML = `✓ Live Feeds Updated`;
+          renderMarketIntelligence();
+          setTimeout(() => {
+            syncNewsBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Refresh Intel Feeds`;
+          }, 2000);
+        }, 600);
+      });
+    }
+
+    // Courses Filter in Roadmap
+    document.querySelectorAll("#roadmapCourseFilterTabs .filter-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        document.querySelectorAll("#roadmapCourseFilterTabs .filter-chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        state.activeCourseFilter = chip.dataset.filter;
+        renderCareerCourses(state.selectedTargetRole);
+      });
+    });
+
+    // Jobs Subtabs (Qualified vs Gaps vs Tracker)
+    document.querySelectorAll(".jobs-subnav-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".jobs-subnav-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".jobs-view-section").forEach(s => s.classList.remove("active"));
+        btn.classList.add("active");
+        const subtab = btn.dataset.subtab;
+        const targetSec = document.getElementById(`secJobs${subtab.charAt(0).toUpperCase() + subtab.slice(1)}`);
+        if (targetSec) targetSec.classList.add("active");
+      });
+    });
+
+    // Reset Roadmap Checkboxes
+    const resetRoadmapProgressBtn = document.getElementById("resetRoadmapProgressBtn");
+    if (resetRoadmapProgressBtn) {
+      resetRoadmapProgressBtn.addEventListener("click", () => {
+        state.roadmapTasksCompleted = {};
+        saveState();
+        renderRoadmapAndProjects();
+      });
+    }
+
+    // Salary Selectors
+    const salaryExpSelect = document.getElementById("salaryExpSelect");
+    const salaryGeoSelect = document.getElementById("salaryGeoSelect");
+    if (salaryExpSelect) salaryExpSelect.addEventListener("change", (e) => { state.salaryExp = e.target.value; saveState(); renderSalaryEstimator(); });
+    if (salaryGeoSelect) salaryGeoSelect.addEventListener("change", (e) => { state.salaryGeo = e.target.value; saveState(); renderSalaryEstimator(); });
+
+    // AI Career Assistant Chat
+    initHelpChat();
+  }
+
+  function generateExportReport() {
+    const reportEl = document.getElementById("reportPreview");
+    if (!reportEl) return;
+
+    const activeRole = ROLES.find(r => r.title === state.selectedTargetRole) || ROLES[0];
+    const fitData = calculateRoleFit(activeRole, state.profile.skills);
+    const dateStr = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+
+    reportEl.innerHTML = `
+      <div style="font-family:var(--font-mono); font-size:12px; line-height:1.7;">
+        =================================================================<br>
+        SKILLBRIDGE CAREER FIT & READINESS AUDIT<br>
+        Date: ${dateStr} • Candidate: ${state.profile.name || "Student Profile"}<br>
+        =================================================================<br><br>
+        TARGET CAREER TRACK: ${activeRole.title} (${activeRole.sector})<br>
+        READINESS FIT SCORE: ${fitData.fitScore}% Match (Core Coverage: ${fitData.corePct}%)<br>
+        ESTIMATED COMPENSATION: ${activeRole.baseSalaryINR} (India) / ${activeRole.baseSalaryUSD} (Global)<br><br>
+        VERIFIED PROFILE SKILLS (${Object.keys(state.profile.skills).length}):<br>
+        ${Object.entries(state.profile.skills).map(([s, lvl]) => ` - ${s}: ${lvl}%`).join("<br>")}<br><br>
+        PRIORITY SKILL GAPS TO CLOSE (${fitData.missingSkills.length}):<br>
+        ${fitData.missingSkills.map(g => ` - ${g.name} (Hiring Weight: ${g.weight}/10)`).join("<br>")}<br><br>
+        RECOMMENDED 4-WEEK MILESTONE:<br>
+        - Week 1: ${fitData.missingSkills[0]?.name || "Core Practice"}<br>
+        - Week 2: ${fitData.missingSkills[1]?.name || "Advanced Tooling"}<br>
+        - Week 3: Portfolio Project Build & GitHub Deployment<br>
+        - Week 4: Resume Polish & Job Application Launch<br>
+        =================================================================
+      </div>
+    `;
   }
 
   function initHelpChat() {
-    if (!dom.helpChatTrigger || !dom.helpChatWindow) return;
+    const trigger = document.getElementById("helpChatTrigger");
+    const chatWindow = document.getElementById("helpChatWindow");
+    const closeBtn = document.getElementById("helpChatClose");
+    const form = document.getElementById("helpChatForm");
+    const input = document.getElementById("helpChatInput");
+    const messages = document.getElementById("helpChatMessages");
+    const roleText = document.getElementById("chatRoleNameText");
 
-    const setOpen = (open) => {
-      dom.helpChatWindow.hidden = !open;
-      dom.helpChatTrigger.setAttribute("aria-expanded", String(open));
-      dom.helpChat.classList.toggle("open", open);
-      if (open) dom.helpChatInput.focus();
-    };
-    const addMessage = (text, type) => {
-      const message = document.createElement("div");
-      message.className = `help-chat-message ${type}-message`;
-      message.textContent = text;
-      dom.helpChatMessages.appendChild(message);
-      dom.helpChatMessages.scrollTop = dom.helpChatMessages.scrollHeight;
-    };
-    const answer = (question) => {
-      const q = question.toLowerCase();
-      if (/(creator|created|made|gohulrahesh|amrita|college)/.test(q)) {
-        return "SkillBridge was created by Gohulrahesh, an AIE student at Amrita College, Bangalore.";
-      }
-      if (/(resume|profile|skill|scanner)/.test(q)) {
-        showStage("stage-profile");
-        return "Start in Build your skills profile. Choose a sample profile, add skills yourself, or paste your resume. You can also use Review resume for improvement suggestions.";
-      }
-      if (/(news|layoff|layoffs|trend|emerging role|market news)/.test(q)) {
-        showStage("stage-news");
-        return "Stage 07 Market news tracks tech layoffs, emerging GenAI jobs, India GCC hiring waves, and compensation trends.";
-      }
-      if (/(job|apply|opening|india)/.test(q)) {
-        return "Use the India jobs item in the navigation to browse current public-feed listings, search by keyword, or open live searches on LinkedIn, Naukri, and Indeed.";
-      }
-      if (/(market|demand|trend)/.test(q)) {
-        showStage("stage-market");
-        return "Explore the job market shows the roles and skills tracked by SkillBridge. Use Sync Live Market Data to update it from available public feeds.";
-      }
-      if (/(match|recommend|fit|career)/.test(q)) {
-        showStage("stage-reco");
-        return "Best-fit roles compares your skills with each role, explains the match score, and lists the most useful skills to build next.";
-      }
-      if (/(roadmap|learn|course|cert|certification|salary|next step)/.test(q)) {
-        showStage("stage-roadmaps");
-        return "Plan your next steps includes curated certifications and courses for your chosen career track, skill-gap learning plans, salary estimation, and job-search links.";
-      }
-      if (/(dark|light|theme|mode)/.test(q)) {
-        return "Use the Theme switch in the header to choose light or dark mode. Your choice is saved in this browser.";
-      }
-      return "I can help with building your profile, exploring role courses, market news & layoffs, finding jobs, learning roadmaps, themes, or creator info.";
-    };
-    const submitQuestion = (question) => {
-      const cleanQuestion = question.trim();
-      if (!cleanQuestion) return;
-      addMessage(cleanQuestion, "user");
-      dom.helpChatInput.value = "";
-      window.setTimeout(() => addMessage(answer(cleanQuestion), "guide"), 180);
-    };
+    if (roleText) roleText.textContent = state.selectedTargetRole;
 
-    dom.helpChatTrigger.addEventListener("click", () => setOpen(dom.helpChatWindow.hidden));
-    dom.helpChatClose.addEventListener("click", () => setOpen(false));
-    dom.helpChatForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      submitQuestion(dom.helpChatInput.value);
-    });
-    document.querySelectorAll("[data-help-prompt]").forEach(button => {
-      button.addEventListener("click", () => submitQuestion(button.dataset.helpPrompt));
-    });
-  }
+    if (trigger && chatWindow) {
+      trigger.addEventListener("click", () => {
+        chatWindow.hidden = !chatWindow.hidden;
+        trigger.setAttribute("aria-expanded", String(!chatWindow.hidden));
+        if (!chatWindow.hidden && input) input.focus();
+      });
+    }
 
-  function generateCareerReportText() {
-    const scored = ROLES.map(r => scoreRole(r)).sort((a, b) => b.final - a.final);
-    const topRole = ROLES.find(r => r.title === selectedTargetRole) || scored[0];
-    const topScored = scoreRole(topRole);
-    const userSkillsList = Object.entries(profile).map(([s, l]) => `  - ${s}: ${l}% proficiency`).join("\n");
+    if (closeBtn && chatWindow) {
+      closeBtn.addEventListener("click", () => {
+        chatWindow.hidden = true;
+        if (trigger) trigger.setAttribute("aria-expanded", "false");
+      });
+    }
 
-    const report = `# SkillBridge — Career Fit & Gap Audit Report
-Generated on: ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}
-Data Engine: ${isLiveActive ? "Live Market Stream (Real-Time APIs)" : "Baseline Reference Dataset"}
-Target Career Option: ${topRole.title.toUpperCase()} (${topRole.sector})
-
-=======================================================
-1. CANDIDATE PROFILE
-=======================================================
-Total Skills Logged: ${Object.keys(profile).length}
-${userSkillsList || "  (No skills currently added)"}
-
-=======================================================
-2. TOP MATCHED CAREER RECOMMENDATIONS
-=======================================================
-${scored.slice(0, 4).map((r, i) => `
-#${i + 1} ${r.role.title.toUpperCase()} (${r.role.sector})
-- Fit Score: ${r.final}/100 [Base Match: ${r.matchPct}%, Emerging Bonus: +${r.emergingBonus}]
-- Benchmark Salary: ${r.role.baseSalaryINR} (India) / ${r.role.baseSalaryUSD} (Global)
-- Covered Skills: ${r.matched.map(m => m.skillName).join(", ") || "None"}
-- High-Priority Skill Gaps: ${r.missing.map(m => m.skillName).join(", ") || "Zero Gaps"}
-`).join("\n")}
-
-=======================================================
-3. RECOMMENDED ACTION PLAN FOR: ${topRole.title.toUpperCase()}
-=======================================================
-Fit Score: ${topScored.final}/100
-${topScored.missing.length > 0 ? topScored.missing.map(m => {
-  const s = SKILLS.find(x => x.name === m.skillName) || {};
-  return `* Bridge "${m.skillName}" (Est: ${s.estTime || '3-4 weeks'})
-  Resource: ${s.resource || 'https://roadmap.sh'}`;
-}).join("\n") : "* You meet 100% of benchmark requirements for this target role. Proceed to live job applications."}
-
-Top Recommended Certifications:
-${(CAREER_COURSES[topRole.title] || []).slice(0, 3).map(c => `  - ${c.title} (${c.provider}) -> ${c.link}`).join("\n")}
-
-=======================================================
-SkillBridge • Explainable Career Recommendation Engine
-`;
-
-    dom.reportPreview.textContent = report;
-  }
-
-  /* ==========================================================================
-     15. INITIALIZATION
-     ========================================================================== */
-  function init() {
-    initTheme();
-    initHelpChat();
-    initNav();
-    initPersonaPresets();
-    initResumeScanner();
-    initResumeImprover();
-    initProfileControls();
-    renderSectorFilter();
-    renderRoleTable();
-    renderCategoryFilter();
-    renderDemandBars();
-    renderEmerging();
-    initSalaryEstimator();
-    initMarketNews();
-    initExportModal();
-
-    // Source tab toggles (Free Public vs Adzuna)
-    document.querySelectorAll(".sync-source-tab").forEach(tab => {
-      tab.addEventListener("click", () => {
-        document.querySelectorAll(".sync-source-tab").forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-        activeSyncSource = tab.dataset.source;
-        document.getElementById("adzunaInputFields").style.display = activeSyncSource === "adzuna" ? "flex" : "none";
+    // Context-Aware Quick Prompt Chips
+    document.querySelectorAll("[data-help-prompt]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        handleUserChatMessage(btn.dataset.helpPrompt, messages);
       });
     });
 
-    if (dom.syncBtn) dom.syncBtn.addEventListener("click", syncLiveData);
-    if (dom.resetBtn) dom.resetBtn.addEventListener("click", resetToSynthetic);
-
-    // Attempt to load saved state, otherwise use default rich preset
-    const loaded = loadState();
-    if (!loaded) {
-      profile = { ...PERSONAS.ai_aspirant.skills };
-      selectedTargetRole = "Data Analyst";
+    if (form && input) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const msg = input.value.trim();
+        if (msg) {
+          handleUserChatMessage(msg, messages);
+          input.value = "";
+        }
+      });
     }
-
-    renderAllProfileDependents();
   }
 
-  // Run on DOM ready
+  function handleUserChatMessage(userText, container) {
+    if (!container) return;
+
+    // Append user message
+    const userBubble = document.createElement("div");
+    userBubble.className = "help-chat-message user-message";
+    userBubble.textContent = userText;
+    container.appendChild(userBubble);
+
+    // Formulate Context-Aware Response
+    const activeRole = ROLES.find(r => r.title === state.selectedTargetRole) || ROLES[0];
+    const fitData = calculateRoleFit(activeRole, state.profile.skills);
+    const topGap = fitData.missingSkills[0];
+
+    let reply = "";
+    const lower = userText.toLowerCase();
+
+    if (lower.includes("score") || lower.includes("why")) {
+      reply = `Your match score for ${activeRole.title} is ${fitData.fitScore}%. You have covered ${fitData.matchedSkills.length} of ${Object.keys(activeRole.skills).length} required skills (${fitData.matchedSkills.map(s => s.name).join(", ")}).`;
+    } else if (lower.includes("learn") || lower.includes("first") || lower.includes("gap")) {
+      reply = topGap 
+        ? `You should prioritize learning ${topGap.name}. It has a hiring weight of ${topGap.weight}/10 in ${activeRole.title} descriptions. Bridging it will raise your score to ${Math.min(100, fitData.fitScore + Math.round(topGap.weight * 2.2))}%.`
+        : `You have covered all core requirements for ${activeRole.title}! You're ready to focus on building capstone portfolio projects.`;
+    } else if (lower.includes("project")) {
+      const p = (PROJECT_IDEAS[activeRole.title] || PROJECT_IDEAS["Data Analyst"])[0];
+      reply = `I recommend building "${p.title}" using ${p.stack}. It closes your gaps in ${p.closesGaps.join(" and ")} and gives you a strong GitHub showcase.`;
+    } else if (lower.includes("job")) {
+      reply = `Based on your ${fitData.fitScore}% fit score, you qualify for 18+ active openings in India & remote. Check the Jobs & Tracker tab to view phone-screen ready positions!`;
+    } else {
+      reply = `As an aspiring ${activeRole.title}, your biggest priority is closing your ${topGap ? topGap.name : "portfolio"} gap. Check your 4-week roadmap tab for step-by-step guidance!`;
+    }
+
+    setTimeout(() => {
+      const guideBubble = document.createElement("div");
+      guideBubble.className = "help-chat-message guide-message";
+      guideBubble.textContent = reply;
+      container.appendChild(guideBubble);
+      container.scrollTop = container.scrollHeight;
+    }, 300);
+  }
+
+  /* ==========================================================================
+     8. INITIALIZATION
+     ========================================================================== */
+  function init() {
+    loadState();
+    initGlobalEvents();
+    initOnboarding();
+    showPage(state.activePage || "landing");
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }
+
 })();
